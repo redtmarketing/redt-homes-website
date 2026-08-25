@@ -1,0 +1,60 @@
+<!-- ==========================================================================
+     SHARED PARTIAL — edit this file once to change the header/nav sitewide.
+     Injected into every page by build.js at the BUILD:INCLUDE partials/header.html marker.
+     Nav links use root-relative, clean paths (e.g. /homes/); serve the
+     /dist folder over HTTP (Netlify, or `npx serve dist` locally) rather than
+     opening files via file:// so these resolve correctly.
+     ========================================================================== -->
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="site-logo" href="/">
+      <img src="/assets/brand/logo.svg" alt="redT Homes" width="40" height="40" onerror="this.style.display='none'">
+      redT Homes
+    </a>
+
+    <nav class="main-nav" aria-label="Primary">
+      <div class="main-nav-inner">
+        <ul class="nav-primary">
+          <li><a href="/homes/">Homes for Sale</a></li>
+          <li><a href="/why-redt.html">Why redT</a></li>
+          <li><a href="/neighborhoods/">Neighborhoods</a></li>
+        </ul>
+        <ul class="nav-secondary">
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/testimonials.html">Testimonials</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="header-cta">
+      <a class="header-phone" href="tel:+13036257592">303-625-7592</a>
+      <a class="btn btn-primary btn-sm" href="/contact.html#tour">Schedule a Tour</a>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" id="mobile-nav-toggle">
+      <span class="sr-only">Menu</span>
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+        <path d="M0 1H22" stroke="currentColor" stroke-width="2"/>
+        <path d="M0 8H22" stroke="currentColor" stroke-width="2"/>
+        <path d="M0 15H22" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <ul>
+      <li><a href="/homes/">Homes for Sale</a></li>
+      <li><a href="/why-redt.html">Why redT</a></li>
+      <li><a href="/neighborhoods/">Neighborhoods</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/testimonials.html">Testimonials</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+      <li><a class="btn btn-primary btn-block" href="/contact.html#tour">Schedule a Tour</a></li>
+      <li><a class="header-phone" href="tel:+13036257592">303-625-7592</a></li>
+    </ul>
+  </nav>
+</header>

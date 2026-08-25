@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{metaTitle}}</title>
+  <meta name="description" content="{{metaDescription}}">
+  <link rel="canonical" href="{{siteUrl}}/neighborhoods/{{slug}}.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="redT Homes">
+  <meta property="og:title" content="{{metaTitle}}">
+  <meta property="og:description" content="{{metaDescription}}">
+  <meta property="og:url" content="{{siteUrl}}/neighborhoods/{{slug}}.html">
+  <meta property="og:image" content="{{siteUrl}}{{heroImage}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{metaTitle}}">
+  <meta name="twitter:description" content="{{metaDescription}}">
+  <meta name="twitter:image" content="{{siteUrl}}{{heroImage}}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{siteUrl}}/" },
+      { "@type": "ListItem", "position": 2, "name": "Neighborhoods", "item": "{{siteUrl}}/neighborhoods/" },
+      { "@type": "ListItem", "position": 3, "name": "{{name}}", "item": "{{siteUrl}}/neighborhoods/{{slug}}.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- BUILD:INCLUDE partials/header.html -->
+
+  <main id="main">
+    <nav class="breadcrumbs container" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/neighborhoods/">Neighborhoods</a></li>
+        <li aria-current="page">{{name}}</li>
+      </ol>
+    </nav>
+
+    <section class="hero" style="background-image: url('{{heroImage}}');">
+      <div class="container">
+        <p class="eyebrow">{{city}}, {{state}}</p>
+        <h1>New Construction Homes in {{name}}</h1>
+        <p class="lede">{{summary}}</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div>
+          {{description_html}}
+        </div>
+        <div>
+          <h2>Local Highlights</h2>
+          <ul class="feature-list">
+            {{#each amenities}}
+            <li class="feature-item">
+              <span class="feature-icon" aria-hidden="true">📍</span>
+              <p class="mb-0">{{.}}</p>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {{#if homes}}
+    <section class="section-alt">
+      <div class="container">
+        <h2>Available Homes in {{name}}</h2>
+        <div class="grid">
+          {{#each homes}}
+          <article class="card">
+            <a href="/homes/{{slug}}.html" style="color: inherit; text-decoration: none;">
+              <div class="card-media">
+                <img src="{{heroImage}}" alt="{{heroImageAlt}}" width="400" height="300">
+                <span class="listing-tag">{{status}}</span>
+              </div>
+              <div class="card-body">
+                <div class="cluster" style="margin-bottom: var(--space-3);">
+                  <span class="badge badge-accent">All-Electric</span>
+                </div>
+                <h3 class="mb-0" style="font-size: var(--step-1);">{{address}}</h3>
+                <p class="mb-0">{{beds}} bed &middot; {{baths}} bath &middot; {{sqft}} sq ft</p>
+                <p class="mb-0"><strong>{{price}}</strong></p>
+              </div>
+            </a>
+          </article>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    {{/if}}
+    {{#unless homes}}
+    <section class="section-alt">
+      <div class="container-narrow text-center">
+        <h2>No homes currently available in {{name}}</h2>
+        <p>Contact us to be notified as soon as a redT home in {{name}} becomes available.</p>
+        <a class="btn btn-primary" href="/contact.html">Get Notified</a>
+      </div>
+    </section>
+    {{/unless}}
+
+    <section>
+      <div class="container-narrow text-center">
+        <h2>See {{name}} in person</h2>
+        <div class="hero-actions" style="justify-content:center;">
+          <a class="btn btn-primary" href="/homes/">View All Available Homes</a>
+          <a class="btn btn-secondary" href="/contact.html#tour">Schedule a Tour</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BUILD:INCLUDE partials/footer.html -->
+</body>
+</html>

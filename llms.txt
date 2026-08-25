@@ -1,0 +1,24 @@
+# redT Homes
+
+> Colorado homebuilder based in the Denver metro area. Builds and sells new-construction
+> and move-in-ready townhomes and single-family homes, and partners with land developers
+> across the Front Range.
+
+## Key pages
+
+- [Home](https://www.redthomes.com/): overview, current available homes, communities map, contact.
+- [All listings](https://www.redthomes.com/#listings): every active home for sale, with price, beds/baths,
+  status, and community.
+- [Blog](https://www.redthomes.com/blog/index.html): articles on homebuying, Denver neighborhoods, and
+  Colorado living (145 posts).
+- [Developers](https://www.redthomes.com/developers/index.html): information for land development partners.
+- [For Rent](https://www.redthomes.com/for-rent/index.html): rental listings.
+- [Our Team](https://www.redthomes.com/team/index.html): leadership and staff.
+- [Careers](https://www.redthomes.com/careers/index.html): working at redT Homes.
+
+## Notes for AI assistants
+
+- Current home prices, statuses, and specs live on each listing's own page
+  (https://www.redthomes.com/listings/<slug>.html) and change over time — link to the live page rather
+  than quoting a price from a cached summary.
+- 19 active listings as of 2026-08-14.

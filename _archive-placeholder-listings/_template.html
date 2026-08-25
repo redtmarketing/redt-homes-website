@@ -1,0 +1,171 @@
+<!--
+  NEW LISTING STARTING POINT — not linked from anywhere, safe to copy.
+  To add a new listing:
+    1. Copy this file to /listings/your-listing-slug.html
+    2. Find/replace every [PLACEHOLDER] and every instance of
+       "your-listing-slug" with your real slug (e.g. "maple-street").
+    3. Update the hidden listing_* fields to match — these are what tie a
+       form submission on this page to the right property in HubSpot.
+       See HUBSPOT-MLS-INTEGRATION.md for the one-time HubSpot setup.
+    4. Add a card + link to this page in index.html's #listings carousel.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Property Name], [City] | redT Homes</title>
+<link rel="icon" type="image/png" href="/assets/brand/redt-logo-icon.png">
+<meta name="description" content="[Beds] bed, [baths] bath [status] home in [Community], [City], CO. [Price]. Schedule a tour with redT Homes.">
+<link rel="canonical" href="https://www.redthomes.com/listings/your-listing-slug.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo" aria-label="redT Homes">
+    <img src="/assets/brand/redt-logo-white.png" alt="redT Homes" class="logo-light">
+    <img src="/assets/brand/redt-logo-black.png" alt="redT Homes" class="logo-dark">
+  </a>
+  <ul class="nav-segments">
+    <li><a href="/#homebuyers">Homebuyers</a></li>
+    <li><a href="/#developers">Developers</a></li>
+    <li><a href="/#investors">Investors</a></li>
+  </ul>
+  <div class="nav-right">
+    <ul class="nav-secondary">
+      <li><a href="/#testimonials">Testimonials</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="#tour" class="btn btn-primary" style="padding: 12px 22px;">Get In Touch</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M0 1H20" stroke="currentColor" stroke-width="2"/><path d="M0 7H20" stroke="currentColor" stroke-width="2"/><path d="M0 13H20" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="/#homebuyers">Homebuyers</a></li>
+    <li><a href="/#developers">Developers</a></li>
+    <li><a href="/#investors">Investors</a></li>
+  </ul>
+  <ul class="mobile-secondary">
+    <li><a href="/#testimonials">Testimonials</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</div>
+
+<header class="page-header">
+  <div class="breadcrumbs"><a href="/">Home</a> / <a href="/#listings">Listings</a> / [Property Name]</div>
+  <p class="eyebrow">[Status — e.g. Move-in Ready]</p>
+  <h1>[Property Name]</h1>
+  <p class="loc">[Community], [City], CO</p>
+</header>
+
+<section class="section">
+  <div class="property-grid">
+    <div>
+      <div class="property-gallery">
+        <div class="gallery-photo"></div>
+        <div class="gallery-photo"></div>
+        <div class="gallery-photo"></div>
+      </div>
+
+      <div class="property-specs">
+        <div><div class="spec-num">[Beds]</div><div class="spec-label">Bedrooms</div></div>
+        <div><div class="spec-num">[Baths]</div><div class="spec-label">Bathrooms</div></div>
+        <div><div class="spec-num">[Sqft]</div><div class="spec-label">Sq Ft</div></div>
+        <div><div class="spec-num">[Year]</div><div class="spec-label">Year Built</div></div>
+      </div>
+
+      <div class="property-body">
+        <h2 style="font-size: 24px; margin-bottom: 16px;">About This Home</h2>
+        <p>[PLACEHOLDER — property description.]</p>
+      </div>
+    </div>
+
+    <aside class="property-sidebar" id="tour">
+      <div class="price">[Price]</div>
+      <div class="loc">[Community], [City], CO</div>
+
+      <h3 class="form-heading">Get In Touch</h3>
+      <form onsubmit="return false;">
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-row">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what you're looking for..."></textarea>
+        </div>
+
+        <!--
+          HUBSPOT FORM PLACEHOLDER — property inquiry / tour request form.
+          Replace this <form> with the HubSpot form embed for this listing,
+          using the JS API (not the plain embed script) so the hidden
+          listing fields below get prefilled on load. This is what ties a
+          submission on THIS page to THIS property in HubSpot's CRM.
+
+          This listing's identifiers:
+            listing_id:      your-listing-slug
+            listing_address: [Community], [City], CO
+            listing_price:   [Price]
+            listing_status:  [Status]
+            listing_url:     https://www.redthomes.com/listings/your-listing-slug.html
+
+          <div id="hubspotForm-your-listing-slug"></div>
+          <script>
+            hbspt.forms.create({
+              portalId: "43826586",
+              formId: "YOUR_FORM_ID",
+              target: "#hubspotForm-your-listing-slug",
+              onFormReady: function ($form) {
+                $form.find('input[name="listing_id"]').val("your-listing-slug");
+                $form.find('input[name="listing_address"]').val("[Community], [City], CO");
+                $form.find('input[name="listing_price"]').val("[Price]");
+                $form.find('input[name="listing_status"]').val("[Status]");
+                $form.find('input[name="listing_url"]').val("https://www.redthomes.com/listings/your-listing-slug.html");
+              }
+            });
+          </script>
+
+          See HUBSPOT-MLS-INTEGRATION.md at the project root for the one-time
+          HubSpot property/object/workflow setup these hidden fields depend on.
+        -->
+        <input type="hidden" name="listing_id" value="your-listing-slug">
+        <input type="hidden" name="listing_address" value="[Community], [City], CO">
+        <input type="hidden" name="listing_price" value="[Price]">
+        <input type="hidden" name="listing_status" value="[Status]">
+        <input type="hidden" name="listing_url" value="https://www.redthomes.com/listings/your-listing-slug.html">
+
+        <button type="submit" class="btn btn-dark" style="width: 100%; justify-content: center;">Get In Touch</button>
+      </form>
+    </aside>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo"><img src="/assets/brand/redt-logo-black.png" alt="redT Homes"></div>
+  <ul class="foot-links">
+    <li>&copy; 2026 redT Homes</li>
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Careers</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

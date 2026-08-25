@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /partials/
+Disallow: /templates/
+Disallow: /data/
+
+Sitemap: https://www.redthomes.com/sitemap.xml

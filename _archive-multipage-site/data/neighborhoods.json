@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "park-hill",
+    "name": "Park Hill",
+    "city": "Denver",
+    "state": "CO",
+    "heroImage": "/assets/images/neighborhoods/park-hill-hero.jpg",
+    "heroImageAlt": "Tree-lined residential street in the Park Hill neighborhood of Denver, Colorado",
+    "summary": "A historic, tree-lined Denver neighborhood minutes from City Park, known for its walkable streets and strong sense of community.",
+    "description_html": "<p>Park Hill is one of Denver's most established neighborhoods, prized for its mature tree canopy, walkable grid of streets, and easy access to City Park and the Denver Zoo. redT's homes here are built to fit the scale and character of the block while delivering the indoor air quality and energy performance older Denver housing stock can't match.</p><p>Buyers in Park Hill are typically trading up from an aging bungalow or condo and want the character of an established neighborhood without inheriting its drafts, gas lines, and utility bills.</p>",
+    "amenities": [
+      "City Park and the Denver Zoo within walking distance",
+      "Neighborhood elementary and middle schools",
+      "Local coffee shops and restaurants along Kearney St",
+      "Quick access to I-70 and downtown Denver"
+    ],
+    "metaTitle": "New Construction Homes in Park Hill, Denver, CO | redT Homes",
+    "metaDescription": "All-electric new construction homes in Park Hill, Denver. Attainably priced, energy-efficient homes near City Park. Schedule a tour with redT Homes."
+  },
+  {
+    "slug": "westwood",
+    "name": "Westwood",
+    "city": "Denver",
+    "state": "CO",
+    "heroImage": "/assets/images/neighborhoods/westwood-hero.jpg",
+    "heroImageAlt": "New construction homes on a residential street in the Westwood neighborhood of Denver, Colorado",
+    "summary": "A vibrant, up-and-coming Denver neighborhood with attainably priced new construction and quick access to the South Platte River trail system.",
+    "description_html": "<p>Westwood offers some of the most attainable new-construction pricing in Denver proper, without giving up access to downtown or the mountains. The neighborhood's mix of longtime residents and new families has fueled a wave of local restaurants, murals, and small businesses along Morrison Rd.</p><p>redT builds right-sized single-family homes and duplexes here designed for first-time buyers who want the health and cost benefits of an all-electric home at a price point resale can't touch.</p>",
+    "amenities": [
+      "South Platte River trail and Ruby Hill Park nearby",
+      "Morrison Rd local restaurants and shops",
+      "Denver B-cycle and RTD bus access",
+      "Short drive to downtown Denver and Federal Blvd corridor"
+    ],
+    "metaTitle": "New Construction Homes in Westwood, Denver, CO | redT Homes",
+    "metaDescription": "Attainably priced, all-electric new construction homes in Westwood, Denver. Healthier homes near the South Platte River trail."
+  }
+]

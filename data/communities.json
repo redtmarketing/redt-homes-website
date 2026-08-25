@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Thirty Eight West",
+    "city": "Denver, CO",
+    "lat": 39.7695336,
+    "lng": -105.0385692,
+    "link": "/listings/3923-w-38th-avenue-unit-504-bldg-5-denver.html"
+  },
+  {
+    "name": "Birch Leaf Duplexes",
+    "city": "Denver, CO",
+    "lat": 39.7752306,
+    "lng": -105.0369562,
+    "link": "/listings/5512-clay-court-denver.html"
+  },
+  {
+    "name": "Berkeley Duplexes",
+    "city": "Denver, CO",
+    "lat": 39.7738,
+    "lng": -105.0405,
+    "link": "/listings/5282-columbine-lane-denver.html"
+  },
+  {
+    "name": "Mississippi",
+    "city": "Denver, CO",
+    "lat": 39.6964688,
+    "lng": -104.9316280,
+    "link": "/listings/1101-s-dahlia-street-denver.html"
+  },
+  {
+    "name": "Fenton Homes",
+    "city": "Wheat Ridge, CO",
+    "lat": 39.7690768,
+    "lng": -105.0602650,
+    "link": "/listings/3784-fenton-street-wheat-ridge.html"
+  },
+  {
+    "name": "Lafayette Townhomes",
+    "city": "Denver, CO",
+    "lat": 39.7588196,
+    "lng": -104.9708940,
+    "link": "/listings/1642-n-lafayette-street-unit-1-denver.html"
+  },
+  {
+    "name": "Observatory Park",
+    "city": "Denver, CO",
+    "lat": 39.6722281,
+    "lng": -104.9505600,
+    "link": "/listings/2442-s-saint-paul-street-denver.html"
+  },
+  {
+    "name": "Sherman Townhomes",
+    "city": "Denver, CO",
+    "lat": 39.6776586,
+    "lng": -104.9850709,
+    "link": "/listings/2148-sherman-street-denver.html"
+  },
+  {
+    "name": "Harvest",
+    "city": "Berthoud, CO",
+    "lat": 40.3083174,
+    "lng": -105.0810920,
+    "link": "/listings/1392-swan-peter-drive-berthoud.html"
+  },
+  {
+    "name": "Mount Massive",
+    "city": "Leadville, CO",
+    "lat": 39.2507448,
+    "lng": -106.2994536,
+    "link": "/listings/921-mt-massive-drive-unit-16-bldg-2-leadville.html"
+  }
+]

@@ -1,0 +1,1097 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# HubSpot's default post-submission redirect when a form has no custom
+# "Redirect to a webpage URL" configured in its form options — every
+# HubSpot form embed on this site (homepage contact form + 10 listing
+# inquiry forms) falls back to this path on whatever domain it's embedded
+# on. Discovered via a live test submission right after the domain cutover
+# (2026-08-04): the path never existed here, so it 404'd for every real
+# submitter. Sends to the homepage instead until each form gets a proper
+# branded thank-you page configured in HubSpot.
+[[redirects]]
+  from = "/thank-you-for-your-submission/*"
+  to = "/"
+  status = 302
+
+# Same HubSpot-default-fallback situation as above, but for the "-your-"-less
+# variant of the path — confirmed live 404 (2026-08-17) at
+# /thank-you-for-submission/, distinct from /thank-you-for-your-submission/
+# above. Whatever's linking to this shorter form likely has a typo'd or
+# older copy of the fallback path baked in somewhere.
+[[redirects]]
+  from = "/thank-you-for-submission/*"
+  to = "/"
+  status = 302
+
+# Redirects for old redthomes.com URLs that don't map 1:1 onto this site's
+# structure. /developers/ and /for-rent/ aren't listed here because those
+# folder names match exactly and are auto-served by Netlify without a rule.
+[[redirects]]
+  from = "/our-team/*"
+  to = "/team/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/testimonials/*"
+  to = "/#testimonials"
+  status = 301
+
+# These 4 posts had emoji-prefixed titles; WordPress's exported slug was
+# the literal percent-encoded text (e.g. "%f0%9f%8c%bf-..."), which was
+# briefly used as the actual filename here too — any browser decodes that
+# in an href/URL bar and 404s, since it doesn't match the literal filename.
+# Renamed to clean ASCII slugs (data/blog.json); these redirects catch the
+# real old emoji URLs (used by the live WordPress site, and by other posts
+# linking to these ones internally) and point them at the new slug.
+#
+# Must appear BEFORE the generic /blog/:slug/ rule below — Netlify uses the
+# first matching rule in file order, and :slug matches any single path
+# segment including these, so if the generic rule came first it would win
+# and redirect to a literal (nonexistent) "%f0%9f%8c%bf-....html" instead —
+# confirmed live via a post-launch redirect audit (2026-08-04), all 4 were
+# actually 404ing. Netlify also normalizes percent-encoded octets to
+# uppercase hex before matching, so these use uppercase to actually match a
+# real browser request (a real browser also always sends uppercase hex).
+[[redirects]]
+  from = "/blog/%F0%9F%8C%BF-how-to-keep-your-house-cool-without-ac/"
+  to = "/blog/how-to-keep-your-house-cool-without-ac.html"
+  status = 301
+[[redirects]]
+  from = "/blog/%E2%9C%85-right-sizing-find-the-space-that-fits-your-life/"
+  to = "/blog/right-sizing-find-the-space-that-fits-your-life.html"
+  status = 301
+[[redirects]]
+  from = "/blog/%F0%9F%A7%B3-the-ultimate-moving-checklist-10-steps-to-a-smooth-move/"
+  to = "/blog/the-ultimate-moving-checklist-10-steps-to-a-smooth-move.html"
+  status = 301
+[[redirects]]
+  from = "/blog/%F0%9F%94%A5-the-5-hottest-neighborhoods-in-denver-right-now/"
+  to = "/blog/the-5-hottest-neighborhoods-in-denver-right-now.html"
+  status = 301
+
+# 5 old blog posts with no recoverable content, redirected to the blog index
+# instead of a fabricated placeholder post (see full rationale further down
+# this file, near the original location of this comment). Also must appear
+# BEFORE the generic /blog/:slug/ rule below for the same shadowing reason
+# as the emoji redirects above — confirmed live (2026-08-04) all 5 were
+# actually redirecting to a nonexistent "<slug>.html" and 404ing.
+[[redirects]]
+  from = "/blog/the-real-estate-entitlement-process-a-complete-checklist"
+  to = "/blog/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/what-are-entitlements-understanding-the-development-process"
+  to = "/blog/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/denver-housing-inventory-shortage/"
+  to = "/blog/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/this-is-a-piece-of-wood/"
+  to = "/blog/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/how-to-measure-energy-efficiency/"
+  to = "/blog/index.html"
+  status = 301
+
+# Old WordPress post URLs had no .html and a trailing slash, e.g.
+# redthomes.com/blog/redt-open-houses/ (confirmed via the WordPress export).
+[[redirects]]
+  from = "/blog/:slug/"
+  to = "/blog/:slug.html"
+  status = 301
+
+# A handful of blog posts are linked from *within other posts'* content
+# without the /blog/ prefix (found by scanning every internal link in
+# data/blog.json against the real WXR export) — send these to their actual
+# post instead of relying on the generic /blog/ rule above, which can't
+# match a bare slug.
+[[redirects]]
+  from = "/8-reasons-to-buy-new-construction-homes/"
+  to = "/blog/8-reasons-to-buy-new-construction-homes.html"
+  status = 301
+
+[[redirects]]
+  from = "/get-the-scoop-sloans-lake/"
+  to = "/blog/get-the-scoop-sloans-lake.html"
+  status = 301
+
+[[redirects]]
+  from = "/why-we-love-denvers-regional-transportation-district-rtd/"
+  to = "/blog/why-we-love-denvers-regional-transportation-district-rtd.html"
+  status = 301
+
+# Old WordPress pages and past property/community pages referenced from
+# inside blog post content, with no equivalent on the new site — send to
+# the homepage rather than 404 (Jennifer's call: safe fallback rather than
+# guessing a specific section for each one). /developers/ is deliberately
+# NOT in this list — that path is a real page on the new site already.
+[[redirects]]
+  from = "/new-homes/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/contact-us/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/contact"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/contact/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/for-sale/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/fenton-litehomes-litetowns/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/litehomes/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/29th-perry/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/stpaul/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/coming-soon-2025/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/our-blogs/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/lender-partners/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/lafayette-litetowns/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/architecture-denver/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/development/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/building-a-greener-colorado/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/certifications/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/properties/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/kalamath/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/sloans-view-townhomes/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/w10th/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/mississippi/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/xenon/*"
+  to = "/"
+  status = 301
+
+# Catch-all for the old WordPress media library. migrate-wp-images.js already
+# downloaded every image referenced in data/blog.json / data/team.json to
+# /assets/images/wp-import/ and rewrote those files to use the local copies —
+# so this isn't about missing files, it's about *inbound* requests for the old
+# absolute redthomes.com/wp-content/uploads/... URLs that outlive the content
+# rewrite: search-engine caches of pre-migration pages, social-preview
+# crawlers, and other sites hotlinking these images directly. Confirmed via a
+# real GA4 page-path export (2026-08-04 to 2026-08-07, post-cutover) — ~26 of
+# that period's ~46 total 404 views were distinct /wp-content/uploads/* paths,
+# each for an image that already exists under wp-import/ at a (possibly
+# differently-sized) filename, e.g. the 404'd
+# .../2022/07/AdobeStock_108318181-768x512.jpeg vs. the real local
+# .../2022/07/AdobeStock_108318181-300x200.jpeg. A generic wildcard is used
+# instead of per-file redirects (impractical at this volume, and new stale
+# requests keep surfacing) — same "safe fallback to homepage" pattern as
+# every other no-current-equivalent redirect in this file. This also
+# subsumes the specific PDF redirects immediately below (kept as-is rather
+# than removed, since they're harmless duplicates and this rule doesn't need
+# to be the only thing covering them).
+[[redirects]]
+  from = "/wp-content/uploads/*"
+  to = "/"
+  status = 301
+
+# PDFs hosted on the old WordPress media library, linked from blog posts.
+# Sends to the homepage instead of a dead file link once the old site's
+# media library is no longer reachable at this domain.
+[[redirects]]
+  from = "/wp-content/uploads/2020/08/KALAMATH16NEWPROPERTYHIGHLIGHT.pdf"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/wp-content/uploads/2020/02/SloansLake_WestColfaxNeighborhoodGuide.pdf"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/wp-content/uploads/2020/03/ForestPark12NeighborhoodGuide.pdf"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/wp-content/uploads/2020/01/DenverTechCenterNeighborhoodGuide.pdf"
+  to = "/"
+  status = 301
+
+# Confirmed via a real Google Search Console "Not found (404)" export from
+# the live site (not guessed) — these are the specific URLs Google still
+# tracks that don't already fall under an existing redirect above.
+[[redirects]]
+  from = "/about-us/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/property/1574-n-gilpin-st-denver/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/sign-in/"
+  to = "/"
+  status = 301
+
+# Confirmed via the 2026-08-10 GSC Coverage Drilldown "Not found (404)"
+# export — still live 404s not caught by any existing rule above.
+[[redirects]]
+  from = "/property/2640-s-delaware-street-unit-5/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/rent/"
+  to = "/for-rent/"
+  status = 301
+
+[[redirects]]
+  from = "/careers/controller"
+  to = "/careers/"
+  status = 301
+
+[[redirects]]
+  from = "/coming-soon-2024/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/fenton-litehomes"
+  to = "/"
+  status = 301
+
+# A WordPress auto-generated attachment-page URL for an image embedded in
+# this post, not real distinct content — send to the real post itself.
+[[redirects]]
+  from = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes/wash-park-neighborhood-pics-17-of-48/"
+  to = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes.html"
+  status = 301
+
+# (The 5 "no recoverable content" blog post redirects that used to be here
+# were moved up near the top of this file, grouped with the emoji-URL
+# redirects — both sets have to appear before the generic /blog/:slug/ rule
+# or they get silently shadowed by it. See the comment up there for why.)
+
+# --- Additional old-page redirects found via a real GA4 top-250-pages
+# export covering the last 30 days (2026-07-07 to 2026-08-03), run after
+# launch to check actual real-world traffic against the new site rather
+# than just the links found inside blog post content (the earlier audit
+# above). 126 of 253 real page paths were 404ing, including several
+# high-traffic community pages (e.g. /thirty-eight-west/ at 218 views/mo).
+# Pages matching a current community or listing deep-link there directly
+# (using the /?community=<name>#listings filter from the homepage map, or
+# straight to the listing page); everything else with no current
+# equivalent falls back to the homepage or /team/, same pattern as the
+# existing rules above (Jennifer's call: safe fallback rather than
+# guessing a specific section per old page).
+
+[[redirects]]
+  from = "/careers-2024/*"
+  to = "/careers/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/portfolios"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/portfolios/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/2019/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/tag/*"
+  to = "/blog/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/2020/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/hs/preferences-center/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/thirty-eight-west/"
+  to = "/?community=Thirty%20Eight%20West#listings"
+  status = 301
+
+[[redirects]]
+  from = "/berthoud/"
+  to = "/?community=Harvest#listings"
+  status = 301
+
+[[redirects]]
+  from = "/berkley-liteduo/"
+  to = "/?community=Berkeley%20Duplexes#listings"
+  status = 301
+
+[[redirects]]
+  from = "/44th-ave-townhomes/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/birch-leaf/"
+  to = "/?community=Birch%20Leaf%20Duplexes#listings"
+  status = 301
+
+[[redirects]]
+  from = "/the-row-at-kendall-lakewood-co/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/company-overview/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/fenton-st-interest-list/"
+  to = "/#contact"
+  status = 301
+
+[[redirects]]
+  from = "/sherman-townhomes-denver/"
+  to = "/?community=Sherman%20Townhomes#listings"
+  status = 301
+
+[[redirects]]
+  from = "/investors/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/bulk-sale/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/real-estate-acquisitions-service-denver/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/elite-realtor-partners/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/acoma-litetowns/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/grand-ave-community/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/render"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/south-broadway-station/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/mount-massive-litetowns/"
+  to = "/?community=Mount%20Massive#listings"
+  status = 301
+
+[[redirects]]
+  from = "/support-howard-ranch-2/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/sherman-townhomes-interest-list/"
+  to = "/#contact"
+  status = 301
+
+[[redirects]]
+  from = "/44th-ave-townhomes-interest-list/"
+  to = "/#contact"
+  status = 301
+
+[[redirects]]
+  from = "/mta-tls/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/uinta/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/williams-ogden/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/support-howard-ranch/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/birch-leaf-interest-list/"
+  to = "/#contact"
+  status = 301
+
+[[redirects]]
+  from = "/howard-ranch/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/learn/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/lawrence-liteduo/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/w7th-rezone/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/internship-opportunity/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/ash-litetowns/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/gilpin-liteduo/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/new-listings/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/the-row-at-kendall-interest-list/"
+  to = "/#contact"
+  status = 301
+
+[[redirects]]
+  from = "/mta-tls"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/MISSISSIPPI/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/bayaud/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/grandave/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/josephine-sales/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/lafayette-sales/"
+  to = "/?community=Lafayette%20Townhomes#listings"
+  status = 301
+
+[[redirects]]
+  from = "/meade-litetowns/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/pennsylvania/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/500-s-pennsylvania-st/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/columbine-duplex/"
+  to = "/listings/5282-columbine-lane-denver.html"
+  status = 301
+
+[[redirects]]
+  from = "/giving-back/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/grand-ave-presale/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/investing-opportunity/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/mt-massive-leadville/"
+  to = "/?community=Mount%20Massive#listings"
+  status = 301
+
+[[redirects]]
+  from = "/knox-litetowns/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/team-members/"
+  to = "/team/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/who-we-are/"
+  to = "/team/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/leadership/"
+  to = "/team/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/people/"
+  to = "/team/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/staff/"
+  to = "/team/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/utica/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/1265-w-gill/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/acoma-st-sales/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/3756-franklin/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/author/kevinbredthomes-com/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/communities/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/jewell/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/leeding-the-way/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/mississippi-litehomes/"
+  to = "/?community=Mississippi#listings"
+  status = 301
+
+[[redirects]]
+  from = "/offering-memorandums/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/page/2/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/properties-map/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/redt-homes-reimagining-homebuilding-for-a-healthier-future/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/rise/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/steele-st/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/apple-touch-icon-120x120-precomposed.png"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/zuni/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/apple-touch-icon-120x120-precomposed.png/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/ash-grand-opening"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/leadership"
+  to = "/team/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/people"
+  to = "/team/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/staff"
+  to = "/team/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/south-ash-street-interest-list-thank-you/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/summer-savings"
+  to = "/"
+  status = 301
+
+# Found via real day-1 post-launch GA4 traffic (2026-08-04), not covered by
+# either earlier audit: an offering-memorandum PDF hot-linked to the old
+# WordPress media library (same dead-media-library situation as the other
+# PDF redirects above), and a no-punctuation variant of /for-sale/.
+[[redirects]]
+  from = "/wp-content/uploads/2023/02/38th-and-Perry-OM-G.Update.pdf"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/forsale"
+  to = "/"
+  status = 301
+
+# 1101 S Dahlia Street sold (2026-08-11); replaced in the Mississippi
+# community by 1121 S Dahlia Street, same floor plan. Sends any existing
+# links/bookmarks/search results for the sold address straight to the new
+# listing instead of a dead page. Both the .html and extensionless forms are
+# listed explicitly (not a wildcard) since a wildcard here would also catch
+# the *new* listing's own .html URL and mangle it.
+[[redirects]]
+  from = "/listings/1101-s-dahlia-street-denver.html"
+  to = "/listings/1121-s-dahlia-street-denver.html"
+  status = 301
+
+[[redirects]]
+  from = "/listings/1101-s-dahlia-street-denver"
+  to = "/listings/1121-s-dahlia-street-denver.html"
+  status = 301
+
+# 927 & 953 William Way (Berthoud) were removed from data/listings.json
+# (2026-08-13) and replaced by 1392 Swan Peter Drive, same Harvest community —
+# same "sold/replaced listing" pattern as the Dahlia Street redirect above.
+[[redirects]]
+  from = "/listings/927-william-way-berthoud.html"
+  to = "/listings/1392-swan-peter-drive-berthoud.html"
+  status = 301
+
+[[redirects]]
+  from = "/listings/927-william-way-berthoud"
+  to = "/listings/1392-swan-peter-drive-berthoud.html"
+  status = 301
+
+[[redirects]]
+  from = "/listings/953-william-way-berthoud.html"
+  to = "/listings/1392-swan-peter-drive-berthoud.html"
+  status = 301
+
+[[redirects]]
+  from = "/listings/953-william-way-berthoud"
+  to = "/listings/1392-swan-peter-drive-berthoud.html"
+  status = 301
+
+# --- Additional redirects found via a real GA4 "Page path" export (2026-08-04
+# to 2026-08-14, requested specifically because the earlier title-only export
+# couldn't identify individual URLs) cross-referenced against a GSC Coverage
+# Drilldown "Not found (404)" export for the same site, both pulled 2026-08-14.
+# Confirmed live (not guessed) that each of these actually 404s before adding
+# a rule.
+
+# This post's internal link to "buy-vs-rent" (fixed directly in data/blog.json
+# per the earlier internal-link audit) is not the only inbound path to that
+# bug — GA4 shows real visitors landing on the bare URL too (2 views), likely
+# from an external/old-WordPress link. The real post lives at /blog/buy-vs-rent.html.
+[[redirects]]
+  from = "/buy-vs-rent/"
+  to = "/blog/buy-vs-rent.html"
+  status = 301
+
+# Old lender-partner and promo pages with no current equivalent — same
+# "safe fallback to homepage" pattern as the rest of this file.
+[[redirects]]
+  from = "/lampert-hitch/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/spooktacular-savings"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/gilpin-sales/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/gilpin-interest-list/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/rate-buy-down-dp/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/grand-ave-contractors/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/thank-you-survey/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/job-application-thank-you/"
+  to = "/"
+  status = 301
+
+# Old WordPress interest-list QR code / social page for Sloan's View
+# Townhomes — same target as the existing /sloans-view-townhomes/ rule above,
+# since this variant has no current listing either. Worth flagging: GA4 shows
+# a real visit here, which likely means a physical yard sign or printed QR
+# code out in the world still points at this old URL.
+[[redirects]]
+  from = "/sloans-view-townhomes-qr/"
+  to = "/"
+  status = 301
+
+# Same target as the existing /williams-ogden/ rule above — this "-collective"
+# variant wasn't caught by it since it's an exact match, not a wildcard.
+[[redirects]]
+  from = "/williams-ogden-collective/"
+  to = "/"
+  status = 301
+
+# Old individual job-posting URL (job board / applicant-tracking link outlives
+# the actual posting) — send to the current careers page instead of homepage.
+[[redirects]]
+  from = "/careers/snrconmgrsuperintendent-residential"
+  to = "/careers/"
+  status = 301
+
+# WordPress's real privacy-policy URL was /privacy-policy/, not /privacy/ —
+# unlike the other legacy-page rules, this one has a real direct equivalent
+# on the new site, so it goes there instead of the homepage.
+[[redirects]]
+  from = "/privacy-policy/"
+  to = "/privacy/"
+  status = 301
+
+# Same "-interest-list" family as the existing /birch-leaf-interest-list/,
+# /44th-ave-townhomes-interest-list/, etc. rules above — this one is a
+# "-thank-you" variant those didn't catch.
+[[redirects]]
+  from = "/lafayette-interest-list-thank-you/"
+  to = "/#contact"
+  status = 301
+
+# Broadens the existing single /author/kevinbredthomes-com/ exact-match rule
+# into a wildcard — GSC surfaced a second author archive URL
+# (/author/shannanredthomes-com/feed/) that the exact rule couldn't catch,
+# and any future author URL would hit the same gap.
+[[redirects]]
+  from = "/author/*"
+  to = "/"
+  status = 301
+
+# WordPress RSS-feed URLs for posts that were never migrated into
+# data/blog.json (no recoverable content, same situation as the "no
+# recoverable content" posts redirected near the top of this file).
+[[redirects]]
+  from = "/blog/featured-unit-at-arboretum-304/feed/"
+  to = "/blog/index.html"
+  status = 301
+[[redirects]]
+  from = "/blog/best-dinner-destinations-near-arboretum/feed/"
+  to = "/blog/index.html"
+  status = 301
+
+# WordPress RSS feed for a post that *was* migrated — send to the real post
+# instead of the blog index, unlike the two above.
+[[redirects]]
+  from = "/blog/minimalist-bedroom-ideas-that-still-show-your-personality/feed/"
+  to = "/blog/minimalist-bedroom-ideas-that-still-show-your-personality.html"
+  status = 301
+
+# A duplicate-slash + stray "/1000" pagination artifact from the old WordPress
+# comment-pagination plugin, seen in both its double- and single-slash forms
+# in the GSC export.
+[[redirects]]
+  from = "/blog/leed-certification-levels-for-construction//1000"
+  to = "/blog/leed-certification-levels-for-construction.html"
+  status = 301
+[[redirects]]
+  from = "/blog/leed-certification-levels-for-construction/1000"
+  to = "/blog/leed-certification-levels-for-construction.html"
+  status = 301
+
+# Found via the 2026-08-19 GSC Coverage Drilldown "Not found (404)" export —
+# confirmed live 404 (not covered by any rule above). Old sold/removed
+# WordPress listing page, same pattern as the other sold-listing redirects.
+[[redirects]]
+  from = "/listings/1590-kendall-street-lakewood.html"
+  to = "/"
+  status = 301
+
+# WordPress RSS feed for a post that *was* migrated — same pattern as the
+# other migrated-post feed redirects above. Confirmed live 404 (2026-08-19).
+[[redirects]]
+  from = "/blog/6-benefits-of-buying-a-condo-in-denver/feed/"
+  to = "/blog/6-benefits-of-buying-a-condo-in-denver.html"
+  status = 301
+
+# --- Remaining gaps found by cross-referencing a consolidated GA4 (Aug 4-17)
+# + GSC Coverage Validation audit (both redthomes.com and www.redthomes.com
+# properties, pulled 2026-08-17) against every rule already in this file.
+# Everything below was still unredirected.
+
+# Trailing-slash variant of the existing "/home" rule above — Netlify treats
+# "/home" and "/home/" as distinct paths, and GSC's export lists both as
+# separate 404s.
+[[redirects]]
+  from = "/home/"
+  to = "/"
+  status = 301
+
+# WordPress RSS feeds for posts that *were* migrated (unlike the two
+# "no recoverable content" feeds redirected to the blog index further up) —
+# send to the real post, same as the minimalist-bedroom-ideas feed rule above.
+[[redirects]]
+  from = "/blog/7-healthy-habits-for-sustainable-living-and-improved-indoor-air-quality/feed/"
+  to = "/blog/7-healthy-habits-for-sustainable-living-and-improved-indoor-air-quality.html"
+  status = 301
+[[redirects]]
+  from = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes/feed/"
+  to = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes.html"
+  status = 301
+[[redirects]]
+  from = "/blog/best-places-to-live-in-denver/feed/"
+  to = "/blog/best-places-to-live-in-denver.html"
+  status = 301
+[[redirects]]
+  from = "/blog/10-easy-ways-to-improve-indoor-air-quality-and-live-sustainably/feed/"
+  to = "/blog/10-easy-ways-to-improve-indoor-air-quality-and-live-sustainably.html"
+  status = 301
+[[redirects]]
+  from = "/blog/leed-zero-litehomes/feed/"
+  to = "/blog/leed-zero-litehomes.html"
+  status = 301
+[[redirects]]
+  from = "/blog/rooftop-deck-urban-living-benefits/feed/"
+  to = "/blog/rooftop-deck-urban-living-benefits.html"
+  status = 301
+[[redirects]]
+  from = "/blog/redt-litehomes-dependable-energy-efficient-attainably-priced/feed/"
+  to = "/blog/redt-litehomes-dependable-energy-efficient-attainably-priced.html"
+  status = 301
+
+# Old WordPress category archive — same target pattern as the existing
+# /tag/* rule above.
+[[redirects]]
+  from = "/category/home-buyers-insights/"
+  to = "/blog/index.html"
+  status = 301
+
+# Old project/community pages with no current equivalent, and an old job
+# posting — same "safe fallback" patterns already established above.
+[[redirects]]
+  from = "/lawrence/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/kalamath-2/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/s-ash-st-sales/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/schedule-uinta-litehomes/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/schedule-mississippi/"
+  to = "/?community=Mississippi#listings"
+  status = 301
+[[redirects]]
+  from = "/dpa/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/thank-you-showing-confirmation/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/careers/vice-president-of-sales"
+  to = "/careers/"
+  status = 301
+
+# Orphaned reference to an old SEO plugin's sub-sitemap — the real sitemap is
+# a single file at /sitemap.xml (see build-sitemap.js), not split by post
+# type, so this points there rather than to the homepage.
+[[redirects]]
+  from = "/page-sitemap.xml"
+  to = "/sitemap.xml"
+  status = 301
+
+# Not real pages — a leftover WordPress plugin REST endpoint and a Cloudflare
+# email-obfuscation script path. Neither has content to redirect to; sending
+# to the homepage just clears them from GSC's crawl queue instead of leaving
+# them as permanent 404s.
+[[redirects]]
+  from = "/wp-json/elementskit/v1/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/cdn-cgi/l/email-protection"
+  to = "/"
+  status = 301

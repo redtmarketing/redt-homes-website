@@ -1,0 +1,11 @@
+dist/
+node_modules/
+.DS_Store
+Thumbs.db
+.env
+mortgage-rate-sync.log
+listings-check-report.md
+listings-check.log
+
+# Local Netlify folder
+.netlify

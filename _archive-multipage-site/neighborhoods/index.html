@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denver Neighborhoods We Build In | redT Homes</title>
+  <meta name="description" content="Explore the Denver neighborhoods where redT builds all-electric new construction homes — from established, walkable blocks to up-and-coming corridors.">
+  <link rel="canonical" href="https://www.redthomes.com/neighborhoods/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="redT Homes">
+  <meta property="og:title" content="Denver Neighborhoods We Build In | redT Homes">
+  <meta property="og:description" content="Explore the Denver neighborhoods where redT builds all-electric new construction homes.">
+  <meta property="og:url" content="https://www.redthomes.com/neighborhoods/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Denver Neighborhoods We Build In | redT Homes">
+  <meta name="twitter:description" content="Explore the Denver neighborhoods where redT builds all-electric new construction homes.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.redthomes.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Neighborhoods", "item": "https://www.redthomes.com/neighborhoods/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- BUILD:INCLUDE partials/header.html -->
+
+  <main id="main">
+    <nav class="breadcrumbs container" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-current="page">Neighborhoods</li>
+      </ol>
+    </nav>
+
+    <section style="padding-top: var(--space-4);">
+      <div class="container">
+        <p class="eyebrow">Where We Build</p>
+        <h1>Denver Neighborhoods We Build In</h1>
+        <p class="lede">Every redT neighborhood gets the same all-electric standard — just in the setting that fits how you want to live.</p>
+
+        <div class="grid">
+          {{#each neighborhoods}}
+          <article class="card">
+            <a href="/neighborhoods/{{slug}}.html" style="color: inherit; text-decoration: none;">
+              <div class="card-media">
+                <img src="{{heroImage}}" alt="{{heroImageAlt}}" width="400" height="300">
+              </div>
+              <div class="card-body">
+                <h2 class="mb-0" style="font-size: var(--step-1);">{{name}}</h2>
+                <p class="card-eyebrow">{{city}}, {{state}}</p>
+                <p class="text-muted">{{summary}}</p>
+              </div>
+            </a>
+          </article>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BUILD:INCLUDE partials/footer.html -->
+</body>
+</html>

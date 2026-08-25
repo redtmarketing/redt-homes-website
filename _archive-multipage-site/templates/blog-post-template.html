@@ -1,0 +1,107 @@
+<!--
+  BLOG POST STARTING POINT — not processed by build.js.
+  To add a new post: copy this file into /blog/posts/your-post-slug.html,
+  fill in the POST_META block and content below, then run `node build.js`.
+  See README.md "Adding a blog post" for the full walkthrough.
+-->
+<!-- POST_META
+title: Your Post Title Here
+date: 2026-01-01
+category: Buying Guides
+excerpt: One or two sentences summarizing the post for cards and meta description fallback.
+image: /assets/images/blog/your-post-slug.jpg
+imageAlt: Descriptive alt text for the post's card/hero image
+author: redT Homes Team
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Post Title Here | redT Homes Blog</title>
+  <meta name="description" content="One or two sentences summarizing the post — used as the meta description.">
+  <link rel="canonical" href="https://www.redthomes.com/blog/posts/your-post-slug.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="redT Homes">
+  <meta property="og:title" content="Your Post Title Here | redT Homes Blog">
+  <meta property="og:description" content="One or two sentences summarizing the post.">
+  <meta property="og:url" content="https://www.redthomes.com/blog/posts/your-post-slug.html">
+  <meta property="og:image" content="https://www.redthomes.com/assets/images/blog/your-post-slug.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Your Post Title Here | redT Homes Blog">
+  <meta name="twitter:description" content="One or two sentences summarizing the post.">
+  <meta name="twitter:image" content="https://www.redthomes.com/assets/images/blog/your-post-slug.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Your Post Title Here",
+    "image": "https://www.redthomes.com/assets/images/blog/your-post-slug.jpg",
+    "datePublished": "2026-01-01",
+    "dateModified": "2026-01-01",
+    "author": { "@type": "Organization", "name": "redT Homes" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "redT Homes",
+      "logo": { "@type": "ImageObject", "url": "https://www.redthomes.com/assets/brand/logo.svg" }
+    },
+    "mainEntityOfPage": "https://www.redthomes.com/blog/posts/your-post-slug.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.redthomes.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.redthomes.com/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Your Post Title Here", "item": "https://www.redthomes.com/blog/posts/your-post-slug.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- BUILD:INCLUDE partials/header.html -->
+
+  <main id="main">
+    <nav class="breadcrumbs container" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li aria-current="page">Your Post Title Here</li>
+      </ol>
+    </nav>
+
+    <article class="container-narrow" style="padding-block: var(--space-6) var(--space-9);">
+      <p class="eyebrow">Buying Guides</p>
+      <h1>Your Post Title Here</h1>
+      <p class="text-muted">By redT Homes Team &middot; January 1, 2026</p>
+
+      <div class="card-media" style="aspect-ratio: 16/9; margin-block: var(--space-6);">
+        <img src="/assets/images/blog/your-post-slug.jpg" alt="Descriptive alt text" width="760" height="428">
+      </div>
+
+      <p>Opening paragraph goes here.</p>
+      <h2>First subheading</h2>
+      <p>Body copy.</p>
+
+      <hr class="divider">
+
+      <h2>Related Posts</h2>
+      <ul>
+        <li><a href="/blog/posts/winter-energy-bills-denver.html">Winter Energy Bills, Explained: What All-Electric Actually Costs in Denver</a></li>
+        <li><a href="/blog/posts/park-hill-neighborhood-spotlight.html">Park Hill Neighborhood Spotlight</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <!-- BUILD:INCLUDE partials/footer.html -->
+</body>
+</html>

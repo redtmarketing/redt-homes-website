@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{metaTitle}}</title>
+  <meta name="description" content="{{metaDescription}}">
+  <link rel="canonical" href="{{siteUrl}}/homes/{{slug}}.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="redT Homes">
+  <meta property="og:title" content="{{metaTitle}}">
+  <meta property="og:description" content="{{metaDescription}}">
+  <meta property="og:url" content="{{siteUrl}}/homes/{{slug}}.html">
+  <meta property="og:image" content="{{siteUrl}}{{heroImage}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{metaTitle}}">
+  <meta name="twitter:description" content="{{metaDescription}}">
+  <meta name="twitter:image" content="{{siteUrl}}{{heroImage}}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Residence",
+    "name": "{{address}}, {{neighborhood}}, {{city}}, {{state}}",
+    "url": "{{siteUrl}}/homes/{{slug}}.html",
+    "image": "{{siteUrl}}{{heroImage}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{address}}",
+      "addressLocality": "{{city}}",
+      "addressRegion": "{{state}}",
+      "postalCode": "{{zip}}",
+      "addressCountry": "US"
+    },
+    "numberOfRooms": "{{beds}}",
+    "floorSize": {
+      "@type": "QuantitativeValue",
+      "value": "{{sqft}}",
+      "unitCode": "FTK"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{siteUrl}}/" },
+      { "@type": "ListItem", "position": 2, "name": "Homes for Sale", "item": "{{siteUrl}}/homes/" },
+      { "@type": "ListItem", "position": 3, "name": "{{address}}", "item": "{{siteUrl}}/homes/{{slug}}.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- BUILD:INCLUDE partials/header.html -->
+
+  <main id="main">
+    <nav class="breadcrumbs container" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/homes/">Homes for Sale</a></li>
+        <li aria-current="page">{{address}}</li>
+      </ol>
+    </nav>
+
+    <section style="padding-top: var(--space-4); padding-bottom: var(--space-6);">
+      <div class="container">
+        <div class="grid" style="grid-template-columns: 2fr 1fr; gap: var(--space-4);">
+          <div class="card-media" style="aspect-ratio: 16/10;">
+            <img src="{{heroImage}}" alt="{{heroImageAlt}}" width="800" height="500" loading="eager" fetchpriority="high">
+          </div>
+          <div class="grid" style="grid-template-columns: 1fr; gap: var(--space-4);">
+            {{#each photos}}
+            <div class="card-media" style="aspect-ratio: 4/3;">
+              <img src="{{url}}" alt="{{alt}}" width="300" height="225">
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top: 0;">
+      <div class="container grid-2">
+        <div>
+          <div class="cluster" style="margin-bottom: var(--space-3);">
+            <span class="badge badge-accent">All-Electric</span>
+            <span class="badge" style="background: var(--color-paper-100); color: var(--color-text-muted);">{{status}}</span>
+          </div>
+          <h1>{{address}}</h1>
+          <p class="lede">{{neighborhood}}, {{city}}, {{state}} {{zip}}</p>
+          <p style="font-size: var(--step-2); font-weight: 700; color: var(--color-primary-900);">{{price}}</p>
+          <p>{{summary}}</p>
+          {{description_html}}
+
+          <h2>Certifications on This Home</h2>
+          <div class="cluster">
+            {{#each certifications}}
+            <span class="badge">{{.}}</span>
+            {{/each}}
+          </div>
+          <p class="form-note" style="margin-top: var(--space-4);"><a href="/why-redt.html">What do these certifications mean? →</a></p>
+
+          {{#if floorPlanImage}}
+          <h2 style="margin-top: var(--space-7);">Floor Plan</h2>
+          <div class="card-media" style="aspect-ratio: 4/3; max-width: 500px;">
+            <img src="{{floorPlanImage}}" alt="{{floorPlanAlt}}" width="500" height="375">
+          </div>
+          {{/if}}
+
+          <h2 style="margin-top: var(--space-7);">Location</h2>
+          <div style="aspect-ratio: 16/9; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border);">
+            <iframe src="{{mapEmbedSrc}}" width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing the location of {{address}}"></iframe>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card" style="position: sticky; top: 96px;">
+            <div class="card-body">
+              <h2 class="mb-0">Home Details</h2>
+              <ul class="feature-list" style="margin-top: var(--space-4); gap: var(--space-2);">
+                {{#each specs}}
+                <li class="cluster" style="justify-content: space-between; gap: var(--space-2);">
+                  <span class="text-muted">{{label}}</span>
+                  <strong>{{value}}</strong>
+                </li>
+                {{/each}}
+              </ul>
+
+              <hr class="divider">
+
+              <h3 id="tour">Schedule a Tour</h3>
+              <form class="stack" aria-label="Schedule a tour of {{address}}">
+                <div class="form-field">
+                  <label for="tour-name">Name</label>
+                  <input type="text" id="tour-name" name="name" required>
+                </div>
+                <div class="form-field">
+                  <label for="tour-email">Email</label>
+                  <input type="email" id="tour-email" name="email" required>
+                </div>
+                <div class="form-field">
+                  <label for="tour-phone">Phone</label>
+                  <input type="tel" id="tour-phone" name="phone">
+                </div>
+                <input type="hidden" name="property" value="{{address}}, {{neighborhood}}">
+                <!--
+                  HUBSPOT FORM PLACEHOLDER — property inquiry / tour request form
+                  Replace this <form> with the HubSpot embedded form code for
+                  your "Schedule a Tour" form. The hidden "property" field
+                  shows which listing the inquiry came from — recreate that
+                  as a hidden field or a HubSpot form value if you swap forms.
+                -->
+                <button type="submit" class="btn btn-primary btn-block">Request a Tour</button>
+              </form>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    {{#if similarHomes}}
+    <section class="section-alt">
+      <div class="container">
+        <h2>Similar Homes</h2>
+        <div class="grid">
+          {{#each similarHomes}}
+          <article class="card">
+            <a href="/homes/{{slug}}.html" style="color: inherit; text-decoration: none;">
+              <div class="card-media">
+                <img src="{{heroImage}}" alt="{{heroImageAlt}}" width="400" height="300">
+              </div>
+              <div class="card-body">
+                <h3 class="mb-0" style="font-size: var(--step-1);">{{address}}</h3>
+                <p class="card-eyebrow">{{neighborhood}}, {{city}}</p>
+                <p class="mb-0"><strong>{{price}}</strong></p>
+              </div>
+            </a>
+          </article>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    {{/if}}
+  </main>
+
+  <!-- BUILD:INCLUDE partials/footer.html -->
+</body>
+</html>
