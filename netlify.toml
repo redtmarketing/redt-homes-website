@@ -176,6 +176,43 @@
   from = "/stpaul/*"
   to = "/"
   status = 301
+
+# Flagged by Search Console's Coverage report (2026-08-25) as 404s.
+# Kendall Street sold and was removed from data/listings.json, so its page
+# stopped generating; /favr is a leftover WordPress portfolio sub-page
+# (portfolios/flats-at-villa-rosso/favr/) with no equivalent on this site.
+[[redirects]]
+  from = "/listings/1576-kendall-street-lakewood.html"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/favr"
+  to = "/"
+  status = 301
+
+# The rest of "The Row at Kendall" community (1576/1582/1590 Kendall St) —
+# all sold and removed from data/listings.json, same as above. Found by
+# cross-referencing the GA4 Pages-and-screens export (Aug 4-25) against live
+# status codes: these still get real clicks from the old community-filter
+# link (?community=The%20Row%20at%20Kendall) and from Google, and 404 in
+# both the extension-less and .html forms. The 1590.html form already had
+# a redirect further down this file; these fill in the remaining gaps.
+[[redirects]]
+  from = "/listings/1576-kendall-street-lakewood"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/listings/1582-kendall-street-lakewood"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/listings/1582-kendall-street-lakewood.html"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/listings/1590-kendall-street-lakewood"
+  to = "/"
+  status = 301
 [[redirects]]
   from = "/coming-soon-2025/*"
   to = "/"
