@@ -60,7 +60,7 @@ function main() {
 
   const dataScript = `<script>window.REDT_COMMUNITIES = ${JSON.stringify(markers)};</script>`;
 
-  const section = `<section class="section map-section">
+  const section = `<section class="section map-section" id="map">
   <div class="listings-head reveal">
     <div>
       <p class="eyebrow">Where We're Building</p>

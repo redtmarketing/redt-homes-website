@@ -1132,3 +1132,44 @@
   from = "/cdn-cgi/l/email-protection"
   to = "/"
   status = 301
+
+# Flagged by a GA4 audit (2026-08-28) as still 404ing — old WordPress
+# listing paths not covered by any rule above. Sent to the listings grid
+# rather than the bare homepage, same as /testimonials/ and the
+# schedule-mississippi rule above.
+[[redirects]]
+  from = "/19th-row-ii/"
+  to = "/#listings"
+  status = 301
+[[redirects]]
+  from = "/high-st/"
+  to = "/#listings"
+  status = 301
+
+# Same GA4 audit (2026-08-28) — old WordPress nav paths, not listing pages.
+# /about and /company match the existing /about-us/ and /company-overview/
+# redirects above (both go to the bare homepage). /bios was the old team
+# bios page, same intent as /our-team/ above. /office was likely an
+# office-info/contact page. /locations was likely the "Where We're
+# Building" map page, which gained an id="map" anchor (build-map.js) to
+# give this a real target instead of the closest-guess /#listings.
+[[redirects]]
+  from = "/about"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/company"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/bios"
+  to = "/team/index.html"
+  status = 301
+[[redirects]]
+  from = "/office"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/locations"
+  to = "/#map"
+  status = 301
