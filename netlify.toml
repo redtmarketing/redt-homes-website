@@ -1173,3 +1173,65 @@
   from = "/locations"
   to = "/#map"
   status = 301
+
+# 3784 Fenton Street (Fenton Homes community, Wheat Ridge) sold and was
+# removed from data/listings.json (2026-09-01) — same pattern as the Kendall
+# Street sold-listing redirects above. It was the only listing in the Fenton
+# Homes community, so the community itself was also removed from
+# data/communities.json (its map pin and community-filter option) rather than
+# left pointing at a dead listing. Both extensionless and .html forms are
+# listed explicitly, matching the Kendall Street precedent.
+[[redirects]]
+  from = "/listings/3784-fenton-street-wheat-ridge.html"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/listings/3784-fenton-street-wheat-ridge"
+  to = "/"
+  status = 301
+
+# --- Found by cross-referencing a real GA4 "Page path and screen class"
+# export (2026-08-02 to 2026-08-31, pulled 2026-09-01) against every path's
+# actual live HTTP status — 391 distinct paths checked directly against
+# redthomes.com, not guessed. 14 came back 404; 7 of those are real old pages
+# with no current equivalent (redirected below, safe-fallback pattern as
+# above). The other 7 are not real content and were deliberately left
+# un-redirected: /some-random-nonexistent-path-xyz is a literal test of the
+# 404 page itself; /wp-login.php is a routine bot login-scan target, not a
+# migrated page; "/,+1" and "//checkout/" are malformed/bot-artifact paths
+# that never corresponded to real content; /parish-history and /views both
+# only appear in the WordPress export as substrings inside spam blog
+# comments, not as real page slugs; /z0f76a1d14fd21a8fb5fd0d03e0fdc3d3cedae52f
+# (a SHA1-hash-shaped root path, always direct/"(not set)" referrer) looks
+# like an automated verification-token request from some third-party tool
+# rather than a page a person navigated to — flagged for Jennifer rather than
+# guessed at, since redirecting it could break a real integration if one
+# exists.
+[[redirects]]
+  from = "/contact-redt-homes"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/developer-services"
+  to = "/developers/index.html"
+  status = 301
+[[redirects]]
+  from = "/services"
+  to = "/developers/index.html"
+  status = 301
+[[redirects]]
+  from = "/new-home-listings"
+  to = "/#listings"
+  status = 301
+[[redirects]]
+  from = "/offices"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/history"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/our-history"
+  to = "/"
+  status = 301

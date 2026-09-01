@@ -566,11 +566,12 @@ one of the correctly-styled ones in HubSpot itself and align them.
 
 ## Current listings
 
-19 real listings sourced from `listings/property_listings.xlsx` (Thirty Eight
-West, Birch Leaf Duplexes, Berkeley Duplexes, Fenton Homes, Lafayette
-Townhomes, Observatory Park, Sherman Townhomes, and Harvest at Berthoud —
-The Row at Kendall's three units sold/were pulled and were removed from the
-site). All 19 now have a real **HubSpot Form ID** wired in and
+18 real listings sourced from `listings/property_listings.xlsx` (Thirty Eight
+West, Birch Leaf Duplexes, Berkeley Duplexes, Lafayette Townhomes,
+Observatory Park, Sherman Townhomes, and Harvest at Berthoud — The Row at
+Kendall's three units and Fenton Homes' single unit (3784 Fenton Street)
+sold/were pulled and were removed from the site). All 18 now have a real
+**HubSpot Form ID** wired in and
 render a live embed (see `HUBSPOT-MLS-INTEGRATION.md`). A few of these were
 ambiguous — either a street-number mismatch (Dahlia Street) or duplicate
 similarly-named forms in the portal (Lafayette Street, Sherman Townhomes) —
@@ -586,9 +587,7 @@ verbatim next time without scrubbing it first. The three Lafayette Townhomes
 units and the two Harvest (William Way) listings previously shared one
 generic description each; they now have distinct copy per unit since the
 spreadsheet's real text differs unit-to-unit (e.g. unit 1642-#1 being a real
-end unit with extra windows). 3784 Fenton Street's spreadsheet description
-cell is blank, so its existing description was left as-is rather than
-cleared.
+end unit with extra windows).
 
 All 20 listings now have real photos (`heroImage` + optional `galleryImages`
 in the JSON), pulled from each property's public REcolorado shared MLS link
