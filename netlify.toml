@@ -158,7 +158,7 @@
   status = 301
 [[redirects]]
   from = "/for-sale/*"
-  to = "/"
+  to = "/#listings"
   status = 301
 [[redirects]]
   from = "/fenton-litehomes-litetowns/*"
@@ -227,7 +227,7 @@
   status = 301
 [[redirects]]
   from = "/lafayette-litetowns/*"
-  to = "/"
+  to = "/?community=Lafayette%20Townhomes#listings"
   status = 301
 [[redirects]]
   from = "/architecture-denver/*"
