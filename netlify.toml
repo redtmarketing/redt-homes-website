@@ -1235,3 +1235,135 @@
   from = "/our-history"
   to = "/"
   status = 301
+
+# --- Found via the GSC "Not found (404)" coverage drilldown for the
+# sc-domain:redthomes.com property, pulled 2026-09-09 (63 pages listed; the
+# other 38 already had rules above — these 25 didn't). Same safe-fallback
+# pattern as the rest of this file: a current equivalent when one exists,
+# otherwise the homepage.
+
+# WordPress category archives — same target as the existing /tag/* rule
+# and the /category/home-buyers-insights/ rule right above it, but as a
+# wildcard so every category (and its /page/N/ pagination) is covered.
+[[redirects]]
+  from = "/category/*"
+  to = "/blog/index.html"
+  status = 301
+
+# "-interest-list" family, same pattern as the existing
+# /birch-leaf-interest-list/, /44th-ave-townhomes-interest-list/, etc. rules:
+# the list-signup page itself goes to the contact section, its HubSpot
+# "-thank-you" follow-up goes home.
+[[redirects]]
+  from = "/acoma-st-interest-list/"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/acoma-st-interest-list-thank-you/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/acoma-st-interest-list-thank-you-2/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/josephine-interest-list/"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/josephine-interest-list-thank-you/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/s-ash-st-interest-list/"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/s-ash-interest-list-thank-you/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/gilpin-interest-list-thank-you/"
+  to = "/"
+  status = 301
+
+# Old WordPress custom-post-type "project" pages — no current equivalent,
+# same target as the existing /zuni/ rule below (this is the /project/zuni/
+# variant of the same stale slug).
+[[redirects]]
+  from = "/project/6455-w-38th/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/project/1730-ingalls-street/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/project/765-cheeseman-street/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/project/zuni/"
+  to = "/"
+  status = 301
+
+# Sold/stale individual-address pages and other one-off WordPress pages
+# with no current equivalent — same fallback-to-homepage pattern as the
+# other sold-listing and stale-page redirects throughout this file.
+[[redirects]]
+  from = "/miss-lead-gen/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/for-sale-old/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/5195-allison-street/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/3395jasmine-5830e35th/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/261-knox-court-denver-80219/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/2272-s-columbine/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/pecos/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/culture/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/uinta-westerra/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/rsvp/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/bf-offer/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/bf-forsale/"
+  to = "/"
+  status = 301
+
+# GSC lists this as an absolute http://www.redthomes.com/To — looks like a
+# stray backlink where someone's link text ("...more info. To...") got used
+# as the href by mistake. Netlify redirects match on path regardless of the
+# scheme/host in the source link, so this covers it.
+[[redirects]]
+  from = "/To"
+  to = "/"
+  status = 301
