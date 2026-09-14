@@ -111,6 +111,25 @@ function writeFile(outPath, contents) {
   fs.writeFileSync(outPath, contents);
 }
 
+function aboutLabel(propertyType) {
+  if (propertyType === "Townhome") return "Townhome";
+  if (propertyType === "Land") return "Property";
+  return "Home";
+}
+
+function specsBlock(listing) {
+  const specs = [
+    [listing.beds, "Bedrooms"],
+    [listing.baths, "Bathrooms"],
+    [listing.sqft, "Sq Ft"],
+    [listing.garages, "Garage"],
+    [listing.yearBuilt, "Year Built"],
+  ].filter(([value]) => value);
+  if (!specs.length) return "";
+  const items = specs.map(([value, label]) => `        <div><div class="spec-num">${escapeHtml(value)}</div><div class="spec-label">${label}</div></div>`).join("\n");
+  return `      <div class="property-specs">\n${items}\n      </div>`;
+}
+
 function mortgageWidget(listing) {
   return `      <div class="mortgage-calc" data-price="${listing.price}">
         <h3 class="form-heading">Estimate Your Payment</h3>
@@ -200,6 +219,14 @@ function hubspotFormBlock(listing) {
   const loc = locLine(listing);
   const url = `${SITE_URL}/listings/${listing.slug}.html`;
 
+  if (listing.hubspotFormId && /^https?:\/\//i.test(listing.hubspotFormId)) {
+    return `      <h3 class="form-heading">Get In Touch</h3>
+      <a class="btn btn-dark" style="width: 100%; justify-content: center;" href="${escapeHtml(listing.hubspotFormId)}" target="_blank" rel="noopener">Inquire About This Property</a>
+      <!-- This listing's spreadsheet "HubSpot Form ID" is a hosted-form share link, not a
+           form UUID, so it can't be embedded via hbspt.forms.create(). Linking out to it
+           instead. Swap in a real form UUID here once one exists. -->`;
+  }
+
   if (listing.hubspotFormId) {
     return `      <h3 class="form-heading">Get In Touch</h3>
       <div class="hubspot-form">
@@ -269,7 +296,8 @@ function listingPage(listing) {
   const loc = locLine(listing);
   const url = `${SITE_URL}/listings/${listing.slug}.html`;
   const title = `${listing.address}, ${listing.city} | redT Homes`;
-  const metaDesc = `${listing.beds} bed, ${listing.baths} bath ${listing.status.toLowerCase()} ${listing.propertyType.toLowerCase()} at ${listing.address}, ${loc}. ${price}. Schedule a tour with redT Homes.`;
+  const bedsBath = listing.beds && listing.baths ? `${listing.beds} bed, ${listing.baths} bath ` : "";
+  const metaDesc = `${bedsBath}${listing.status.toLowerCase()} ${listing.propertyType.toLowerCase()} at ${listing.address}, ${loc}. ${price}. Schedule a tour with redT Homes.`;
   const allPhotos = listing.heroImage ? [listing.heroImage, ...(listing.galleryImages || [])] : [];
   const gallery = allPhotos.length
     ? `<div class="gallery-main"><img id="gallery-main-${listing.slug}" src="${allPhotos[0]}" alt="${escapeHtml(listing.address)}"></div>
@@ -383,16 +411,10 @@ ${listingJsonLd(listing, url, metaDesc)}
         ${gallery}
       </div>
 
-      <div class="property-specs">
-        <div><div class="spec-num">${escapeHtml(listing.beds)}</div><div class="spec-label">Bedrooms</div></div>
-        <div><div class="spec-num">${escapeHtml(listing.baths)}</div><div class="spec-label">Bathrooms</div></div>
-        <div><div class="spec-num">${escapeHtml(listing.sqft)}</div><div class="spec-label">Sq Ft</div></div>
-        <div><div class="spec-num">${escapeHtml(listing.garages)}</div><div class="spec-label">Garage</div></div>
-        <div><div class="spec-num">${escapeHtml(listing.yearBuilt)}</div><div class="spec-label">Year Built</div></div>
-      </div>
+${specsBlock(listing)}
 
       <div class="property-body">
-        <h2 style="font-size: 24px; margin-bottom: 16px;">About This ${listing.propertyType === "Townhome" ? "Townhome" : "Home"}</h2>
+        <h2 style="font-size: 24px; margin-bottom: 16px;">About This ${aboutLabel(listing.propertyType)}</h2>
         <p>${escapeHtml(listing.description)}</p>
         <p style="font-size: 13px; color: var(--grey);">MLS ID: ${escapeHtml(listing.mlsId)} &middot; ${escapeHtml(listing.propertyType)}</p>
       </div>
