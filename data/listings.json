@@ -28,29 +28,30 @@
     ]
   },
   {
-    "slug": "3927-w-38th-avenue-unit-104-bldg-1-denver",
-    "mlsId": "3759583",
+    "slug": "3927-w-38th-avenue-unit-103-bldg-1-denver",
+    "mlsId": "7623507",
     "propertyType": "Townhome",
-    "address": "3927 W 38th Avenue Unit# 104, Bldg 1",
+    "address": "3927 W 38th Avenue Unit# 103, Bldg 1",
     "city": "Denver",
     "community": "Thirty Eight West",
     "price": 625000,
     "status": "Under Construction",
     "beds": "2",
     "baths": "3",
-    "sqft": "1,605",
+    "sqft": "1,642",
     "garages": "2",
     "yearBuilt": "2026",
-    "description": "This 1,605-square-foot home at Thirty Eight West spans three levels plus a large rooftop deck with mountain views. A sunlit living room and foyer open the main level, the second floor holds the kitchen, a second living area with its own deck, a dining space, and a powder room, and the top floor offers two bedrooms — each with a private full bath — next to the laundry. Quartz counters, a five-piece primary bath, and a rare two-car attached garage round out the home, with no HOA dues under the community's party wall agreement and a Walk Score of 93 putting Tennyson Street, Highlands Square, and Berkeley and Rocky Mountain Lake Parks within easy reach.",
+    "description": "This 1,642-square-foot home at Thirty Eight West spans three levels plus a large rooftop deck with mountain views. A sunlit living room and foyer open the main level, the second floor holds the kitchen, a second living area with its own deck, a dining space, and a powder room, and the top floor offers two bedrooms — each with a private full bath — next to the laundry. Quartz counters, a five-piece primary bath, and a rare two-car attached garage round out the home, with no HOA dues under the community's party wall agreement and a Walk Score of 93 putting Tennyson Street, Highlands Square, and Berkeley and Rocky Mountain Lake Parks within easy reach.",
     "hubspotFormId": "1f64ead9-ceac-47af-a1da-78195dd4a53a",
-    "heroImage": "/assets/images/3927-w-38th-avenue-unit-104-bldg-1-denver-hero.jpg",
+    "heroImage": "/assets/images/3927-w-38th-avenue-unit-103-bldg-1-denver-hero.jpg",
     "galleryImages": [
-      "/assets/images/3927-w-38th-avenue-unit-104-bldg-1-denver-2.jpg",
-      "/assets/images/3927-w-38th-avenue-unit-104-bldg-1-denver-3.jpg",
-      "/assets/images/3927-w-38th-avenue-unit-104-bldg-1-denver-4.jpg",
-      "/assets/images/3927-w-38th-avenue-unit-104-bldg-1-denver-5.jpg",
-      "/assets/images/3927-w-38th-avenue-unit-104-bldg-1-denver-6.jpg",
-      "/assets/images/3927-w-38th-avenue-unit-104-bldg-1-denver-7.jpg"
+      "/assets/images/3927-w-38th-avenue-unit-103-bldg-1-denver-2.jpg",
+      "/assets/images/3927-w-38th-avenue-unit-103-bldg-1-denver-3.jpg",
+      "/assets/images/3927-w-38th-avenue-unit-103-bldg-1-denver-4.jpg",
+      "/assets/images/3927-w-38th-avenue-unit-103-bldg-1-denver-5.jpg",
+      "/assets/images/3927-w-38th-avenue-unit-103-bldg-1-denver-6.jpg",
+      "/assets/images/3927-w-38th-avenue-unit-103-bldg-1-denver-7.jpg",
+      "/assets/images/3927-w-38th-avenue-unit-103-bldg-1-denver-8.jpg"
     ]
   },
   {
@@ -629,5 +630,51 @@
     "hubspotFormId": "https://share-na2.hsforms.com/1hC9LODZdTp2S3UcUyGtYewq3ct6",
     "heroImage": "/assets/images/14760-sw-64th-avenue-arvada-hero.jpg",
     "galleryImages": []
+  },
+  {
+    "slug": "1650-kipling-street-lakewood",
+    "mlsId": "6061339",
+    "propertyType": "Land",
+    "address": "1650 Kipling Street",
+    "city": "Lakewood",
+    "community": "",
+    "price": 2500000,
+    "status": "Land",
+    "beds": "",
+    "baths": "",
+    "sqft": "",
+    "garages": "",
+    "yearBuilt": "",
+    "description": "Rare, permit-ready mixed-use development site on a high-visibility Kipling Street corridor in Lakewood. The approved and stamped plan set calls for a five-story, roughly 60,110-square-foot building on a 0.89-acre parcel: 23 residential units above a full floor of office space, ground-floor retail, and 55 EV-ready structured parking spaces. Zoned M-E-U for up to five stories, the site is shovel-ready — a qualified buyer steps into a permit-ready position with the full stamped architectural, civil, structural, and MEP plan set in hand, skipping the lengthy entitlement process entirely. Kipling Street carries roughly 32,000-34,000 vehicles a day, giving the ground-floor retail strong visibility, with quick access to West Colfax Avenue, 6th Avenue, and I-70. Full plan set, permit records, and tours available on request.",
+    "hubspotFormId": "https://share-na2.hsforms.com/1hC9LODZdTp2S3UcUyGtYewq3ct6",
+    "heroImage": "/assets/images/1650-kipling-street-lakewood-hero.jpg",
+    "galleryImages": [
+      "/assets/images/1650-kipling-street-lakewood-2.jpg",
+      "/assets/images/1650-kipling-street-lakewood-3.jpg"
+    ]
+  },
+  {
+    "slug": "2832-w-44th-avenue-unit-201-denver",
+    "mlsId": "7823565",
+    "propertyType": "Townhome",
+    "address": "2832 W 44th Avenue Unit# 201",
+    "city": "Denver",
+    "community": "44th Avenue Townhomes",
+    "price": 660000,
+    "status": "Under Construction",
+    "beds": "2",
+    "baths": "3",
+    "sqft": "1,421",
+    "garages": "1",
+    "yearBuilt": "2026",
+    "description": "Welcome to 44th Avenue Townhomes, a new collection of 15 townhomes coming to Denver's Sunnyside neighborhood. This 1,421-square-foot corner-lot residence offers a ground-level bedroom suite, an open-concept kitchen and living area on the main level, and an upper-level primary suite, topped by a private rooftop deck ideal for entertaining. Quartz counters, a full kitchen appliance package, and an attached one-car garage complete the home, with a Walk Score of 82 putting Sunnyside's restaurants, coffee shops, and parks within easy reach and quick access to downtown Denver.",
+    "hubspotFormId": "https://share-na2.hsforms.com/1hC9LODZdTp2S3UcUyGtYewq3ct6",
+    "heroImage": "/assets/images/2832-w-44th-avenue-unit-201-denver-hero.jpg",
+    "galleryImages": [
+      "/assets/images/2832-w-44th-avenue-unit-201-denver-2.jpg",
+      "/assets/images/2832-w-44th-avenue-unit-201-denver-3.jpg",
+      "/assets/images/2832-w-44th-avenue-unit-201-denver-4.jpg",
+      "/assets/images/2832-w-44th-avenue-unit-201-denver-5.jpg"
+    ]
   }
 ]
