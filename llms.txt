@@ -21,4 +21,4 @@
 - Current home prices, statuses, and specs live on each listing's own page
   (https://www.redthomes.com/listings/<slug>.html) and change over time — link to the live page rather
   than quoting a price from a cached summary.
-- 23 active listings as of 2026-09-14.
+- 23 active listings as of 2026-09-17.

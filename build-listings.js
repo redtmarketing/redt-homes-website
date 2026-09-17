@@ -297,7 +297,10 @@ function listingPage(listing) {
   const url = `${SITE_URL}/listings/${listing.slug}.html`;
   const title = `${listing.address}, ${listing.city} | redT Homes`;
   const bedsBath = listing.beds && listing.baths ? `${listing.beds} bed, ${listing.baths} bath ` : "";
-  const metaDesc = `${bedsBath}${listing.status.toLowerCase()} ${listing.propertyType.toLowerCase()} at ${listing.address}, ${loc}. ${price}. Schedule a tour with redT Homes.`;
+  const statusWord = listing.status.toLowerCase();
+  const typeWord = listing.propertyType.toLowerCase();
+  const statusType = statusWord === typeWord ? typeWord : `${statusWord} ${typeWord}`;
+  const metaDesc = `${bedsBath}${statusType} at ${listing.address}, ${loc}. ${price}. Schedule a tour with redT Homes.`;
   const allPhotos = listing.heroImage ? [listing.heroImage, ...(listing.galleryImages || [])] : [];
   const gallery = allPhotos.length
     ? `<div class="gallery-main"><img id="gallery-main-${listing.slug}" src="${allPhotos[0]}" alt="${escapeHtml(listing.address)}"></div>
