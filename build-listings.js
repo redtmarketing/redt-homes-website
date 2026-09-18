@@ -111,6 +111,14 @@ function writeFile(outPath, contents) {
   fs.writeFileSync(outPath, contents);
 }
 
+function descriptionHtml(listing) {
+  const escaped = escapeHtml(listing.description);
+  if (listing.matrixUrl && escaped.includes("Supplements")) {
+    return escaped.replace("Supplements", `<a href="${escapeHtml(listing.matrixUrl)}" target="_blank" rel="noopener">Supplements</a>`);
+  }
+  return escaped;
+}
+
 function aboutLabel(propertyType) {
   if (propertyType === "Townhome") return "Townhome";
   if (propertyType === "Land") return "Property";
@@ -418,7 +426,7 @@ ${specsBlock(listing)}
 
       <div class="property-body">
         <h2 style="font-size: 24px; margin-bottom: 16px;">About This ${aboutLabel(listing.propertyType)}</h2>
-        <p>${escapeHtml(listing.description)}</p>
+        <p>${descriptionHtml(listing)}</p>
         <p style="font-size: 13px; color: var(--grey);">MLS ID: ${escapeHtml(listing.mlsId)} &middot; ${escapeHtml(listing.propertyType)}</p>
       </div>
 
