@@ -325,4 +325,19 @@
     btn.insertBefore(avatar, btn.firstChild);
     btn.setAttribute("aria-label", btn.textContent.trim() + " with " + REP_NAME);
   });
+
+  /* Fire a GA4 generate_lead event on every successful HubSpot form
+     submission, sitewide. HubSpot's embedded form iframe posts this message
+     to the parent window no matter which form/page/portal embedded it, so
+     one listener here covers the contact form, every listing inquiry form,
+     careers, and the popup — instead of wiring an onFormSubmitted callback
+     into each hbspt.forms.create() call across 190+ pages. */
+  window.addEventListener("message", function (event) {
+    if (!event.data || event.data.type !== "hsFormCallback" || event.data.eventName !== "onFormSubmitted") return;
+    if (typeof window.gtag !== "function") return;
+    window.gtag("event", "generate_lead", {
+      form_id: event.data.id,
+      page_location: window.location.href
+    });
+  });
 })();
