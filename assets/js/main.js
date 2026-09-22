@@ -114,6 +114,14 @@
       bounds.push([c.lat, c.lng]);
     });
     map.fitBounds(bounds, { padding: [30, 30] });
+
+    /* Safety net: if the container's real size wasn't settled yet when
+       fitBounds ran above, Leaflet can lock in a bogus zoom/center.
+       Recompute once layout has definitely settled. */
+    setTimeout(function () {
+      map.invalidateSize();
+      map.fitBounds(bounds, { padding: [30, 30] });
+    }, 300);
   }
 
   /* Safety net: force-reveal anything still hidden after 2s, in case the
