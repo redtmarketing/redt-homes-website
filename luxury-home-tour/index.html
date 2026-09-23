@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RC3LB22WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-RC3LB22WHK");
+</script>
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/43826586.js"></script>
+<!-- End of HubSpot Embed Code -->
+<title>Luxury Home Tour Map | Saturday, October 10 | redT Homes</title>
+<link rel="icon" type="image/png" href="/assets/brand/redt-logo-icon.png">
+<meta name="description" content="Map and route for the Luxury Home Tour on Saturday, October 10, 2026, 11 AM to 3 PM. Nine homes in Observatory Park, University Hills and Wellshire, Denver. Sign in at 3 or more homes to enter the giveaway.">
+<link rel="canonical" href="https://www.redthomes.com/luxury-home-tour/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="redT Homes">
+<meta property="og:title" content="Luxury Home Tour | Saturday, October 10 | 11 AM to 3 PM">
+<meta property="og:description" content="Nine luxury homes, one afternoon. Map, route and details for the Denver Luxury Home Tour.">
+<meta property="og:url" content="https://www.redthomes.com/luxury-home-tour/">
+<meta property="og:image" content="https://www.redthomes.com/assets/images/hero-st-paul.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root {
+    --gold: #ddbe68;
+    --black: #000000;
+    --white: #ffffff;
+    --panel: #0d0d0d;
+    --line: #262626;
+    --muted: #a6a6a6;
+    --sidebar: 400px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--black); color: var(--white); font-family: "Montserrat", Arial, sans-serif; }
+  a { color: inherit; }
+
+  .tour { display: flex; height: 100vh; height: 100dvh; }
+  .panel { width: var(--sidebar); flex: none; display: flex; flex-direction: column; background: var(--panel); border-right: 1px solid var(--line); min-height: 0; }
+  .map-wrap { flex: 1; position: relative; min-width: 0; }
+  #map { position: absolute; inset: 0; background: #111; }
+
+  .head { padding: 22px 24px 18px; border-bottom: 1px solid var(--line); }
+  .head .logo { display: block; height: 22px; width: auto; margin-bottom: 18px; }
+  .eyebrow { font-size: 11px; letter-spacing: 4px; color: var(--gold); font-weight: 600; margin: 0 0 6px; }
+  .head h1 { font-family: "League Spartan", sans-serif; font-weight: 700; font-size: 34px; line-height: 1; margin: 0 0 10px; letter-spacing: .5px; }
+  .when { display: inline-block; background: var(--white); color: var(--black); font-size: 12px; font-weight: 600; letter-spacing: 1px; padding: 6px 10px; }
+  .giveaway { margin: 14px 0 0; font-size: 13px; line-height: 1.5; color: #d9d9d9; }
+  .giveaway strong { color: var(--gold); font-weight: 600; }
+
+  .stops { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; }
+  .stop { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 16px 24px; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .15s; }
+  .stop:hover, .stop:focus-visible { background: #161616; outline: none; }
+  .stop.active { background: #1a1710; box-shadow: inset 3px 0 0 var(--gold); }
+  .num { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--gold); color: var(--gold); display: grid; place-items: center; font-family: "League Spartan", sans-serif; font-weight: 700; font-size: 16px; padding-top: 2px; }
+  .stop.start .num { background: var(--gold); color: var(--black); }
+  .addr { font-family: "League Spartan", sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .3px; margin: 2px 0 3px; }
+  .tag { display: inline-block; font-size: 10px; letter-spacing: 2px; font-weight: 600; color: var(--black); background: var(--gold); padding: 3px 6px; margin-left: 6px; vertical-align: 2px; }
+  .facts { font-size: 13px; color: var(--muted); }
+  .facts b { color: var(--white); font-weight: 600; }
+  .links { margin-top: 8px; display: flex; gap: 14px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .links a { color: var(--gold); text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+  .foot { padding: 14px 24px; font-size: 11px; color: #737373; border-top: 1px solid var(--line); }
+
+  /* Map pins */
+  .pin { width: 34px; height: 34px; border-radius: 50%; background: var(--black); border: 2px solid var(--gold); color: var(--gold); display: grid; place-items: center; font-family: "League Spartan", sans-serif; font-weight: 700; font-size: 16px; padding-top: 2px; box-shadow: 0 2px 10px rgba(0,0,0,.6); transition: transform .15s; }
+  .pin.start { background: var(--gold); color: var(--black); width: 40px; height: 40px; font-size: 18px; }
+  .pin.active { transform: scale(1.25); background: var(--gold); color: var(--black); }
+  .leaflet-container { font-family: "Montserrat", Arial, sans-serif; }
+  .leaflet-div-icon { background: none; border: none; }
+  .dark-tiles { filter: invert(100%) hue-rotate(180deg) brightness(.9) contrast(.9) grayscale(.6); }
+
+  /* Popup card */
+  .leaflet-popup-content-wrapper { background: var(--black); color: var(--white); border-radius: 0; border: 1px solid var(--gold); padding: 0; box-shadow: 0 8px 30px rgba(0,0,0,.7); }
+  .leaflet-popup-tip { background: var(--gold); }
+  .leaflet-popup-content { margin: 0; width: 280px !important; }
+  .leaflet-container a.leaflet-popup-close-button { color: var(--white); font-size: 22px; top: 4px; right: 6px; }
+  .card-img { display: block; width: 100%; height: 150px; object-fit: cover; }
+  .card-img.placeholder { height: 64px; background: linear-gradient(135deg, #1a1a1a, #000); display: grid; place-items: center; color: var(--gold); font-size: 10px; letter-spacing: 4px; font-weight: 600; }
+  .card-body { padding: 14px 16px 16px; }
+  .leaflet-popup-content .card-body p { margin: 0; }
+  .leaflet-popup-content .card-body .eyebrow { margin-bottom: 6px; }
+  .leaflet-popup-content .card-body .card-addr { margin-bottom: 2px; }
+  .leaflet-popup-content .card-body .card-city { margin-bottom: 10px; }
+  .leaflet-popup-content .card-body .card-price { margin-bottom: 2px; }
+  .leaflet-popup-content .card-body .card-facts,
+  .leaflet-popup-content .card-body .card-hours { margin-bottom: 12px; }
+  .card-addr { font-family: "League Spartan", sans-serif; font-weight: 700; font-size: 20px; line-height: 1.1; margin: 0 0 2px; }
+  .card-city { font-size: 12px; color: var(--muted); margin: 0 0 10px; }
+  .card-price { font-family: "League Spartan", sans-serif; font-size: 18px; font-weight: 600; color: var(--gold); margin: 0 0 2px; }
+  .card-facts { font-size: 13px; color: #d9d9d9; margin: 0 0 12px; }
+  .card-hours { font-size: 12px; margin: 0 0 12px; color: #d9d9d9; }
+  .card-hours b { color: var(--white); }
+  .card-actions { display: flex; gap: 8px; }
+  .card-actions a { flex: 1; text-align: center; padding: 10px 6px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; }
+  .btn-gold { background: var(--gold); color: var(--black) !important; }
+  .btn-line { border: 1px solid var(--white); color: var(--white) !important; }
+
+  .leaflet-control-zoom a { background: var(--black) !important; color: var(--gold) !important; border-color: var(--line) !important; }
+  .leaflet-control-attribution { background: rgba(0,0,0,.7) !important; color: #8c8c8c !important; }
+  .leaflet-control-attribution a { color: #bfbfbf !important; }
+
+  /* Phone: map on top, list below */
+  @media (max-width: 800px) {
+    .tour { flex-direction: column; height: auto; min-height: 100dvh; }
+    .map-wrap { order: 1; height: 52vh; flex: none; position: sticky; top: 0; z-index: 1; }
+    .panel { order: 2; width: 100%; border-right: none; position: relative; z-index: 2; }
+    .stops { overflow: visible; }
+    .head { padding: 18px 16px 16px; }
+    .head .logo { display: none; }
+    .head h1 { font-size: 28px; }
+    .stop { padding: 14px 16px; }
+    .foot { padding: 14px 16px 28px; }
+    .leaflet-popup-content { width: 240px !important; }
+    .card-img { height: 120px; }
+  }
+</style>
+</head>
+<body>
+<div class="tour">
+  <aside class="panel" aria-label="Tour stops">
+    <div class="head">
+      <a href="/" aria-label="redT Homes home"><img class="logo" src="/assets/brand/redt-logo-white.png" alt="redT Homes"></a>
+      <p class="eyebrow">LUXURY HOME TOUR</p>
+      <h1>9 HOMES. ONE AFTERNOON.</h1>
+      <span class="when">SAT, OCT 10 &nbsp;|&nbsp; 11 AM – 3 PM</span>
+      <p class="giveaway"><strong>Giveaway:</strong> scan the sign-in QR code at each home. Sign in at 3 or more homes to enter, and every home after that earns you a bonus entry.</p>    </div>
+    <ol class="stops" id="stops"></ol>
+    <div class="foot">Stops are ordered as a loop starting at 2442 S Saint Paul Street. Visit in any order you like. Listing details are subject to change.</div>
+  </aside>
+  <div class="map-wrap"><div id="map" role="region" aria-label="Map of tour homes"></div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  // Route order: a loop that starts at 2442 S Saint Paul and ends one block away at 2451 S Adams.
+  // Coordinates geocoded once via OpenStreetMap Nominatim (all 9 resolved to exact house numbers).
+  var STOPS = [
+    { address: "2442 S Saint Paul Street", price: 5500000, beds: 6, baths: 8, sqft: "8,101", lat: 39.6722281, lng: -104.9505600, redt: true,
+      image: "/assets/images/hero-st-paul.jpg", listing: "/listings/2442-s-saint-paul-street-denver.html" },
+    { address: "2339 S Saint Paul Street", price: 3100000, beds: 5, baths: 6, sqft: "5,513", lat: 39.6739807, lng: -104.9511456 },
+    { address: "2070 S Saint Paul Street", price: 4150000, beds: 6, baths: 8, sqft: "6,264", lat: 39.6789139, lng: -104.9505335 },
+    { address: "2110 S Cook Street",       price: 2740000, beds: 6, baths: 6, sqft: "6,487", lat: 39.6781378, lng: -104.9478770 },
+    { address: "2175 S Monroe Street",     price: 3500000, beds: 4, baths: 5, sqft: "7,054", lat: 39.6771091, lng: -104.9452545 },
+    { address: "3640 E Warren Avenue",     price: 2250000, beds: 6, baths: 6, sqft: "5,953", lat: 39.6763588, lng: -104.9443022 },
+    { address: "3660 E Warren Avenue",     price: 1995000, beds: 3, baths: 5, sqft: "6,087", lat: 39.6762998, lng: -104.9440948 },
+    { address: "2635 S Garfield Way",      price: 1199000, beds: 4, baths: 3, sqft: "2,586", lat: 39.6689940, lng: -104.9448645 },
+    { address: "2451 S Adams Street",      price: 1850000, beds: 5, baths: 4, sqft: "4,669", lat: 39.6720368, lng: -104.9491857 }
+  ];
+
+  function money(n) { return "$" + n.toLocaleString("en-US"); }
+  function full(s) { return s.address + ", Denver, CO"; }
+  function directions(s) { return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(full(s)); }
+
+  var map = L.map("map", { zoomControl: true, scrollWheelZoom: true, tap: true });
+  // Same free OpenStreetMap tiles as the homepage map, darkened with a CSS filter (.dark-tiles) to match the brand.
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19, className: "dark-tiles",
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  L.polyline(STOPS.map(function (s) { return [s.lat, s.lng]; }), { color: "#ddbe68", weight: 2, opacity: .7, dashArray: "6 8" }).addTo(map);
+
+  var list = document.getElementById("stops");
+  var markers = [];
+
+  function popupHtml(s, i) {
+    var img = s.image ? '<img class="card-img" src="' + s.image + '" alt="' + s.address + '">' : '';
+    var second = s.listing
+      ? '<a class="btn-line" href="' + s.listing + '">View listing</a>'
+      : '';
+    return img +
+      '<div class="card-body">' +
+        '<p class="eyebrow">' + (i === 0 ? "START HERE" : "STOP " + (i + 1) + " OF " + STOPS.length) + (s.redt ? " &middot; REDT HOMES" : "") + '</p>' +
+        '<p class="card-addr">' + s.address + '</p>' +
+        '<p class="card-city">Denver, CO</p>' +
+        '<p class="card-price">' + money(s.price) + '</p>' +
+        '<p class="card-facts">' + s.beds + ' beds &nbsp;|&nbsp; ' + s.baths + ' baths &nbsp;|&nbsp; ' + s.sqft + ' sq ft</p>' +
+        '<p class="card-hours"><b>Open house:</b> Sat, Oct 10, 11 AM – 3 PM</p>' +
+        '<div class="card-actions"><a class="btn-gold" href="' + directions(s) + '" target="_blank" rel="noopener">Directions</a>' + second + '</div>' +
+      '</div>';
+  }
+
+  function select(i, fromList) {
+    markers.forEach(function (m, j) {
+      var el = m.getElement();
+      if (el) el.firstChild.classList.toggle("active", j === i && j !== 0);
+    });
+    [].forEach.call(list.children, function (li, j) { li.classList.toggle("active", j === i); });
+    var m = markers[i];
+    if (fromList) {
+      if (window.innerWidth <= 800) window.scrollTo({ top: 0, behavior: "smooth" });
+      map.flyTo(m.getLatLng(), Math.max(map.getZoom(), 16), { duration: .6 });
+      setTimeout(function () { m.openPopup(); }, 650);
+    } else {
+      var li = list.children[i];
+      if (window.innerWidth > 800) li.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+    if (window.gtag) gtag("event", "tour_stop_view", { stop_address: STOPS[i].address });
+  }
+
+  STOPS.forEach(function (s, i) {
+    var icon = L.divIcon({
+      className: "",
+      html: '<div class="pin' + (i === 0 ? " start" : "") + '">' + (i + 1) + '</div>',
+      iconSize: i === 0 ? [40, 40] : [34, 34],
+      iconAnchor: i === 0 ? [20, 20] : [17, 17],
+      popupAnchor: [0, -18]
+    });
+    var m = L.marker([s.lat, s.lng], { icon: icon, title: s.address, zIndexOffset: i === 0 ? 1000 : 0 })
+      .addTo(map)
+      .bindPopup(popupHtml(s, i), { maxWidth: 280, autoPanPadding: [20, 20] });
+    m.on("click", function () { select(i, false); });
+    markers.push(m);
+
+    var li = document.createElement("li");
+    li.className = "stop" + (i === 0 ? " start" : "");
+    li.tabIndex = 0;
+    li.innerHTML =
+      '<div class="num">' + (i + 1) + '</div>' +
+      '<div>' +
+        '<div class="addr">' + s.address + (i === 0 ? '<span class="tag">START</span>' : '') + '</div>' +
+        '<div class="facts"><b>' + money(s.price) + '</b> &nbsp;·&nbsp; ' + s.beds + ' bd &nbsp;·&nbsp; ' + s.baths + ' ba &nbsp;·&nbsp; ' + s.sqft + ' sq ft</div>' +
+        '<div class="links"><a href="' + directions(s) + '" target="_blank" rel="noopener">Directions</a>' +
+          (s.listing ? '<a href="' + s.listing + '">View listing</a>' : '') + '</div>' +
+      '</div>';
+    li.addEventListener("click", function (e) { if (e.target.tagName !== "A") select(i, true); });
+    li.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(i, true); } });
+    list.appendChild(li);
+  });
+
+  map.fitBounds(L.latLngBounds(STOPS.map(function (s) { return [s.lat, s.lng]; })), { padding: [40, 40] });
+  window.addEventListener("resize", function () { map.invalidateSize(); });
+</script>
+</body>
+</html>
