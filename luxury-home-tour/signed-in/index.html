@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RC3LB22WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-RC3LB22WHK");
+</script>
+<title>You're Signed In | Luxury Home Tour | redT Homes</title>
+<link rel="icon" type="image/png" href="/assets/brand/redt-logo-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #ddbe68; --black: #000000; --white: #ffffff; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: var(--black); color: var(--white); font-family: "Montserrat", Arial, sans-serif; }
+  main { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 32px 20px; }
+  .eyebrow { font-size: 13px; letter-spacing: 4px; color: var(--gold); font-weight: 600; margin: 0 0 12px; }
+  h1 { font-family: "League Spartan", sans-serif; font-weight: 700; font-size: 38px; line-height: 1.05; margin: 0 0 14px; }
+  .addr { font-size: 15px; margin: 0 0 22px; color: #d9d9d9; }
+  .msg { font-size: 15px; line-height: 1.6; max-width: 420px; margin: 0 0 28px; }
+  .bar { width: 220px; height: 3px; background: #262626; overflow: hidden; margin: 0 auto 10px; }
+  .bar span { display: block; height: 100%; width: 100%; background: var(--gold); transform-origin: left; animation: drain var(--secs, 6s) linear forwards; }
+  @keyframes drain { to { transform: scaleX(0); } }
+  .next { font-size: 12px; letter-spacing: 1px; color: #a6a6a6; margin: 0 0 18px; }
+  .btn { display: inline-block; padding: 12px 22px; background: var(--white); color: var(--black); text-decoration: none; font-family: "League Spartan", sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+  .map { margin-top: 18px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">YOU'RE SIGNED IN</p>
+  <h1>THANKS FOR VISITING!</h1>
+  <p class="addr" id="addr"></p>
+  <p class="msg">Sign in at 3 or more homes on the tour to enter the giveaway. Every home after that earns you a bonus entry.</p>
+  <div class="bar"><span></span></div>
+  <p class="next" id="next">Getting the form ready for the next guest…</p>
+  <a class="btn" id="again" href="/luxury-home-tour/">Next guest: sign in</a>
+  <a class="map" href="/luxury-home-tour/">View the tour map</a>
+</main>
+<script>
+  // Each raffle form's HubSpot "redirect after submit" points here as ?home=N (N = raffle sheet number).
+  // Only these known form links are used, so the page can't be turned into an open redirect.
+  var HOMES = {
+    "1": ["2442 S Saint Paul Street", "https://q3ct6.share-na2.hsforms.com/2v5ItqtaeSIy9Yfzq3WOZZg"],
+    "2": ["2070 S Saint Paul Street", "https://q3ct6.share-na2.hsforms.com/2xLyIjNgBSHCK8cRi63O9wA"],
+    "3": ["2175 S Monroe Street",     "https://q3ct6.share-na2.hsforms.com/25gshKVJlT5yCgVOWfWkFcg"],
+    "4": ["2339 S Saint Paul Street", "https://q3ct6.share-na2.hsforms.com/2Aws9bfaVRc2MfupjWcc7iQ"],
+    "5": ["2110 S Cook Street",       "https://q3ct6.share-na2.hsforms.com/2avdTM6VxT2mNm727OlyDEw"],
+    "6": ["3640 E Warren Avenue",     "https://q3ct6.share-na2.hsforms.com/2V8WwaeI5T-Wk3jK7-oZ4bA"],
+    "7": ["3660 E Warren Avenue",     "https://q3ct6.share-na2.hsforms.com/2qQ2X3vs7SHOQQgFUZ4VbPw"],
+    "8": ["2451 S Adams Street",      "https://q3ct6.share-na2.hsforms.com/2QrlY80xWSVewcqoBR9OQcA"],
+    "9": ["2635 S Garfield Way",      "https://q3ct6.share-na2.hsforms.com/2El1VXIlLSx2OK--tGnL9gw"]
+  };
+  var SECONDS = 6;
+  var home = HOMES[new URLSearchParams(location.search).get("home")];
+  if (home) {
+    document.getElementById("addr").textContent = home[0];
+    document.getElementById("again").href = home[1];
+    document.documentElement.style.setProperty("--secs", SECONDS + "s");
+    if (window.gtag) gtag("event", "raffle_sign_in", { home_address: home[0] });
+    // replace() so the Back button doesn't return to this page
+    setTimeout(function () { location.replace(home[1]); }, SECONDS * 1000);
+  } else {
+    document.querySelector(".bar").style.display = "none";
+    document.getElementById("next").style.display = "none";
+    document.getElementById("again").style.display = "none";
+  }
+</script>
+</body>
+</html>
