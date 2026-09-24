@@ -150,12 +150,16 @@
     { address: "2442 S Saint Paul Street", price: 5500000, beds: 6, baths: 8, sqft: "8,101", lat: 39.6722281, lng: -104.9505600, redt: true,
       image: "/assets/images/hero-st-paul.jpg", listing: "/listings/2442-s-saint-paul-street-denver.html" },
     { address: "2370 S Columbine Street",  price: 2295000, beds: 6, baths: 6, sqft: "5,935", lat: 39.6734411, lng: -104.9560699 },
-    { address: "2339 S Saint Paul Street", price: 3100000, beds: 5, baths: 6, sqft: "5,513", lat: 39.6739807, lng: -104.9511456 },
+    { address: "2339 S Saint Paul Street", price: 3100000, beds: 5, baths: 6, sqft: "5,513", lat: 39.6739807, lng: -104.9511456,
+      listing: "https://2339saintpaul.pages.dev/" },
     { address: "2070 S Saint Paul Street", price: 4150000, beds: 6, baths: 8, sqft: "6,264", lat: 39.6789139, lng: -104.9505335 },
-    { address: "2175 S Monroe Street",     price: 3500000, beds: 4, baths: 5, sqft: "7,054", lat: 39.6771091, lng: -104.9452545 },
+    { address: "2175 S Monroe Street",     price: 3500000, beds: 4, baths: 5, sqft: "7,054", lat: 39.6771091, lng: -104.9452545,
+      listing: "https://u.listvt.com/mls/257036876" },
     { address: "2635 S Garfield Way",      price: 1199000, beds: 4, baths: 3, sqft: "2,586", lat: 39.6689940, lng: -104.9448645 },
     { address: "2451 S Adams Street",      price: 1850000, beds: 5, baths: 4, sqft: "4,669", lat: 39.6720368, lng: -104.9491857 }
   ];
+  // Other brokers' listing pages open in a new tab so the tour map stays open.
+  function newTab(url) { return /^https?:/.test(url) ? ' target="_blank" rel="noopener"' : ''; }
   function specs(s, long) {
     if (!s.beds) return "";
     return long
@@ -184,7 +188,7 @@
   function popupHtml(s, i) {
     var img = s.image ? '<img class="card-img" src="' + s.image + '" alt="' + s.address + '">' : '';
     var second = s.listing
-      ? '<a class="btn-line" href="' + s.listing + '">View listing</a>'
+      ? '<a class="btn-line" href="' + s.listing + '"' + newTab(s.listing) + '>View listing</a>'
       : '';
     return img +
       '<div class="card-body">' +
@@ -239,7 +243,7 @@
         '<div class="addr">' + s.address + (i === 0 ? '<span class="tag">START</span>' : '') + '</div>' +
         '<div class="facts"><b>' + money(s.price) + '</b>' + specs(s, false) + '</div>' +
         '<div class="links"><a href="' + directions(s) + '" target="_blank" rel="noopener">Directions</a>' +
-          (s.listing ? '<a href="' + s.listing + '">View listing</a>' : '') + '</div>' +
+          (s.listing ? '<a href="' + s.listing + '"' + newTab(s.listing) + '>View listing</a>' : '') + '</div>' +
       '</div>';
     li.addEventListener("click", function (e) { if (e.target.tagName !== "A") select(i, true); });
     li.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(i, true); } });
