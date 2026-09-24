@@ -17,12 +17,12 @@
 <!-- End of HubSpot Embed Code -->
 <title>Luxury Home Tour Map | Saturday, October 10 | redT Homes</title>
 <link rel="icon" type="image/png" href="/assets/brand/redt-logo-icon.png">
-<meta name="description" content="Map and route for the Luxury Home Tour on Saturday, October 10, 2026, 11 AM to 3 PM. Nine homes in Observatory Park, University Hills and Wellshire, Denver. Sign in at 3 or more homes to enter the giveaway.">
+<meta name="description" content="Map and route for the Luxury Home Tour on Saturday, October 10, 2026, 11 AM to 3 PM. Seven homes in Observatory Park and University Hills, Denver. Sign in at 3 or more homes to enter the giveaway.">
 <link rel="canonical" href="https://www.redthomes.com/luxury-home-tour/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="redT Homes">
 <meta property="og:title" content="Luxury Home Tour | Saturday, October 10 | 11 AM to 3 PM">
-<meta property="og:description" content="Nine luxury homes, one afternoon. Map, route and details for the Denver Luxury Home Tour.">
+<meta property="og:description" content="Seven luxury homes, one afternoon. Map, route and details for the Denver Luxury Home Tour.">
 <meta property="og:url" content="https://www.redthomes.com/luxury-home-tour/">
 <meta property="og:image" content="https://www.redthomes.com/assets/images/hero-st-paul.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -132,7 +132,7 @@
     <div class="head">
       <a href="/" aria-label="redT Homes home"><img class="logo" src="/assets/brand/redt-logo-white.png" alt="redT Homes"></a>
       <p class="eyebrow">LUXURY HOME TOUR</p>
-      <h1>9 HOMES. ONE AFTERNOON.</h1>
+      <h1 id="headline">SEVEN HOMES. ONE AFTERNOON.</h1>
       <span class="when">SAT, OCT 10 &nbsp;|&nbsp; 11 AM – 3 PM</span>
       <p class="giveaway"><strong>Giveaway:</strong> scan the sign-in QR code at each home. Sign in at 3 or more homes to enter, and every home after that earns you a bonus entry.</p>    </div>
     <ol class="stops" id="stops"></ol>
@@ -144,19 +144,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
   // Route order: a loop that starts at 2442 S Saint Paul and ends one block away at 2451 S Adams.
-  // Coordinates geocoded once via OpenStreetMap Nominatim (all 9 resolved to exact house numbers).
+  // Coordinates geocoded once via OpenStreetMap Nominatim (each resolved to its exact house number).
+  // Confirmed participants only. beds/baths/sqft are optional; leave them off until known.
   var STOPS = [
     { address: "2442 S Saint Paul Street", price: 5500000, beds: 6, baths: 8, sqft: "8,101", lat: 39.6722281, lng: -104.9505600, redt: true,
       image: "/assets/images/hero-st-paul.jpg", listing: "/listings/2442-s-saint-paul-street-denver.html" },
-    { address: "2339 S Saint Paul Street", price: 3100000, beds: 5, baths: 6, sqft: "5,513", lat: 39.6739807, lng: -104.9511456 },
+    { address: "2370 S Columbine Street",  price: 2395000, lat: 39.6734411, lng: -104.9560699 },
+    { address: "2339 S Saint Paul Street", price: 3250000, beds: 5, baths: 6, sqft: "5,513", lat: 39.6739807, lng: -104.9511456 },
     { address: "2070 S Saint Paul Street", price: 4150000, beds: 6, baths: 8, sqft: "6,264", lat: 39.6789139, lng: -104.9505335 },
-    { address: "2110 S Cook Street",       price: 2740000, beds: 6, baths: 6, sqft: "6,487", lat: 39.6781378, lng: -104.9478770 },
     { address: "2175 S Monroe Street",     price: 3500000, beds: 4, baths: 5, sqft: "7,054", lat: 39.6771091, lng: -104.9452545 },
-    { address: "3640 E Warren Avenue",     price: 2250000, beds: 6, baths: 6, sqft: "5,953", lat: 39.6763588, lng: -104.9443022 },
-    { address: "3660 E Warren Avenue",     price: 1995000, beds: 3, baths: 5, sqft: "6,087", lat: 39.6762998, lng: -104.9440948 },
     { address: "2635 S Garfield Way",      price: 1199000, beds: 4, baths: 3, sqft: "2,586", lat: 39.6689940, lng: -104.9448645 },
-    { address: "2451 S Adams Street",      price: 1850000, beds: 5, baths: 4, sqft: "4,669", lat: 39.6720368, lng: -104.9491857 }
+    { address: "2451 S Adams Street",      price: 1890000, beds: 5, baths: 4, sqft: "4,669", lat: 39.6720368, lng: -104.9491857 }
   ];
+  function specs(s, long) {
+    if (!s.beds) return "";
+    return long
+      ? s.beds + " beds &nbsp;|&nbsp; " + s.baths + " baths &nbsp;|&nbsp; " + s.sqft + " sq ft"
+      : " &nbsp;·&nbsp; " + s.beds + " bd &nbsp;·&nbsp; " + s.baths + " ba &nbsp;·&nbsp; " + s.sqft + " sq ft";
+  }
+  var WORDS = ["", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE"];
+  document.getElementById("headline").textContent = (WORDS[STOPS.length] || STOPS.length) + " HOMES. ONE AFTERNOON.";
 
   function money(n) { return "$" + n.toLocaleString("en-US"); }
   function full(s) { return s.address + ", Denver, CO"; }
@@ -185,7 +192,7 @@
         '<p class="card-addr">' + s.address + '</p>' +
         '<p class="card-city">Denver, CO</p>' +
         '<p class="card-price">' + money(s.price) + '</p>' +
-        '<p class="card-facts">' + s.beds + ' beds &nbsp;|&nbsp; ' + s.baths + ' baths &nbsp;|&nbsp; ' + s.sqft + ' sq ft</p>' +
+        (s.beds ? '<p class="card-facts">' + specs(s, true) + '</p>' : '') +
         '<p class="card-hours"><b>Open house:</b> Sat, Oct 10, 11 AM – 3 PM</p>' +
         '<div class="card-actions"><a class="btn-gold" href="' + directions(s) + '" target="_blank" rel="noopener">Directions</a>' + second + '</div>' +
       '</div>';
@@ -230,7 +237,7 @@
       '<div class="num">' + (i + 1) + '</div>' +
       '<div>' +
         '<div class="addr">' + s.address + (i === 0 ? '<span class="tag">START</span>' : '') + '</div>' +
-        '<div class="facts"><b>' + money(s.price) + '</b> &nbsp;·&nbsp; ' + s.beds + ' bd &nbsp;·&nbsp; ' + s.baths + ' ba &nbsp;·&nbsp; ' + s.sqft + ' sq ft</div>' +
+        '<div class="facts"><b>' + money(s.price) + '</b>' + specs(s, false) + '</div>' +
         '<div class="links"><a href="' + directions(s) + '" target="_blank" rel="noopener">Directions</a>' +
           (s.listing ? '<a href="' + s.listing + '">View listing</a>' : '') + '</div>' +
       '</div>';
@@ -239,8 +246,17 @@
     list.appendChild(li);
   });
 
-  map.fitBounds(L.latLngBounds(STOPS.map(function (s) { return [s.lat, s.lng]; })), { padding: [40, 40] });
-  window.addEventListener("resize", function () { map.invalidateSize(); });
+  // Keep all homes in view whenever the map box changes size (page load, rotation, resized window),
+  // until the visitor pans or opens a home themselves.
+  var userMoved = false;
+  map.on("dragstart popupopen", function () { userMoved = true; });
+  function fitAll() {
+    map.invalidateSize();
+    if (!userMoved) map.fitBounds(L.latLngBounds(STOPS.map(function (s) { return [s.lat, s.lng]; })), { padding: [40, 40] });
+  }
+  fitAll();
+  if (window.ResizeObserver) new ResizeObserver(fitAll).observe(document.getElementById("map"));
+  else window.addEventListener("resize", fitAll);
 </script>
 </body>
 </html>
