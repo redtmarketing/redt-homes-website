@@ -1367,3 +1367,55 @@
   from = "/To"
   to = "/"
   status = 301
+
+# GA4 404 audit (2026-09-25): paths that landed on the 404 page in the last
+# 28 days and look like real visitors/backlinks rather than scanner probes.
+# 3927 W 38th Ave was renamed from unit 104 to unit 103 in b7b896e.
+[[redirects]]
+  from = "/listings/3927-w-38th-avenue-unit-104-bldg-1-denver"
+  to = "/listings/3927-w-38th-avenue-unit-103-bldg-1-denver.html"
+  status = 301
+[[redirects]]
+  from = "/listings/3927-w-38th-avenue-unit-104-bldg-1-denver.html"
+  to = "/listings/3927-w-38th-avenue-unit-103-bldg-1-denver.html"
+  status = 301
+[[redirects]]
+  from = "/history-of-glendale-co/"
+  to = "/blog/history-of-glendale-co.html"
+  status = 301
+[[redirects]]
+  from = "/2025/best-neighborhoods-in-denver-by-appreciation/"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/blogs"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/for-rent-listings"
+  to = "/for-rent/"
+  status = 301
+[[redirects]]
+  from = "/careers-2022"
+  to = "/careers/"
+  status = 301
+[[redirects]]
+  from = "/schedule-showing"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/homes-for-sale"
+  to = "/#listings"
+  status = 301
+[[redirects]]
+  from = "/listings"
+  to = "/#listings"
+  status = 301
+[[redirects]]
+  from = "/coming-soon/"
+  to = "/#listings"
+  status = 301
+[[redirects]]
+  from = "/project/1625-marion-st/"
+  to = "/"
+  status = 301
