@@ -416,6 +416,33 @@
     ]
   },
   {
+    "slug": "921-mt-massive-drive-unit-16-bldg-2-leadville",
+    "mlsId": "7515586",
+    "propertyType": "Townhome",
+    "address": "921 Mt Massive Drive Unit# 16, Bldg 2",
+    "city": "Leadville",
+    "community": "Mount Massive",
+    "price": 359000,
+    "status": "Move-in Ready",
+    "beds": "2",
+    "baths": "1",
+    "sqft": "896",
+    "garages": "0",
+    "yearBuilt": "1961",
+    "description": "This beautifully remodeled 2-story townhome in the mountain town of Leadville features an eat-in kitchen with quartz countertops, new appliances, and bar-top seating, plus two covered decks with mountain views and a fenced rear patio. Includes 3 off-street parking spaces, an under-stair storage closet, and a walk-in closet. Walking distance to downtown Leadville's shops and restaurants and adjacent to the Mineral Belt recreational trail, with Ski Cooper just 10 minutes away. HOA covers electric, gas, heat, water, sewer, snow removal, trash, grounds maintenance, insurance, and management.",
+    "hubspotFormId": "34297aa2-c6be-425a-9679-b2a39b6d68a5",
+    "heroImage": "/assets/images/mount-massive-hero.jpg",
+    "galleryImages": [
+      "/assets/images/mount-massive-2.jpg",
+      "/assets/images/mount-massive-3.jpg",
+      "/assets/images/mount-massive-4.jpg",
+      "/assets/images/mount-massive-5.jpg",
+      "/assets/images/mount-massive-6.jpg",
+      "/assets/images/mount-massive-7.jpg",
+      "/assets/images/921-mt-massive-drive-unit-16-bldg-2-leadville-8.jpg"
+    ]
+  },
+  {
     "slug": "3801-s-logan-street-denver",
     "mlsId": "7317770",
     "propertyType": "Land",
@@ -690,6 +717,7 @@
     "garages": "",
     "yearBuilt": "",
     "description": "Rare 5-acre opportunity in the heart of Grand Lake with Tourism zoning and direct access off Highway 34. This mostly flat to gently sloped parcel offers a highly usable layout with existing sewer, electric, and well already in place, significantly reducing upfront development hurdles. From the high point of the property, enjoy lake views along with surrounding mountain scenery, all within a partially treed setting that provides a balance of privacy and usability. Positioned just minutes from Grand Lake’s downtown and close to Lake Granby, this property is ideally suited for a wide range of uses including short-term rentals, cabins, boutique hospitality, glamping, or a personal mountain retreat with income potential. With strong visibility, easy year-round access, and flexible zoning, this is a rare chance to secure a versatile parcel in one of Colorado’s most sought-after recreational markets.",
+    "matrixUrl": "https://matrix.recolorado.com/matrix/shared/92pGVlfZM6c/164CountyRoad443",
     "hubspotFormId": "https://share-na2.hsforms.com/1hC9LODZdTp2S3UcUyGtYewq3ct6",
     "heroImage": "/assets/images/164-county-road-443-grand-lake-hero.jpg",
     "galleryImages": [

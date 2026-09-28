@@ -214,16 +214,9 @@
   to = "/"
   status = 301
 
-# Mount Massive (921 Mt Massive Dr, Leadville) — all 3 units dropped off the
-# active MLS list (2026-09-28) and were removed from data/listings.json.
-[[redirects]]
-  from = "/listings/921-mt-massive-drive-unit-16-bldg-2-leadville.html"
-  to = "/"
-  status = 301
-[[redirects]]
-  from = "/listings/921-mt-massive-drive-unit-16-bldg-2-leadville"
-  to = "/"
-  status = 301
+# Mount Massive (921 Mt Massive Dr, Leadville) — units 23 and 24 dropped off
+# the active MLS list (2026-09-28) and were removed from data/listings.json.
+# Unit 16 is still active and stays on the site.
 [[redirects]]
   from = "/listings/921-mt-massive-drive-unit-23-bldg-1-leadville.html"
   to = "/"
