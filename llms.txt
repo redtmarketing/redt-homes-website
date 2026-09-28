@@ -10,7 +10,7 @@
 - [All listings](https://www.redthomes.com/#listings): every active home for sale, with price, beds/baths,
   status, and community.
 - [Blog](https://www.redthomes.com/blog/index.html): articles on homebuying, Denver neighborhoods, and
-  Colorado living (145 posts).
+  Colorado living (146 posts).
 - [Developers](https://www.redthomes.com/developers/index.html): information for land development partners.
 - [For Rent](https://www.redthomes.com/for-rent/index.html): rental listings.
 - [Our Team](https://www.redthomes.com/team/index.html): leadership and staff.

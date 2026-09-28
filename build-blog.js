@@ -198,7 +198,9 @@ function postJsonLd(post, url, img) {
       { "@type": "ListItem", position: 3, name: post.title, item: url },
     ],
   };
-  return `<script type="application/ld+json">${JSON.stringify(data)}</script>\n<script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>`;
+  // Optional per-post extra structured data (e.g. Event, FAQPage) from a "schema" array in blog.json
+  const extra = (post.schema || []).map((s) => `\n<script type="application/ld+json">${JSON.stringify(s)}</script>`).join("");
+  return `<script type="application/ld+json">${JSON.stringify(data)}</script>\n<script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>${extra}`;
 }
 
 function updateHomepageBlogTeaser(posts) {
