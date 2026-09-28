@@ -96,7 +96,8 @@ const FOOTER = `<footer>
 </footer>`;
 
 function pageShell({ title, metaDesc, canonical, bodyHtml, jsonLd, ogImage, ogType }) {
-  const image = ogImage || `${SITE_URL}/assets/images/hero-st-paul.jpg`;
+  let image = ogImage || `${SITE_URL}/assets/images/hero-st-paul.jpg`;
+  if (image.startsWith("/")) image = SITE_URL + image; // social cards need absolute image URLs
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -264,10 +265,12 @@ function postPage(post) {
     ? `By ${escapeHtml(post.author)} &middot; ${formatDate(post.date)} &middot; ${escapeHtml(post.category)}`
     : `By ${escapeHtml(post.author)} &middot; ${formatDate(post.date)}`;
   const img = firstImage(post.content);
-  const headerStyle = img
-    ? ` style="background-image: linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.72) 100%), url('${img}'); background-size: cover; background-position: center;"`
+  // Optional "headerImage" in blog.json overrides the header background (e.g. when the first image is a text-heavy flyer)
+  const headerImg = post.headerImage || img;
+  const headerStyle = headerImg
+    ? ` style="background-image: linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.72) 100%), url('${headerImg}'); background-size: cover; background-position: center;"`
     : "";
-  const headerLogo = img ? "" : `<img class="page-header-logo" src="/assets/brand/redt-logo-white.png" alt="">`;
+  const headerLogo = headerImg ? "" : `<img class="page-header-logo" src="/assets/brand/redt-logo-white.png" alt="">`;
   const body = `<header class="page-header"${headerStyle}>
   ${headerLogo}
   <div class="breadcrumbs"><a href="/">Home</a> / <a href="/blog/index.html">Blog</a> / ${escapeHtml(post.title)}</div>
