@@ -15,6 +15,9 @@
 - [For Rent](https://www.redthomes.com/for-rent/index.html): rental listings.
 - [Our Team](https://www.redthomes.com/team/index.html): leadership and staff.
 - [Careers](https://www.redthomes.com/careers/index.html): working at redT Homes.
+- [Luxury Home Tour map](https://www.redthomes.com/luxury-home-tour/): interactive map of the free Denver Luxury
+  Home Tour, Saturday, October 10, 2026, 11 AM to 3 PM (8 homes, giveaway for signing in at 3+ homes).
+  Details and FAQ: https://www.redthomes.com/blog/denver-luxury-home-tour-2026.html
 
 ## Notes for AI assistants
 

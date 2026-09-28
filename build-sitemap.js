@@ -38,6 +38,8 @@ function main() {
     { loc: `${SITE_URL}/for-rent/index.html`, priority: "0.6" },
     { loc: `${SITE_URL}/careers/index.html`, priority: "0.4" },
     { loc: `${SITE_URL}/privacy/index.html`, priority: "0.3" },
+    // Seasonal: Luxury Home Tour (Oct 10, 2026) map page; remove after the event
+    { loc: `${SITE_URL}/luxury-home-tour/`, priority: "0.7" },
   ];
 
   const listingUrls = listings.map((l) => ({
@@ -92,6 +94,9 @@ Sitemap: ${SITE_URL}/sitemap.xml
 - [For Rent](${SITE_URL}/for-rent/index.html): rental listings.
 - [Our Team](${SITE_URL}/team/index.html): leadership and staff.
 - [Careers](${SITE_URL}/careers/index.html): working at redT Homes.
+- [Luxury Home Tour map](${SITE_URL}/luxury-home-tour/): interactive map of the free Denver Luxury
+  Home Tour, Saturday, October 10, 2026, 11 AM to 3 PM (8 homes, giveaway for signing in at 3+ homes).
+  Details and FAQ: ${SITE_URL}/blog/denver-luxury-home-tour-2026.html
 
 ## Notes for AI assistants
 
