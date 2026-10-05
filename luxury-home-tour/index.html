@@ -145,14 +145,15 @@
 <script>
   // Suggested loop order only (visitors can start at any home); numbers follow this order.
   // Coordinates geocoded once via OpenStreetMap Nominatim (each resolved to its exact house number).
-  // Final confirmed participants (2026-09-25; 2110 S Cook withdrew). beds/baths/sqft are optional; leave them off until known.
+  // Final confirmed participants (2026-09-25; 2110 S Cook withdrew). beds/baths/sqft are optional; leave them off until known. `video` (a tour video URL) shows a "Watch video" link when there's no listing page.
   var STOPS = [
     { address: "2442 S Saint Paul Street", price: 5500000, beds: 6, baths: 8, sqft: "8,101", lat: 39.6722281, lng: -104.9505600, redt: true,
       image: "/assets/images/luxury-home-tour/2442-s-saint-paul-street.jpg", listing: "/listings/2442-s-saint-paul-street-denver.html" },
     { address: "2370 S Columbine Street",  price: 2295000, beds: 6, baths: 6, sqft: "5,935", lat: 39.6734411, lng: -104.9560699, image: "/assets/images/luxury-home-tour/2370-s-columbine-street.jpg" },
     { address: "2339 S Saint Paul Street", price: 3100000, beds: 5, baths: 6, sqft: "5,513", lat: 39.6739807, lng: -104.9511456, image: "/assets/images/luxury-home-tour/2339-s-saint-paul-street.jpg",
       listing: "https://2339saintpaul.pages.dev/" },
-    { address: "2070 S Saint Paul Street", price: 4150000, beds: 6, baths: 8, sqft: "6,264", lat: 39.6789139, lng: -104.9505335, image: "/assets/images/luxury-home-tour/2070-s-saint-paul-street.jpg" },
+    { address: "2070 S Saint Paul Street", price: 4150000, beds: 6, baths: 8, sqft: "6,264", lat: 39.6789139, lng: -104.9505335, image: "/assets/images/luxury-home-tour/2070-s-saint-paul-street.jpg",
+      video: "https://brokerageengine.s3.us-east-1.amazonaws.com/listing-media/livsir/1788552409037_f70414f0-08f5-45d3-b562-7753c0afb597_2070-South-Saint-Paul-Street-Unbranded.mp4" },
     { address: "2175 S Monroe Street",     price: 3500000, beds: 4, baths: 5, sqft: "7,054", lat: 39.6771091, lng: -104.9452545, image: "/assets/images/luxury-home-tour/2175-s-monroe-street.jpg",
       listing: "https://u.listvt.com/mls/257036876" },
     { address: "3640 E Warren Avenue",     price: 2250000, beds: 6, baths: 6, sqft: "5,953", lat: 39.6763588, lng: -104.9443022, image: "/assets/images/luxury-home-tour/3640-e-warren-avenue.jpg",
@@ -192,6 +193,8 @@
     var img = s.image ? '<img class="card-img" src="' + s.image + '" alt="' + s.address + '">' : '';
     var second = s.listing
       ? '<a class="btn-line" href="' + s.listing + '"' + newTab(s.listing) + '>View listing</a>'
+      : s.video
+      ? '<a class="btn-line" href="' + s.video + '" target="_blank" rel="noopener">Watch video</a>'
       : '';
     return img +
       '<div class="card-body">' +
@@ -246,7 +249,7 @@
         '<div class="addr">' + s.address + '</div>' +
         '<div class="facts"><b>' + money(s.price) + '</b>' + specs(s, false) + '</div>' +
         '<div class="links"><a href="' + directions(s) + '" target="_blank" rel="noopener">Directions</a>' +
-          (s.listing ? '<a href="' + s.listing + '"' + newTab(s.listing) + '>View listing</a>' : '') + '</div>' +
+          (s.listing ? '<a href="' + s.listing + '"' + newTab(s.listing) + '>View listing</a>' : s.video ? '<a href="' + s.video + '" target="_blank" rel="noopener">Watch video</a>' : '') + '</div>' +
       '</div>';
     li.addEventListener("click", function (e) { if (e.target.tagName !== "A") select(i, true); });
     li.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(i, true); } });
