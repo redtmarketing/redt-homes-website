@@ -1439,3 +1439,10 @@
   from = "/project/1625-marion-st/"
   to = "/"
   status = 301
+
+# Luxury Home Tour "Add to calendar" file (remove after Oct 10, 2026)
+[[headers]]
+  for = "/luxury-home-tour/*.ics"
+  [headers.values]
+    Content-Type = "text/calendar; charset=utf-8"
+    Content-Disposition = "attachment; filename=luxury-home-tour.ics"

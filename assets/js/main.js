@@ -348,4 +348,11 @@
       page_location: window.location.href
     });
   });
+
+  /* Luxury Home Tour promo (banner, phone pill, calendar, notify form).
+     Loaded from here so it reaches every page without editing 190+ files;
+     it turns itself off after the tour. Remove this block after Oct 10, 2026. */
+  var tourScript = document.createElement("script");
+  tourScript.src = "/assets/js/tour-promo.js";
+  document.body.appendChild(tourScript);
 })();

@@ -30,6 +30,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="/assets/css/tour-promo.css">
 <style>
   :root {
     --gold: #ddbe68;
@@ -72,6 +73,9 @@
   .foot a { color: var(--gold); text-decoration: none; font-weight: 600; letter-spacing: .5px; }
   .foot a:hover { text-decoration: underline; }
   .foot .more { display: block; margin-top: 8px; }
+  .foot-cal { margin-top: 16px; }
+  .foot .tour-notify { margin-top: 18px; padding-top: 16px; font-size: 12px; }
+  .foot .tour-cal summary { padding: 10px 16px; font-size: 11px; }
 
   /* Map pins */
   .pin { width: 34px; height: 34px; border-radius: 50%; background: var(--black); border: 2px solid var(--gold); color: var(--gold); display: grid; place-items: center; font-family: "League Spartan", sans-serif; font-weight: 700; font-size: 16px; padding-top: 2px; box-shadow: 0 2px 10px rgba(0,0,0,.6); transition: transform .15s; }
@@ -136,7 +140,10 @@
       <span class="when">SAT, OCT 10 &nbsp;|&nbsp; 11 AM – 3 PM</span>
       <p class="giveaway"><strong>Giveaway:</strong> scan the sign-in QR code at each home. Sign in at 3 or more homes to enter, and every home after that earns you a bonus entry.</p>    </div>
     <ol class="stops" id="stops"></ol>
-    <div class="foot">Numbers show a suggested route. Start at any home and visit in any order you like. Listing details are subject to change.<a class="more" href="https://www.eventbrite.com/e/luxury-home-tour-tickets-2001013946580?aff=redthomesmap" target="_blank" rel="noopener">RSVP free on Eventbrite &rarr;</a><a class="more" href="/blog/denver-luxury-home-tour-2026.html">Read about the tour &amp; FAQs &rarr;</a></div>
+    <div class="foot">Numbers show a suggested route. Start at any home and visit in any order you like. Listing details are subject to change.<a class="more" href="https://www.eventbrite.com/e/luxury-home-tour-tickets-2001013946580?aff=redthomesmap" target="_blank" rel="noopener">RSVP free on Eventbrite &rarr;</a><a class="more" href="/blog/denver-luxury-home-tour-2026.html">Read about the tour &amp; FAQs &rarr;</a>
+      <div class="foot-cal" data-tour-cal="map"></div>
+      <p class="tour-notify"><strong>Can't make it?</strong> Follow redT Homes on Eventbrite to hear about the next tour. <a href="https://www.eventbrite.com/e/luxury-home-tour-tickets-2001013946580?aff=redthomesmapfollow" target="_blank" rel="noopener" onclick="window.gtag&amp;&amp;gtag('event','tour_follow_click',{placement:'map'})">Follow on Eventbrite &rarr;</a></p>
+    </div>
   </aside>
   <div class="map-wrap"><div id="map" role="region" aria-label="Map of tour homes"></div></div>
 </div>
@@ -269,5 +276,6 @@
   if (window.ResizeObserver) new ResizeObserver(fitAll).observe(document.getElementById("map"));
   else window.addEventListener("resize", fitAll);
 </script>
+<script src="/assets/js/tour-promo.js"></script>
 </body>
 </html>
