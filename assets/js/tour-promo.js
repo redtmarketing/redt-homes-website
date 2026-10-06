@@ -14,15 +14,15 @@
   var END = Date.parse("2026-10-10T21:00:00Z");   /* 3 PM MDT */
   var MAP_URL = "/luxury-home-tour/";
   var BLOG_URL = "/blog/denver-luxury-home-tour-2026.html";
+  var RSVP_URL = "https://www.eventbrite.com/e/luxury-home-tour-tickets-2001013946580?aff=redthomesbanner";
   var DISMISS_KEY = "redtTourBarDismissed";
 
   var override = new URLSearchParams(window.location.search).get("tour_now");
   var now = override && !isNaN(Date.parse(override)) ? Date.parse(override) : Date.now();
   var isMapPage = window.location.pathname.indexOf(MAP_URL) === 0;
-  /* Banner goes to the blog post (details + FAQs); on the post itself it points to the map. */
+  /* Banner title goes to the blog post (details + FAQs); on the post itself it points to the map. */
   var isBlogPost = window.location.pathname.indexOf(BLOG_URL.replace(".html", "")) === 0;
   var barHref = isBlogPost ? MAP_URL : BLOG_URL;
-  var barCta = isBlogPost ? "See the map" : "Tour details";
 
   function track(name, params) {
     if (typeof window.gtag === "function") window.gtag("event", name, params || {});
@@ -111,14 +111,16 @@
   bar.setAttribute("role", "region");
   bar.setAttribute("aria-label", "Luxury Home Tour announcement");
   bar.innerHTML =
-    '<a class="tour-bar-link" href="' + barHref + '">' +
-      '<span class="tour-bar-title">Luxury Home Tour</span>' +
+    '<div class="tour-bar-link">' +
+      '<a class="tour-bar-title" href="' + barHref + '" data-bar="title">Luxury Home Tour</a>' +
       '<span class="tour-bar-sep" aria-hidden="true">|</span>' +
-      '<span class="tour-bar-details">Free &middot; ' + when + ' &middot; 8 homes</span>' +
-      '<span class="tour-bar-short">' + (isLive ? "Open until 3 PM" : "Sat Oct 10 &middot; 11–3") + "</span>" +
-      '<span class="tour-bar-pill' + (isLive ? " is-live" : "") + '">' + pill + "</span>" +
-      '<span class="tour-bar-cta">' + barCta + ' &rarr;</span>' +
-    "</a>" +
+      '<a class="tour-bar-rsvp" href="' + RSVP_URL + '" target="_blank" rel="noopener" data-bar="rsvp">' +
+        '<span class="tour-bar-details">Free &middot; ' + when + ' &middot; 8 homes</span>' +
+        '<span class="tour-bar-short">' + (isLive ? "Open until 3 PM" : "Free &middot; Sat Oct 10 &middot; 11–3") + '</span>' +
+      '</a>' +
+      '<span class="tour-bar-pill' + (isLive ? ' is-live' : '') + '">' + pill + '</span>' +
+      '<a class="tour-bar-cta" href="' + MAP_URL + '" data-bar="cta">See the map &rarr;</a>' +
+    '</div>' +
     '<button class="tour-bar-close" type="button" aria-label="Hide tour announcement">&times;</button>';
   document.body.insertBefore(bar, document.body.firstChild);
   document.body.classList.add("has-tour-bar");
@@ -129,8 +131,10 @@
   syncBarHeight();
   window.addEventListener("resize", syncBarHeight);
 
-  bar.querySelector(".tour-bar-link").addEventListener("click", function () {
-    track("tour_banner_click", { countdown: pill });
+  bar.querySelectorAll(".tour-bar-link a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      track("tour_banner_click", { countdown: pill, link: a.getAttribute("data-bar") });
+    });
   });
 
   /* Sticky pill on phones */
