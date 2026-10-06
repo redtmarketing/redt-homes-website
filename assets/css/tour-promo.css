@@ -76,18 +76,13 @@
 .tour-btn-line { color: var(--tour-gold); }
 .tour-btn-line:hover { background: var(--tour-gold); color: #000; }
 @media (max-width: 900px) {
-  /* Phones: plain block layout + fixed photo sizes. iOS Safari let the swipe strip
-     widen a grid column past the screen (body hides overflow-x), cutting off the
-     heading and stretching photos, so no grid and no aspect-ratio here. */
+  /* Phones: plain block layout + fixed photo sizes. iOS Safari stretched the earlier
+     grid/aspect-ratio version, so no grid and no aspect-ratio here. */
   .tour-promo { display: block; width: 100%; overflow: hidden; }
-  .tour-promo-photos {
-    display: flex; gap: 2px; width: 100%; min-height: 0; overflow-x: auto; overflow-y: hidden;
-    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-  }
-  .tour-promo-photos::-webkit-scrollbar { display: none; }
+  /* All 8 homes visible at once: 2 per row, fixed vw sizes (iOS-safe, no aspect-ratio). */
+  .tour-promo-photos { display: flex; flex-wrap: wrap; gap: 2px; width: 100%; min-height: 0; }
   .tour-promo-photos img {
-    flex: 0 0 auto; width: 82vw; max-width: none; height: 55vw; min-height: 0;
-    object-fit: cover; scroll-snap-align: start;
+    flex: 0 0 auto; width: calc(50% - 1px); max-width: none; height: 34vw; min-height: 0; object-fit: cover;
   }
   .tour-promo-body { padding: 40px 6vw 52px; }
   .tour-promo h2 { font-size: 32px; letter-spacing: .02em; }
