@@ -52,8 +52,27 @@ function fetchJSON(url) {
           reject(err);
         }
       });
-    }).on("error", reject);
+    })
+      .on("error", reject)
+      // Without a timeout the scheduled run can hang forever if the network
+      // isn't up yet (e.g. right after the PC wakes), until Windows kills it.
+      .setTimeout(30000, function () {
+        this.destroy(new Error("FRED API request timed out after 30s"));
+      });
   });
+}
+
+// Retry a few times so a slow network at wake-up doesn't skip the week.
+async function fetchWithRetry(url, attempts = 5, delayMs = 60000) {
+  for (let i = 1; ; i++) {
+    try {
+      return await fetchJSON(url);
+    } catch (err) {
+      if (i >= attempts) throw err;
+      console.error(`Attempt ${i} failed (${err.message}); retrying in ${delayMs / 1000}s...`);
+      await new Promise((r) => setTimeout(r, delayMs));
+    }
+  }
 }
 
 async function main() {
@@ -64,7 +83,7 @@ async function main() {
   }
 
   const url = `https://api.stlouisfed.org/fred/series/observations?series_id=MORTGAGE30US&api_key=${apiKey}&file_type=json&sort_order=desc&limit=5`;
-  const data = await fetchJSON(url);
+  const data = await fetchWithRetry(url);
 
   const latest = (data.observations || []).find((o) => o.value !== ".");
   if (!latest) {
