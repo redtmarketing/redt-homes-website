@@ -61,6 +61,8 @@
 .tour-promo[hidden] { display: none; }
 .tour-promo-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: #000; min-height: 100%; }
 .tour-promo-photos img { width: 100%; height: 100%; min-height: 150px; object-fit: cover; display: block; }
+/* 7 homes: the first (redT's own) photo spans the full row so the 2-column grid has no gap. */
+.tour-promo-photos img:first-child { grid-column: 1 / -1; }
 .tour-promo-body { padding: 72px 8vw 72px 64px; align-self: center; }
 .tour-promo-eyebrow { color: var(--tour-gold); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 14px; }
 .tour-promo h2 { font-size: clamp(34px, 4vw, 52px); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; line-height: 1.05; margin: 0 0 14px; color: #fff; }
@@ -79,11 +81,12 @@
   /* Phones: plain block layout + fixed photo sizes. iOS Safari stretched the earlier
      grid/aspect-ratio version, so no grid and no aspect-ratio here. */
   .tour-promo { display: block; width: 100%; overflow: hidden; }
-  /* All 8 homes visible at once: 2 per row, fixed vw sizes (iOS-safe, no aspect-ratio). */
+  /* All 7 homes visible at once: first photo full width, then 2 per row, fixed vw sizes (iOS-safe, no aspect-ratio). */
   .tour-promo-photos { display: flex; flex-wrap: wrap; gap: 2px; width: 100%; min-height: 0; }
   .tour-promo-photos img {
     flex: 0 0 auto; width: calc(50% - 1px); max-width: none; height: 34vw; min-height: 0; object-fit: cover;
   }
+  .tour-promo-photos img:first-child { width: 100%; }
   .tour-promo-body { padding: 40px 6vw 52px; }
   .tour-promo h2 { font-size: 32px; letter-spacing: .02em; }
 }

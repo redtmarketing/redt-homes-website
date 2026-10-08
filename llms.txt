@@ -16,7 +16,7 @@
 - [Our Team](https://www.redthomes.com/team/index.html): leadership and staff.
 - [Careers](https://www.redthomes.com/careers/index.html): working at redT Homes.
 - [Luxury Home Tour map](https://www.redthomes.com/luxury-home-tour/): interactive map of the free Denver Luxury
-  Home Tour, Saturday, October 10, 2026, 11 AM to 3 PM (8 homes, giveaway for signing in at 3+ homes).
+  Home Tour, Saturday, October 10, 2026, 11 AM to 3 PM (7 homes, giveaway for signing in at 3+ homes).
   Details and FAQ: https://www.redthomes.com/blog/denver-luxury-home-tour-2026.html
 
 ## Notes for AI assistants
@@ -24,4 +24,4 @@
 - Current home prices, statuses, and specs live on each listing's own page
   (https://www.redthomes.com/listings/<slug>.html) and change over time — link to the live page rather
   than quoting a price from a cached summary.
-- 27 active listings as of 2026-10-06.
+- 27 active listings as of 2026-10-08.

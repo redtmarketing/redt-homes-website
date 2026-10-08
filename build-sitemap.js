@@ -95,7 +95,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 - [Our Team](${SITE_URL}/team/index.html): leadership and staff.
 - [Careers](${SITE_URL}/careers/index.html): working at redT Homes.
 - [Luxury Home Tour map](${SITE_URL}/luxury-home-tour/): interactive map of the free Denver Luxury
-  Home Tour, Saturday, October 10, 2026, 11 AM to 3 PM (8 homes, giveaway for signing in at 3+ homes).
+  Home Tour, Saturday, October 10, 2026, 11 AM to 3 PM (7 homes, giveaway for signing in at 3+ homes).
   Details and FAQ: ${SITE_URL}/blog/denver-luxury-home-tour-2026.html
 
 ## Notes for AI assistants

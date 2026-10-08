@@ -67,10 +67,10 @@
   var STOPS = [
     "2442 S Saint Paul Street", "2370 S Columbine Street", "2339 S Saint Paul Street",
     "2070 S Saint Paul Street", "2175 S Monroe Street", "3640 E Warren Avenue",
-    "2635 S Garfield Way", "2451 S Adams Street"
+    "2635 S Garfield Way"
   ];
   var calTitle = "Luxury Home Tour (free)";
-  var calDetails = "8 luxury homes open 11 AM–3 PM. Tour map with directions: https://www.redthomes.com/luxury-home-tour/\n\n" +
+  var calDetails = "7 luxury homes open 11 AM–3 PM. Tour map with directions: https://www.redthomes.com/luxury-home-tour/\n\n" +
     STOPS.map(function (s) { return s + ", Denver, CO"; }).join("\n") +
     "\n\nSign in at 3 or more homes to enter the giveaway.";
   var googleCal = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
@@ -115,7 +115,7 @@
       '<a class="tour-bar-title" href="' + barHref + '" data-bar="title">Luxury Home Tour</a>' +
       '<span class="tour-bar-sep" aria-hidden="true">|</span>' +
       '<a class="tour-bar-rsvp" href="' + RSVP_URL + '" target="_blank" rel="noopener" data-bar="rsvp">' +
-        '<span class="tour-bar-details">Free &middot; ' + when + ' &middot; 8 homes</span>' +
+        '<span class="tour-bar-details">Free &middot; ' + when + ' &middot; 7 homes</span>' +
         '<span class="tour-bar-short">' + (isLive ? "Open until 3 PM" : "Free &middot; Sat Oct 10 &middot; 11–3") + '</span>' +
       '</a>' +
       '<span class="tour-bar-pill' + (isLive ? ' is-live' : '') + '">' + pill + '</span>' +
