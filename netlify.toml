@@ -174,7 +174,7 @@
   status = 301
 [[redirects]]
   from = "/stpaul/*"
-  to = "/"
+  to = "/listings/2442-s-saint-paul-street-denver.html"
   status = 301
 
 # Flagged by Search Console's Coverage report (2026-08-25) as 404s.
@@ -283,7 +283,7 @@
   status = 301
 [[redirects]]
   from = "/mississippi/*"
-  to = "/"
+  to = "/listings/1121-s-dahlia-street-denver.html"
   status = 301
 [[redirects]]
   from = "/xenon/*"
