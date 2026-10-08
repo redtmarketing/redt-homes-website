@@ -259,6 +259,20 @@ function lazyLoadImages(html) {
   return html.replace(/<img((?:(?!loading=)[^>])*)>/gi, (match, attrs) => `<img${attrs.replace(/\s*\/\s*$/, "")} loading="lazy">`);
 }
 
+// The page header already renders the post title as the page's only <h1>.
+// Imported WordPress content often repeats it as a second <h1>: drop that
+// copy (or an empty one), and demote any other in-body <h1> to <h2>.
+function demoteBodyH1s(html, title) {
+  const norm = (s) => s.replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ")
+    .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const t = norm(title);
+  return html.replace(/<h1([^>]*)>([\s\S]*?)<\/h1>/gi, (match, attrs, inner) => {
+    const h = norm(inner);
+    if (!h || h === t || h.startsWith(t.slice(0, 25)) || t.startsWith(h.slice(0, 25))) return "";
+    return `<h2${attrs}>${inner}</h2>`;
+  });
+}
+
 function postPage(post) {
   const url = `${SITE_URL}/blog/${post.slug}.html`;
   const metaLine = post.category
@@ -282,7 +296,7 @@ function postPage(post) {
   <a href="/blog/index.html" class="blog-back-link">&larr; Back to Blog</a>
   <div class="post-body">
     <p class="post-meta">${metaLine}</p>
-${lazyLoadImages(post.content)}
+${lazyLoadImages(demoteBodyH1s(post.content, post.title))}
   </div>
 </section>`;
 
