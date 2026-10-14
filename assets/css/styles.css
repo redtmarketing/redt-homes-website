@@ -582,5 +582,5 @@ footer {
 .foot-social a { color: var(--grey); display: flex; transition: color .2s ease; }
 .foot-social a:hover { color: var(--red); }
 .foot-social svg { width: 18px; height: 18px; }
-.foot-links { display: flex; gap: 24px; font-size: 12.5px; color: var(--grey); }
+.foot-links { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 12.5px; color: var(--grey); }
 .foot-links a:hover { color: var(--red); }
