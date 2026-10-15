@@ -91,8 +91,8 @@ Sitemap: ${SITE_URL}/sitemap.xml
   status, and community.
 - [Blog](${SITE_URL}/blog/index.html): articles on homebuying, Denver neighborhoods, and
   Colorado living (${posts.length} posts).
-- [About redT](${SITE_URL}/about/index.html): who redT is: design-forward townhomes in Denver's urban
-  neighborhoods, in-house design and construction, and redT's LEED-certified building record.
+- [About redT](${SITE_URL}/about/index.html): who redT is: new townhomes, paired homes (duplexes) and single-family
+  homes across Denver and the Front Range, for homebuyers and development partners, with a LEED-certified building record.
 - [Developers](${SITE_URL}/developers/index.html): information for land development partners.
 - [For Rent](${SITE_URL}/for-rent/index.html): rental listings.
 - [Our Team](${SITE_URL}/team/index.html): leadership and staff.
