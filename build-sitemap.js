@@ -33,6 +33,7 @@ function main() {
   const staticUrls = [
     { loc: `${SITE_URL}/`, priority: "1.0" },
     { loc: `${SITE_URL}/blog/index.html`, priority: "0.8" },
+    { loc: `${SITE_URL}/about/index.html`, priority: "0.7" },
     { loc: `${SITE_URL}/team/index.html`, priority: "0.5" },
     { loc: `${SITE_URL}/developers/index.html`, priority: "0.6" },
     { loc: `${SITE_URL}/for-rent/index.html`, priority: "0.6" },
@@ -90,6 +91,8 @@ Sitemap: ${SITE_URL}/sitemap.xml
   status, and community.
 - [Blog](${SITE_URL}/blog/index.html): articles on homebuying, Denver neighborhoods, and
   Colorado living (${posts.length} posts).
+- [About redT](${SITE_URL}/about/index.html): who redT is: design-forward townhomes in Denver's urban
+  neighborhoods, in-house design and construction, and redT's LEED-certified building record.
 - [Developers](${SITE_URL}/developers/index.html): information for land development partners.
 - [For Rent](${SITE_URL}/for-rent/index.html): rental listings.
 - [Our Team](${SITE_URL}/team/index.html): leadership and staff.

@@ -163,7 +163,7 @@ function firstImage(html) {
 
 function blogCard(post, linkPrefix) {
   const dateLine = post.category ? `${escapeHtml(post.category)} &middot; ${formatDate(post.date)}` : formatDate(post.date);
-  const img = firstImage(post.content);
+  const img = firstImage(post.content) || post.headerImage || null;
   const photo = img
     ? `<img src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" loading="lazy">`
     : `<img class="blog-photo-fallback" src="${linkPrefix}assets/brand/redt-logo-icon.png" alt="redT Homes" loading="lazy">`;
@@ -279,7 +279,7 @@ function postPage(post) {
   const metaLine = post.category
     ? `By ${escapeHtml(post.author)} &middot; ${formatDate(post.date)} &middot; ${escapeHtml(post.category)}`
     : `By ${escapeHtml(post.author)} &middot; ${formatDate(post.date)}`;
-  const img = firstImage(post.content);
+  const img = firstImage(post.content) || post.headerImage || null;
   // Optional "headerImage" in blog.json overrides the header background (e.g. when the first image is a text-heavy flyer)
   const headerImg = post.headerImage || img;
   const headerStyle = headerImg
