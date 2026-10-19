@@ -14,6 +14,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { addImageDimensions } = require("./image-size");
 
 const ROOT = __dirname;
 const SITE_URL = "https://www.redthomes.com";
@@ -28,7 +29,8 @@ function readJSON(p) {
 
 function writeFile(outPath, contents) {
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, contents);
+  // width/height on every local <img> lets browsers reserve space while images load (no layout shift)
+  fs.writeFileSync(outPath, outPath.endsWith(".html") ? addImageDimensions(contents, ROOT) : contents);
 }
 
 function firstSentence(bio) {
@@ -188,7 +190,7 @@ function updateHomepageTeamTeaser(people) {
     throw new Error("Could not find TEAM:START / TEAM:END markers in index.html");
   }
   html = html.replace(re, block);
-  fs.writeFileSync(indexPath, html);
+  fs.writeFileSync(indexPath, addImageDimensions(html, ROOT));
 }
 
 // ---------------------------------------------------------------------------

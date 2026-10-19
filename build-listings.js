@@ -17,6 +17,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { addImageDimensions } = require("./image-size");
 
 const ROOT = __dirname;
 const SITE_URL = "https://www.redthomes.com";
@@ -108,7 +109,8 @@ function readJSON(p) {
 
 function writeFile(outPath, contents) {
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, contents);
+  // width/height on every local <img> lets browsers reserve space while images load (no layout shift)
+  fs.writeFileSync(outPath, outPath.endsWith(".html") ? addImageDimensions(contents, ROOT) : contents);
 }
 
 function descriptionHtml(listing) {
@@ -215,7 +217,7 @@ function updateHomepageCarousel(listings) {
   }
   html = html.replace(communityRe, communityBlock);
 
-  fs.writeFileSync(indexPath, html);
+  fs.writeFileSync(indexPath, addImageDimensions(html, ROOT));
 }
 
 // ---------------------------------------------------------------------------
@@ -299,16 +301,22 @@ function hubspotFormBlock(listing) {
       </form>`;
 }
 
-function listingPage(listing) {
+function listingPage(listing, listings) {
   const price = formatPrice(listing.price);
   const loc = locLine(listing);
   const url = `${SITE_URL}/listings/${listing.slug}.html`;
-  const title = `${listing.address}, ${listing.city} | redT Homes`;
+  // Two listings can share an address (e.g. the lot and the home being built on it), so name the type to keep titles unique
+  const sharesAddress = listings.filter((l) => l.address === listing.address && l.city === listing.city).length > 1;
+  const title = sharesAddress
+    ? `${listing.address}, ${listing.city} – ${listing.propertyType} | redT Homes`
+    : `${listing.address}, ${listing.city} | redT Homes`;
   const bedsBath = listing.beds && listing.baths ? `${listing.beds} bed, ${listing.baths} bath ` : "";
   const statusWord = listing.status.toLowerCase();
   const typeWord = listing.propertyType.toLowerCase();
   const statusType = statusWord === typeWord ? typeWord : `${statusWord} ${typeWord}`;
-  const metaDesc = `${bedsBath}${statusType} at ${listing.address}, ${loc}. ${price}. Schedule a tour with redT Homes.`;
+  // Search results cut descriptions past ~155 characters; drop the brand from the call to action when it's long
+  const fullDesc = `${bedsBath}${statusType} at ${listing.address}, ${loc}. ${price}. Schedule a tour with redT Homes.`;
+  const metaDesc = fullDesc.length > 155 ? fullDesc.replace(/ with redT Homes\.$/, ".") : fullDesc;
   const allPhotos = listing.heroImage ? [listing.heroImage, ...(listing.galleryImages || [])] : [];
   const gallery = allPhotos.length
     ? `<div class="gallery-main"><img id="gallery-main-${listing.slug}" src="${allPhotos[0]}" alt="${escapeHtml(listing.address)}"></div>
@@ -468,7 +476,7 @@ function main() {
   const missingForms = [];
 
   for (const listing of listings) {
-    writeFile(path.join(ROOT, "listings", `${listing.slug}.html`), listingPage(listing));
+    writeFile(path.join(ROOT, "listings", `${listing.slug}.html`), listingPage(listing, listings));
     if (!listing.hubspotFormId) missingForms.push(listing.slug);
   }
 

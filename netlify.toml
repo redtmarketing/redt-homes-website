@@ -108,6 +108,40 @@
   to = "/blog/index.html"
   status = 301
 
+# Retired duplicate/empty posts (2026-10-19, HubSpot SEO cleanup): the 2019
+# downsizing post was superseded by its 2026 rewrite (same title and
+# description), and "Aha! Moments Episode 1" was only a video thumbnail.
+# Listed before the generic "/blog/:slug/" rule so they take priority.
+[[redirects]]
+  from = "/blog/downsizing-in-denver-tips-for-a-smooth-transition.html"
+  to = "/blog/downsizing-in-denver-tips-for-a-smooth-transition-2.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/downsizing-in-denver-tips-for-a-smooth-transition"
+  to = "/blog/downsizing-in-denver-tips-for-a-smooth-transition-2.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/downsizing-in-denver-tips-for-a-smooth-transition/"
+  to = "/blog/downsizing-in-denver-tips-for-a-smooth-transition-2.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/aha-moments-episode-1.html"
+  to = "/blog/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/aha-moments-episode-1"
+  to = "/blog/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/aha-moments-episode-1/"
+  to = "/blog/index.html"
+  status = 301
+
 # Old WordPress post URLs had no .html and a trailing slash, e.g.
 # redthomes.com/blog/redt-open-houses/ (confirmed via the WordPress export).
 [[redirects]]

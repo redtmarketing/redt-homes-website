@@ -15,6 +15,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { addImageDimensions } = require("./image-size");
 
 const ROOT = __dirname;
 const SITE_URL = "https://www.redthomes.com";
@@ -34,7 +35,8 @@ function readJSON(p) {
 
 function writeFile(outPath, contents) {
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, contents);
+  // width/height on every local <img> lets browsers reserve space while images load (no layout shift)
+  fs.writeFileSync(outPath, outPath.endsWith(".html") ? addImageDimensions(contents, ROOT) : contents);
 }
 
 const NAV = `<nav class="nav" id="nav">
@@ -158,6 +160,25 @@ ${FOOTER}
 // Homepage teaser card
 // ---------------------------------------------------------------------------
 
+// Search results cut titles past ~70 characters and descriptions past ~155,
+// so shorten the brand suffix on long titles and trim descriptions at a word break.
+function seoTitle(title) {
+  for (const suffix of [" | redT Homes Blog", " | redT Homes"]) {
+    if ((title + suffix).length <= 70) return title + suffix;
+  }
+  return title;
+}
+
+function seoDescription(text, max = 155) {
+  // Excerpts can contain HTML entities (&amp;, &#39;); decode them so escapeHtml doesn't double-escape
+  const clean = String(text || "")
+    .replace(/&amp;/g, "&").replace(/&#39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  return cut.slice(0, cut.lastIndexOf(" ")).replace(/[\s,;:.–—-]+$/, "") + "…";
+}
+
 function firstImage(html) {
   if (!html) return null;
   const m = html.match(/<img[^>]+src=["']([^"']+)["']/i);
@@ -219,7 +240,7 @@ function updateHomepageBlogTeaser(posts) {
     throw new Error("Could not find BLOG:START / BLOG:END markers in index.html");
   }
   html = html.replace(re, block);
-  fs.writeFileSync(indexPath, html);
+  fs.writeFileSync(indexPath, addImageDimensions(html, ROOT));
 }
 
 // ---------------------------------------------------------------------------
@@ -305,8 +326,8 @@ ${lazyLoadImages(demoteBodyH1s(post.content, post.title))}
 </section>`;
 
   return pageShell({
-    title: `${post.title} | redT Homes Blog`,
-    metaDesc: post.excerpt,
+    title: seoTitle(post.title),
+    metaDesc: seoDescription(post.excerpt),
     canonical: url,
     bodyHtml: body,
     jsonLd: postJsonLd(post, url, img),
