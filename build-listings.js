@@ -471,6 +471,281 @@ ${hubspotFormBlock(listing)}
 `;
 }
 
+// ---------------------------------------------------------------------------
+// Home-type landing pages (/townhomes/, /paired-homes/)
+// Built from the same listing data, so they stay current on every rebuild.
+// ---------------------------------------------------------------------------
+
+const DENVER_METRO = new Set(["Denver", "Englewood", "Lakewood", "Arvada", "Aurora", "Littleton", "Wheat Ridge", "Edgewater", "Glendale", "Westminster", "Centennial"]);
+
+function priceRange(items) {
+  const prices = items.map((l) => l.price).filter(Boolean);
+  if (!prices.length) return "";
+  const lo = Math.min(...prices), hi = Math.max(...prices);
+  return lo === hi ? formatPrice(lo) : `${formatPrice(lo)} to ${formatPrice(hi)}`;
+}
+
+function communityList(items) {
+  const names = [...new Set(items.map((l) => l.community).filter(Boolean))];
+  if (names.length <= 1) return names.join("");
+  return `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
+}
+
+const LINK = 'style="color: var(--black); border-bottom: 1px solid var(--hairline);"';
+
+const COLLECTIONS = [
+  {
+    slug: "townhomes",
+    match: (l) => l.propertyType === "Townhome" || /townhome/i.test(l.community || ""),
+    title: "Townhomes for Sale in Denver | New Construction | redT Homes",
+    eyebrow: "Townhomes",
+    h1: "Townhomes for sale in Denver.",
+    heroImage: "/assets/images/2140-s-sherman-street-denver-hero.jpg",
+    metaDesc: (items) => `New townhomes for sale in Denver from redT Homes${items.length ? `, ${priceRange(items)}` : ""}. Move-in ready and pre-construction homes in established neighborhoods.`,
+    intro: (items) => `<p>redT Homes designs and builds new townhomes in established Denver neighborhoods, for homebuyers looking for a thoughtfully built place to call home. These are the redT townhomes for sale right now, from move-in ready homes to ones still under construction.</p>`,
+    why: {
+      heading: "Why a new redT townhome",
+      items: [
+        ["In the neighborhoods people want", "Our townhomes are built on infill lots in established Denver neighborhoods, close to parks, restaurants, transit and downtown."],
+        ["Modern, livable layouts", "Open main levels, natural light, and outdoor space like rooftop decks and balconies where the site allows."],
+        ["Less to maintain", "A new townhome means current building systems, new finishes, and less exterior to care for than a detached house."],
+        ["Built by a team with a LEED record", `The same team designs, builds and sells every home, with standards shaped by years of LEED-certified building. <a href="/about/" ${LINK}>More about redT</a>.`],
+      ],
+    },
+    faq: (items) => [
+      ["How much do new townhomes cost in Denver?", items.length
+        ? `redT's townhomes for sale right now range from ${priceRange(items)}, depending on size, location and finishes. Each listing has current pricing and a payment estimate.`
+        : "Pricing depends on size, location and finishes. Contact redT for current and upcoming townhomes."],
+      ["Are redT townhomes new construction?", "Yes. Every redT townhome is new construction, available move-in ready or as a pre-construction opportunity while it's being built."],
+      ["Where are redT's townhomes?", items.length && communityList(items)
+        ? `Current redT townhomes are in ${communityList(items)}, in established Denver neighborhoods.`
+        : "redT builds townhomes in established Denver neighborhoods."],
+      ["Do townhomes have an HOA?", "Many townhome communities do, and what the HOA covers varies from building to building. Ask for the monthly dues, the budget and a list of what's covered before you buy, and we're happy to walk you through it for any redT home."],
+      ["What should I ask a builder before buying a townhome?", `We put together a list: <a href="/blog/questions-to-ask-a-denver-townhome-builder" ${LINK}>11 questions to ask a Denver townhome builder before you buy</a>.`],
+    ],
+  },
+  {
+    slug: "paired-homes",
+    match: (l) => /duplex|paired/i.test(l.community || "") || /duplex|paired/i.test(l.propertyType || ""),
+    title: "Paired Homes for Sale in Denver | Duplexes | redT Homes",
+    eyebrow: "Paired Homes",
+    h1: "Paired homes for sale in Denver.",
+    heroImage: "/assets/images/5512-clay-court-denver-hero.jpg",
+    metaDesc: (items) => `New paired homes (duplexes) for sale in Denver from redT Homes${items.length ? `, ${priceRange(items)}` : ""}. The feel of a single-family home with one shared wall.`,
+    intro: (items) => `<p>A paired home, often called a duplex, is two homes that share a single wall. You get the feel of a single-family home, with your own front door and your own space, often at a lower price than a detached house. redT Homes builds new paired homes in Denver; here's what's available now.</p>`,
+    why: {
+      heading: "Why buyers choose a paired home",
+      items: [
+        ["Single-family feel", "Your own entrance and your own space, with just one shared wall and one neighbor on that side."],
+        ["A more attainable price", "Sharing a wall lets you get a newer, larger home in an established neighborhood for less than a comparable detached house."],
+        ["Less to maintain", "New construction means current systems and finishes, and a paired home has less exterior to care for than a detached home."],
+        ["Built by a team with a LEED record", `The same team designs, builds and sells every home, with standards shaped by years of LEED-certified building. <a href="/about/" ${LINK}>More about redT</a>.`],
+      ],
+    },
+    faq: (items) => [
+      ["What is a paired home?", "A paired home is two homes built side by side that share one common wall. It's often called a duplex. Each home has its own entrance and living space."],
+      ["What's the difference between a paired home and a townhome?", `A townhome is usually one of several homes in a row, with neighbors on one or both sides. A paired home shares just one wall with one neighbor. <a href="/townhomes/" ${LINK}>See redT townhomes</a>.`],
+      ["How much do paired homes cost in Denver?", items.length
+        ? `redT's paired homes for sale right now range from ${priceRange(items)}, depending on size and finishes.`
+        : "Pricing depends on size, location and finishes. Contact redT for current and upcoming paired homes."],
+      ["Where are redT's paired homes?", items.length && communityList(items)
+        ? `Current redT paired homes are in ${communityList(items)} in Denver.`
+        : "redT builds paired homes in established Denver neighborhoods."],
+      ["What should I ask a builder before buying?", `Start with our list: <a href="/blog/questions-to-ask-a-denver-townhome-builder" ${LINK}>11 questions to ask a Denver builder before you buy</a>. Most apply to paired homes too.`],
+    ],
+  },
+];
+
+function collectionPage(c, items) {
+  const url = `${SITE_URL}/${c.slug}/`;
+  const title = c.title;
+  const metaDesc = c.metaDesc(items);
+  const faq = c.faq(items);
+  const strip = (s) => s.replace(/<[^>]+>/g, "");
+  const grid = items.length
+    ? `<div class="collection-grid">\n${sortForDisplay(items).map(carouselCard).join("\n")}\n  </div>`
+    : `<p style="font-size: 15.5px; color: var(--grey);">There are no ${escapeHtml(c.eyebrow.toLowerCase())} for sale right now. <a href="/#listings" ${LINK}>See all available homes</a> or <a href="/#contact" ${LINK}>ask about upcoming ones</a>.</p>`;
+  const summary = items.length
+    ? `${items.length} ${items.length === 1 ? "home" : "homes"} available${priceRange(items) ? ` &middot; ${escapeHtml(priceRange(items))}` : ""}`
+    : "";
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: strip(c.h1).replace(/\.$/, ""),
+      description: metaDesc,
+      url,
+      isPartOf: { "@type": "WebSite", name: "redT Homes", url: `${SITE_URL}/` },
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: items.length,
+        itemListElement: sortForDisplay(items).map((l, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE_URL}/listings/${l.slug}`, name: `${l.address}, ${l.city}` })),
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: c.eyebrow, item: url },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: strip(a) } })),
+    },
+  ].map((d) => `<script type="application/ld+json">${JSON.stringify(d)}</script>`).join("\n");
+
+  const ogImage = SITE_URL + c.heroImage;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RC3LB22WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-RC3LB22WHK");
+</script>
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/43826586.js"></script>
+<!-- End of HubSpot Embed Code -->
+<title>${escapeHtml(title)}</title>
+<link rel="icon" type="image/png" href="/assets/brand/redt-logo-icon.png">
+<meta name="description" content="${escapeHtml(metaDesc)}">
+<link rel="canonical" href="${url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="redT Homes">
+<meta property="og:title" content="${escapeHtml(title)}">
+<meta property="og:description" content="${escapeHtml(metaDesc)}">
+<meta property="og:url" content="${url}">
+<meta property="og:image" content="${ogImage}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escapeHtml(title)}">
+<meta name="twitter:description" content="${escapeHtml(metaDesc)}">
+<meta name="twitter:image" content="${ogImage}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+${jsonLd}
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo" aria-label="redT Homes">
+    <img src="/assets/brand/redt-logo-white.png" alt="redT Homes" class="logo-light">
+    <img src="/assets/brand/redt-logo-black.png" alt="redT Homes" class="logo-dark">
+  </a>
+  <ul class="nav-segments">
+    <li><a href="/#listings">Homebuyers</a></li>
+    <li><a href="/developers/index.html">Developers</a></li>
+  </ul>
+  <div class="nav-right">
+    <ul class="nav-secondary">
+      <li><a href="/blog/index.html">Blog</a></li>
+      <li><a href="/about/index.html">About</a></li>
+      <li><a href="/team/index.html">Our Team</a></li>
+      <li><a href="/for-rent/index.html">For Rent</a></li>
+      <li><a href="/#testimonials">Testimonials</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="/#contact" class="btn btn-primary" style="padding: 12px 22px;">Get In Touch</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M0 1H20" stroke="currentColor" stroke-width="2"/><path d="M0 7H20" stroke="currentColor" stroke-width="2"/><path d="M0 13H20" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="/#listings">Homebuyers</a></li>
+    <li><a href="/developers/index.html">Developers</a></li>
+  </ul>
+  <ul class="mobile-secondary">
+    <li><a href="/blog/index.html">Blog</a></li>
+    <li><a href="/about/index.html">About</a></li>
+    <li><a href="/team/index.html">Our Team</a></li>
+    <li><a href="/for-rent/index.html">For Rent</a></li>
+    <li><a href="/#testimonials">Testimonials</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</div>
+
+<header class="page-header" style="background-image: linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.72) 100%), url('${c.heroImage}'); background-size: cover; background-position: center;">
+  <div class="breadcrumbs"><a href="/">Home</a> / ${escapeHtml(c.eyebrow)}</div>
+  <p class="eyebrow">${escapeHtml(c.eyebrow)}</p>
+  <h1>${escapeHtml(c.h1)}</h1>
+</header>
+
+<section class="section">
+  <div class="reveal" style="max-width: 720px; margin-bottom: 48px; font-size: 16.5px; line-height: 1.8; color: var(--grey);">
+    ${c.intro(items)}
+  </div>
+  ${summary ? `<p class="eyebrow" style="margin-bottom: 24px;">${summary}</p>` : ""}
+  ${grid}
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="reveal" style="max-width: 820px;">
+    <h2 style="font-size: clamp(26px, 2.8vw, 36px); margin-bottom: 40px;">${escapeHtml(c.why.heading)}</h2>
+    <div class="service-list">
+${c.why.items.map(([h, p]) => `      <div class="service-item"><h3>${escapeHtml(h)}</h3><p>${p}</p></div>`).join("\n")}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="reveal" style="max-width: 820px;">
+    <p class="eyebrow">Questions Buyers Ask</p>
+    <h2 style="font-size: clamp(26px, 2.8vw, 36px); margin-bottom: 40px;">Frequently asked questions</h2>
+    <div class="service-list">
+${faq.map(([q, a]) => `      <div class="service-item"><h3>${escapeHtml(q)}</h3><p>${a}</p></div>`).join("\n")}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="reveal" style="max-width: 720px;">
+    <p class="eyebrow">Come See for Yourself</p>
+    <h2 style="font-size: clamp(26px, 2.8vw, 36px); margin-bottom: 20px;">The best way to judge a home is to walk through one.</h2>
+    <p style="font-size: 15.5px; color: var(--grey); margin-bottom: 24px;">Schedule a tour of any home above, or browse everything redT has available.</p>
+    <a href="/#contact" class="btn btn-dark" style="margin: 0 12px 12px 0;">Schedule a Tour</a>
+    <a href="/#listings" class="btn btn-outline" style="margin: 0 0 12px 0; color: var(--black); border-color: var(--black);">See All Homes</a>
+    <div class="developer-contact">
+      <div class="item"><span class="label">Phone</span><a href="tel:+13039974001">303-997-4001</a></div>
+      <div class="item"><span class="label">Address</span><span>4260 E Evans Ave, Denver, CO 80222</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo"><img src="/assets/brand/redt-logo-black.png" alt="redT Homes"></div>
+  ${FOOT_SOCIAL}
+  <ul class="foot-links">
+    <li>&copy; 2026 redT Homes</li>
+    <li><a href="tel:+13039974001">(303) 997-4001</a></li>
+    <li><a href="/about/index.html">About</a></li>
+    <li><a href="/privacy/index.html">Privacy</a></li>
+    <li><a href="/careers/index.html">Careers</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
+`;
+}
+
 function main() {
   const listings = readJSON(path.join(ROOT, "data", "listings.json"));
   const missingForms = [];
@@ -481,6 +756,12 @@ function main() {
   }
 
   updateHomepageCarousel(listings);
+
+  for (const c of COLLECTIONS) {
+    const items = listings.filter((l) => c.match(l) && DENVER_METRO.has(l.city));
+    writeFile(path.join(ROOT, c.slug, "index.html"), collectionPage(c, items));
+    console.log(`Built /${c.slug}/ with ${items.length} home(s).`);
+  }
 
   console.log(`Built ${listings.length} listing page(s).`);
   console.log("Updated homepage carousel in index.html.");

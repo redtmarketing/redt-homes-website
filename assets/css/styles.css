@@ -293,6 +293,11 @@ a.listing-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba
   position: absolute; top: 16px; left: 16px; background: var(--white); color: var(--black);
   font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 6px 12px;
 }
+/* Grid of listing cards on the /townhomes/ and /paired-homes/ landing pages */
+.collection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.collection-grid .listing-card { flex: none; }
+@media (max-width: 1024px) { .collection-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .collection-grid { grid-template-columns: 1fr; } }
 .listing-body { padding: 24px; }
 .listing-body .price { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
 .listing-body .loc { font-size: 13px; color: var(--grey); margin-bottom: 14px; }

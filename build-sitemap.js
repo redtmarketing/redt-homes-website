@@ -34,6 +34,8 @@ function main() {
     { loc: `${SITE_URL}/`, priority: "1.0" },
     { loc: `${SITE_URL}/blog/`, priority: "0.8" },
     { loc: `${SITE_URL}/about/`, priority: "0.7" },
+    { loc: `${SITE_URL}/townhomes/`, priority: "0.9" },
+    { loc: `${SITE_URL}/paired-homes/`, priority: "0.9" },
     { loc: `${SITE_URL}/team/`, priority: "0.5" },
     { loc: `${SITE_URL}/developers/`, priority: "0.6" },
     { loc: `${SITE_URL}/for-rent/`, priority: "0.6" },
@@ -91,6 +93,8 @@ Sitemap: ${SITE_URL}/sitemap.xml
   status, and community.
 - [Blog](${SITE_URL}/blog/): articles on homebuying, Denver neighborhoods, and
   Colorado living (${posts.length} posts).
+- [Townhomes for sale in Denver](${SITE_URL}/townhomes/): every redT townhome currently for sale, with prices, specs and a buyer FAQ.
+- [Paired homes for sale in Denver](${SITE_URL}/paired-homes/): every redT paired home (duplex) currently for sale, plus what a paired home is.
 - [About redT](${SITE_URL}/about/): who redT is: new townhomes, paired homes (duplexes) and single-family
   homes across Denver and the Front Range, for homebuyers and development partners, with a LEED-certified building record.
 - [Developers](${SITE_URL}/developers/): information for land development partners.
