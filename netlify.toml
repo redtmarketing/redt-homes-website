@@ -376,7 +376,7 @@
 # tracks that don't already fall under an existing redirect above.
 [[redirects]]
   from = "/about-us/"
-  to = "/"
+  to = "/about/index.html"
   status = 301
 
 [[redirects]]
@@ -513,7 +513,7 @@
 
 [[redirects]]
   from = "/company-overview/"
-  to = "/"
+  to = "/about/index.html"
   status = 301
 
 [[redirects]]
@@ -1202,18 +1202,19 @@
 
 # Same GA4 audit (2026-08-28) — old WordPress nav paths, not listing pages.
 # /about and /company match the existing /about-us/ and /company-overview/
-# redirects above (both go to the bare homepage). /bios was the old team
+# redirects above. All four pointed at the bare homepage until the About page
+# launched (2026-10-15); since 2026-10-20 they go to /about/index.html. /bios was the old team
 # bios page, same intent as /our-team/ above. /office was likely an
 # office-info/contact page. /locations was likely the "Where We're
 # Building" map page, which gained an id="map" anchor (build-map.js) to
 # give this a real target instead of the closest-guess /#listings.
 [[redirects]]
   from = "/about"
-  to = "/"
+  to = "/about/index.html"
   status = 301
 [[redirects]]
   from = "/company"
-  to = "/"
+  to = "/about/index.html"
   status = 301
 [[redirects]]
   from = "/bios"
