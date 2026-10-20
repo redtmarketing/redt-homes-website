@@ -227,7 +227,7 @@ function updateHomepageCarousel(listings) {
 function hubspotFormBlock(listing) {
   const price = formatPrice(listing.price);
   const loc = locLine(listing);
-  const url = `${SITE_URL}/listings/${listing.slug}.html`;
+  const url = `${SITE_URL}/listings/${listing.slug}`;
 
   if (listing.hubspotFormId && /^https?:\/\//i.test(listing.hubspotFormId)) {
     return `      <h3 class="form-heading">Get In Touch</h3>
@@ -304,7 +304,7 @@ function hubspotFormBlock(listing) {
 function listingPage(listing, listings) {
   const price = formatPrice(listing.price);
   const loc = locLine(listing);
-  const url = `${SITE_URL}/listings/${listing.slug}.html`;
+  const url = `${SITE_URL}/listings/${listing.slug}`;
   // Two listings can share an address (e.g. the lot and the home being built on it), so name the type to keep titles unique
   const sharesAddress = listings.filter((l) => l.address === listing.address && l.city === listing.city).length > 1;
   const title = sharesAddress

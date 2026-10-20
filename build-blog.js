@@ -220,7 +220,7 @@ function postJsonLd(post, url, img) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog/index.html` },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog/` },
       { "@type": "ListItem", position: 3, name: post.title, item: url },
     ],
   };
@@ -271,7 +271,7 @@ ${cards}
   return pageShell({
     title: "Blog | redT Homes",
     metaDesc: "Insights on buying, building, and Colorado living from redT Homes.",
-    canonical: `${SITE_URL}/blog/index.html`,
+    canonical: `${SITE_URL}/blog/`,
     bodyHtml: body,
   });
 }
@@ -299,7 +299,7 @@ function demoteBodyH1s(html, title) {
 }
 
 function postPage(post) {
-  const url = `${SITE_URL}/blog/${post.slug}.html`;
+  const url = `${SITE_URL}/blog/${post.slug}`;
   const metaLine = post.category
     ? `By ${escapeHtml(post.author)} &middot; ${formatDate(post.date)} &middot; ${escapeHtml(post.category)}`
     : `By ${escapeHtml(post.author)} &middot; ${formatDate(post.date)}`;

@@ -227,7 +227,7 @@ ${sections}
   return pageShell({
     title: "Our Team | redT Homes",
     metaDesc: "Meet the redT Homes team: leadership, sales, construction, finance, property management, and purchasing.",
-    canonical: `${SITE_URL}/team/index.html`,
+    canonical: `${SITE_URL}/team/`,
     bodyHtml: body,
   });
 }

@@ -36,7 +36,7 @@
 # folder names match exactly and are auto-served by Netlify without a rule.
 [[redirects]]
   from = "/our-team/*"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 
 [[redirects]]
@@ -62,19 +62,19 @@
 # real browser request (a real browser also always sends uppercase hex).
 [[redirects]]
   from = "/blog/%F0%9F%8C%BF-how-to-keep-your-house-cool-without-ac/"
-  to = "/blog/how-to-keep-your-house-cool-without-ac.html"
+  to = "/blog/how-to-keep-your-house-cool-without-ac"
   status = 301
 [[redirects]]
   from = "/blog/%E2%9C%85-right-sizing-find-the-space-that-fits-your-life/"
-  to = "/blog/right-sizing-find-the-space-that-fits-your-life.html"
+  to = "/blog/right-sizing-find-the-space-that-fits-your-life"
   status = 301
 [[redirects]]
   from = "/blog/%F0%9F%A7%B3-the-ultimate-moving-checklist-10-steps-to-a-smooth-move/"
-  to = "/blog/the-ultimate-moving-checklist-10-steps-to-a-smooth-move.html"
+  to = "/blog/the-ultimate-moving-checklist-10-steps-to-a-smooth-move"
   status = 301
 [[redirects]]
   from = "/blog/%F0%9F%94%A5-the-5-hottest-neighborhoods-in-denver-right-now/"
-  to = "/blog/the-5-hottest-neighborhoods-in-denver-right-now.html"
+  to = "/blog/the-5-hottest-neighborhoods-in-denver-right-now"
   status = 301
 
 # 5 old blog posts with no recoverable content, redirected to the blog index
@@ -85,27 +85,27 @@
 # actually redirecting to a nonexistent "<slug>.html" and 404ing.
 [[redirects]]
   from = "/blog/the-real-estate-entitlement-process-a-complete-checklist"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 [[redirects]]
   from = "/blog/what-are-entitlements-understanding-the-development-process"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 [[redirects]]
   from = "/blog/denver-housing-inventory-shortage/"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 [[redirects]]
   from = "/blog/this-is-a-piece-of-wood/"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 [[redirects]]
   from = "/blog/how-to-measure-energy-efficiency/"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 # Retired duplicate/empty posts (2026-10-19, HubSpot SEO cleanup): the 2019
@@ -114,34 +114,37 @@
 # Listed before the generic "/blog/:slug/" rule so they take priority.
 [[redirects]]
   from = "/blog/downsizing-in-denver-tips-for-a-smooth-transition.html"
-  to = "/blog/downsizing-in-denver-tips-for-a-smooth-transition-2.html"
+  to = "/blog/downsizing-in-denver-tips-for-a-smooth-transition-2"
   status = 301
 
 [[redirects]]
   from = "/blog/downsizing-in-denver-tips-for-a-smooth-transition"
-  to = "/blog/downsizing-in-denver-tips-for-a-smooth-transition-2.html"
+  to = "/blog/downsizing-in-denver-tips-for-a-smooth-transition-2"
   status = 301
 
 [[redirects]]
   from = "/blog/downsizing-in-denver-tips-for-a-smooth-transition/"
-  to = "/blog/downsizing-in-denver-tips-for-a-smooth-transition-2.html"
+  to = "/blog/downsizing-in-denver-tips-for-a-smooth-transition-2"
   status = 301
 
 [[redirects]]
   from = "/blog/aha-moments-episode-1.html"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 [[redirects]]
   from = "/blog/aha-moments-episode-1"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 [[redirects]]
   from = "/blog/aha-moments-episode-1/"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
+# Targets elsewhere use the short form (canonical since 2026-10-20). This one
+# keeps .html: Netlify matches /blog/x and /blog/x/ alike, so "/blog/:slug"
+# as the target could loop. Same reason the "/about" rule keeps index.html.
 # Old WordPress post URLs had no .html and a trailing slash, e.g.
 # redthomes.com/blog/redt-open-houses/ (confirmed via the WordPress export).
 [[redirects]]
@@ -156,17 +159,17 @@
 # match a bare slug.
 [[redirects]]
   from = "/8-reasons-to-buy-new-construction-homes/"
-  to = "/blog/8-reasons-to-buy-new-construction-homes.html"
+  to = "/blog/8-reasons-to-buy-new-construction-homes"
   status = 301
 
 [[redirects]]
   from = "/get-the-scoop-sloans-lake/"
-  to = "/blog/get-the-scoop-sloans-lake.html"
+  to = "/blog/get-the-scoop-sloans-lake"
   status = 301
 
 [[redirects]]
   from = "/why-we-love-denvers-regional-transportation-district-rtd/"
-  to = "/blog/why-we-love-denvers-regional-transportation-district-rtd.html"
+  to = "/blog/why-we-love-denvers-regional-transportation-district-rtd"
   status = 301
 
 # Old WordPress pages and past property/community pages referenced from
@@ -208,7 +211,7 @@
   status = 301
 [[redirects]]
   from = "/stpaul/*"
-  to = "/listings/2442-s-saint-paul-street-denver.html"
+  to = "/listings/2442-s-saint-paul-street-denver"
   status = 301
 
 # Flagged by Search Console's Coverage report (2026-08-25) as 404s.
@@ -317,7 +320,7 @@
   status = 301
 [[redirects]]
   from = "/mississippi/*"
-  to = "/listings/1121-s-dahlia-street-denver.html"
+  to = "/listings/1121-s-dahlia-street-denver"
   status = 301
 [[redirects]]
   from = "/xenon/*"
@@ -376,7 +379,7 @@
 # tracks that don't already fall under an existing redirect above.
 [[redirects]]
   from = "/about-us/"
-  to = "/about/index.html"
+  to = "/about/"
   status = 301
 
 [[redirects]]
@@ -420,7 +423,7 @@
 # this post, not real distinct content — send to the real post itself.
 [[redirects]]
   from = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes/wash-park-neighborhood-pics-17-of-48/"
-  to = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes.html"
+  to = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes"
   status = 301
 
 # (The 5 "no recoverable content" blog post redirects that used to be here
@@ -443,7 +446,7 @@
 
 [[redirects]]
   from = "/careers-2024/*"
-  to = "/careers/index.html"
+  to = "/careers/"
   status = 301
 
 [[redirects]]
@@ -468,7 +471,7 @@
 
 [[redirects]]
   from = "/tag/*"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 [[redirects]]
@@ -513,7 +516,7 @@
 
 [[redirects]]
   from = "/company-overview/"
-  to = "/about/index.html"
+  to = "/about/"
   status = 301
 
 [[redirects]]
@@ -703,7 +706,7 @@
 
 [[redirects]]
   from = "/columbine-duplex/"
-  to = "/listings/5282-columbine-lane-denver.html"
+  to = "/listings/5282-columbine-lane-denver"
   status = 301
 
 [[redirects]]
@@ -733,27 +736,27 @@
 
 [[redirects]]
   from = "/team-members/"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 
 [[redirects]]
   from = "/who-we-are/"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 
 [[redirects]]
   from = "/leadership/"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 
 [[redirects]]
   from = "/people/"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 
 [[redirects]]
   from = "/staff/"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 
 [[redirects]]
@@ -853,17 +856,17 @@
 
 [[redirects]]
   from = "/leadership"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 
 [[redirects]]
   from = "/people"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 
 [[redirects]]
   from = "/staff"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 
 [[redirects]]
@@ -898,12 +901,12 @@
 # the *new* listing's own .html URL and mangle it.
 [[redirects]]
   from = "/listings/1101-s-dahlia-street-denver.html"
-  to = "/listings/1121-s-dahlia-street-denver.html"
+  to = "/listings/1121-s-dahlia-street-denver"
   status = 301
 
 [[redirects]]
   from = "/listings/1101-s-dahlia-street-denver"
-  to = "/listings/1121-s-dahlia-street-denver.html"
+  to = "/listings/1121-s-dahlia-street-denver"
   status = 301
 
 # 927 & 953 William Way (Berthoud) were removed from data/listings.json
@@ -911,22 +914,22 @@
 # same "sold/replaced listing" pattern as the Dahlia Street redirect above.
 [[redirects]]
   from = "/listings/927-william-way-berthoud.html"
-  to = "/listings/1392-swan-peter-drive-berthoud.html"
+  to = "/listings/1392-swan-peter-drive-berthoud"
   status = 301
 
 [[redirects]]
   from = "/listings/927-william-way-berthoud"
-  to = "/listings/1392-swan-peter-drive-berthoud.html"
+  to = "/listings/1392-swan-peter-drive-berthoud"
   status = 301
 
 [[redirects]]
   from = "/listings/953-william-way-berthoud.html"
-  to = "/listings/1392-swan-peter-drive-berthoud.html"
+  to = "/listings/1392-swan-peter-drive-berthoud"
   status = 301
 
 [[redirects]]
   from = "/listings/953-william-way-berthoud"
-  to = "/listings/1392-swan-peter-drive-berthoud.html"
+  to = "/listings/1392-swan-peter-drive-berthoud"
   status = 301
 
 # --- Additional redirects found via a real GA4 "Page path" export (2026-08-04
@@ -942,7 +945,7 @@
 # from an external/old-WordPress link. The real post lives at /blog/buy-vs-rent.html.
 [[redirects]]
   from = "/buy-vs-rent/"
-  to = "/blog/buy-vs-rent.html"
+  to = "/blog/buy-vs-rent"
   status = 301
 
 # Old lender-partner and promo pages with no current equivalent — same
@@ -1038,18 +1041,18 @@
 # recoverable content" posts redirected near the top of this file).
 [[redirects]]
   from = "/blog/featured-unit-at-arboretum-304/feed/"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 [[redirects]]
   from = "/blog/best-dinner-destinations-near-arboretum/feed/"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 # WordPress RSS feed for a post that *was* migrated — send to the real post
 # instead of the blog index, unlike the two above.
 [[redirects]]
   from = "/blog/minimalist-bedroom-ideas-that-still-show-your-personality/feed/"
-  to = "/blog/minimalist-bedroom-ideas-that-still-show-your-personality.html"
+  to = "/blog/minimalist-bedroom-ideas-that-still-show-your-personality"
   status = 301
 
 # A duplicate-slash + stray "/1000" pagination artifact from the old WordPress
@@ -1057,11 +1060,11 @@
 # in the GSC export.
 [[redirects]]
   from = "/blog/leed-certification-levels-for-construction//1000"
-  to = "/blog/leed-certification-levels-for-construction.html"
+  to = "/blog/leed-certification-levels-for-construction"
   status = 301
 [[redirects]]
   from = "/blog/leed-certification-levels-for-construction/1000"
-  to = "/blog/leed-certification-levels-for-construction.html"
+  to = "/blog/leed-certification-levels-for-construction"
   status = 301
 
 # Found via the 2026-08-19 GSC Coverage Drilldown "Not found (404)" export —
@@ -1076,7 +1079,7 @@
 # other migrated-post feed redirects above. Confirmed live 404 (2026-08-19).
 [[redirects]]
   from = "/blog/6-benefits-of-buying-a-condo-in-denver/feed/"
-  to = "/blog/6-benefits-of-buying-a-condo-in-denver.html"
+  to = "/blog/6-benefits-of-buying-a-condo-in-denver"
   status = 301
 
 # --- Remaining gaps found by cross-referencing a consolidated GA4 (Aug 4-17)
@@ -1097,38 +1100,38 @@
 # send to the real post, same as the minimalist-bedroom-ideas feed rule above.
 [[redirects]]
   from = "/blog/7-healthy-habits-for-sustainable-living-and-improved-indoor-air-quality/feed/"
-  to = "/blog/7-healthy-habits-for-sustainable-living-and-improved-indoor-air-quality.html"
+  to = "/blog/7-healthy-habits-for-sustainable-living-and-improved-indoor-air-quality"
   status = 301
 [[redirects]]
   from = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes/feed/"
-  to = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes.html"
+  to = "/blog/transforming-denvers-urban-landscape-redefining-sustainability-with-green-infill-by-redt-homes"
   status = 301
 [[redirects]]
   from = "/blog/best-places-to-live-in-denver/feed/"
-  to = "/blog/best-places-to-live-in-denver.html"
+  to = "/blog/best-places-to-live-in-denver"
   status = 301
 [[redirects]]
   from = "/blog/10-easy-ways-to-improve-indoor-air-quality-and-live-sustainably/feed/"
-  to = "/blog/10-easy-ways-to-improve-indoor-air-quality-and-live-sustainably.html"
+  to = "/blog/10-easy-ways-to-improve-indoor-air-quality-and-live-sustainably"
   status = 301
 [[redirects]]
   from = "/blog/leed-zero-litehomes/feed/"
-  to = "/blog/leed-zero-litehomes.html"
+  to = "/blog/leed-zero-litehomes"
   status = 301
 [[redirects]]
   from = "/blog/rooftop-deck-urban-living-benefits/feed/"
-  to = "/blog/rooftop-deck-urban-living-benefits.html"
+  to = "/blog/rooftop-deck-urban-living-benefits"
   status = 301
 [[redirects]]
   from = "/blog/redt-litehomes-dependable-energy-efficient-attainably-priced/feed/"
-  to = "/blog/redt-litehomes-dependable-energy-efficient-attainably-priced.html"
+  to = "/blog/redt-litehomes-dependable-energy-efficient-attainably-priced"
   status = 301
 
 # Old WordPress category archive — same target pattern as the existing
 # /tag/* rule above.
 [[redirects]]
   from = "/category/home-buyers-insights/"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 # Old project/community pages with no current equivalent, and an old job
@@ -1214,11 +1217,11 @@
   status = 301
 [[redirects]]
   from = "/company"
-  to = "/about/index.html"
+  to = "/about/"
   status = 301
 [[redirects]]
   from = "/bios"
-  to = "/team/index.html"
+  to = "/team/"
   status = 301
 [[redirects]]
   from = "/office"
@@ -1268,11 +1271,11 @@
   status = 301
 [[redirects]]
   from = "/developer-services"
-  to = "/developers/index.html"
+  to = "/developers/"
   status = 301
 [[redirects]]
   from = "/services"
-  to = "/developers/index.html"
+  to = "/developers/"
   status = 301
 [[redirects]]
   from = "/new-home-listings"
@@ -1302,7 +1305,7 @@
 # wildcard so every category (and its /page/N/ pagination) is covered.
 [[redirects]]
   from = "/category/*"
-  to = "/blog/index.html"
+  to = "/blog/"
   status = 301
 
 # "-interest-list" family, same pattern as the existing
@@ -1428,15 +1431,15 @@
 # 3927 W 38th Ave was renamed from unit 104 to unit 103 in b7b896e.
 [[redirects]]
   from = "/listings/3927-w-38th-avenue-unit-104-bldg-1-denver"
-  to = "/listings/3927-w-38th-avenue-unit-103-bldg-1-denver.html"
+  to = "/listings/3927-w-38th-avenue-unit-103-bldg-1-denver"
   status = 301
 [[redirects]]
   from = "/listings/3927-w-38th-avenue-unit-104-bldg-1-denver.html"
-  to = "/listings/3927-w-38th-avenue-unit-103-bldg-1-denver.html"
+  to = "/listings/3927-w-38th-avenue-unit-103-bldg-1-denver"
   status = 301
 [[redirects]]
   from = "/history-of-glendale-co/"
-  to = "/blog/history-of-glendale-co.html"
+  to = "/blog/history-of-glendale-co"
   status = 301
 [[redirects]]
   from = "/2025/best-neighborhoods-in-denver-by-appreciation/"

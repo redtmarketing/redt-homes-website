@@ -65,7 +65,7 @@
           "https://www.redthomes.com/assets/images/luxury-home-tour-2026.jpg",
           "https://www.redthomes.com/assets/images/hero-st-paul.jpg"
         ],
-        "url": "https://www.redthomes.com/blog/denver-luxury-home-tour-2026.html",
+        "url": "https://www.redthomes.com/blog/denver-luxury-home-tour-2026",
         "location": [
           {
             "@type": "Place",
@@ -519,7 +519,7 @@
   {
     "slug": "should-you-buy-new-construction-or-a-resale-pros-cons-for-denver-buyers",
     "title": "New Construction or a Resale? Pros & Cons for Denver Buyers",
-    "excerpt": "Should You Buy New Construction or a Resale? Pros & Cons for Denver Buyers If you're house hunting in the Denver market, you've probably noticed two very different types of homes hitting your…",
+    "excerpt": "Weighing new construction against a resale home in Denver? Compare price, maintenance, warranties, design and energy use to decide which fits you best.",
     "date": "2025-07-11 17:34:42",
     "author": "Kevin B",
     "category": "Building A Greener Colorado",

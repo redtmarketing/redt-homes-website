@@ -9,21 +9,21 @@
 - [Home](https://www.redthomes.com/): overview, current available homes, communities map, contact.
 - [All listings](https://www.redthomes.com/#listings): every active home for sale, with price, beds/baths,
   status, and community.
-- [Blog](https://www.redthomes.com/blog/index.html): articles on homebuying, Denver neighborhoods, and
+- [Blog](https://www.redthomes.com/blog/): articles on homebuying, Denver neighborhoods, and
   Colorado living (145 posts).
-- [About redT](https://www.redthomes.com/about/index.html): who redT is: new townhomes, paired homes (duplexes) and single-family
+- [About redT](https://www.redthomes.com/about/): who redT is: new townhomes, paired homes (duplexes) and single-family
   homes across Denver and the Front Range, for homebuyers and development partners, with a LEED-certified building record.
-- [Developers](https://www.redthomes.com/developers/index.html): information for land development partners.
-- [For Rent](https://www.redthomes.com/for-rent/index.html): rental listings.
-- [Our Team](https://www.redthomes.com/team/index.html): leadership and staff.
-- [Careers](https://www.redthomes.com/careers/index.html): working at redT Homes.
+- [Developers](https://www.redthomes.com/developers/): information for land development partners.
+- [For Rent](https://www.redthomes.com/for-rent/): rental listings.
+- [Our Team](https://www.redthomes.com/team/): leadership and staff.
+- [Careers](https://www.redthomes.com/careers/): working at redT Homes.
 - [Luxury Home Tour map](https://www.redthomes.com/luxury-home-tour/): interactive map of the free Denver Luxury
   Home Tour, Saturday, October 10, 2026, 11 AM to 3 PM (7 homes, giveaway for signing in at 3+ homes).
-  Details and FAQ: https://www.redthomes.com/blog/denver-luxury-home-tour-2026.html
+  Details and FAQ: https://www.redthomes.com/blog/denver-luxury-home-tour-2026
 
 ## Notes for AI assistants
 
 - Current home prices, statuses, and specs live on each listing's own page
-  (https://www.redthomes.com/listings/<slug>.html) and change over time — link to the live page rather
+  (https://www.redthomes.com/listings/<slug>) and change over time — link to the live page rather
   than quoting a price from a cached summary.
-- 28 active listings as of 2026-10-19.
+- 28 active listings as of 2026-10-20.
