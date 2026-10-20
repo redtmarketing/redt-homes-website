@@ -101,12 +101,14 @@ function parseSheetRows(xml, sharedStrings) {
   while ((rm = rowRe.exec(xml))) {
     const rowNum = Number(rm[1]);
     const rowXml = rm[2];
-    const cellRe = /<c r="([A-Z]+)(\d+)"([^>]*)>(?:([\s\S]*?))?<\/c>|<c r="([A-Z]+)(\d+)"([^>]*)\/>/g;
+    // Empty cells are self-closing (<c r="F5" s="3"/>); match those first so they
+    // don't swallow the next cell's value and shift every later column.
+    const cellRe = /<c r="([A-Z]+)(\d+)"([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g;
     const rowArr = [];
     let cm;
     while ((cm = cellRe.exec(rowXml))) {
-      const col = cm[1] || cm[5];
-      const attrs = cm[3] || cm[6] || "";
+      const col = cm[1];
+      const attrs = cm[3] || "";
       const inner = cm[4] || "";
       const typeMatch = attrs.match(/t="([^"]+)"/);
       const type = typeMatch ? typeMatch[1] : null;
