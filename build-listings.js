@@ -59,6 +59,7 @@ function locLine(listing) {
 }
 
 function availabilitySchema(status) {
+  if (status === "Pending") return "https://schema.org/LimitedAvailability";
   return status === "Move-in Ready" ? "https://schema.org/InStock" : "https://schema.org/PreOrder";
 }
 
@@ -187,7 +188,7 @@ function carouselCard(listing) {
     </a>`;
 }
 
-const STATUS_ORDER = { "Move-in Ready": 0, "Under Construction": 1 };
+const STATUS_ORDER = { "Move-in Ready": 0, "Under Construction": 1, "Pending": 2 };
 
 function sortForDisplay(listings) {
   return [...listings].sort((a, b) => {
