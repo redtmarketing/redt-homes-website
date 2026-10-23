@@ -310,9 +310,14 @@
   from = "/kalamath/*"
   to = "/"
   status = 301
+# Sloan's View sold out, but its old page still drew ~90 Google clicks in the
+# 11 weeks before launch (GSC, 2026-05-18 to 08-03). Pointing it at the
+# homepage made Google treat it as a soft 404 and drop it (0 clicks since).
+# The Townhomes landing page is the closest match for "sloans view townhomes"
+# searchers (2026-10-23).
 [[redirects]]
   from = "/sloans-view-townhomes/*"
-  to = "/"
+  to = "/townhomes/"
   status = 301
 [[redirects]]
   from = "/w10th/*"
@@ -994,7 +999,7 @@
 # code out in the world still points at this old URL.
 [[redirects]]
   from = "/sloans-view-townhomes-qr/"
-  to = "/"
+  to = "/townhomes/"
   status = 301
 
 # Same target as the existing /williams-ogden/ rule above — this "-collective"
