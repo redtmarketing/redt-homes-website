@@ -315,8 +315,9 @@
     if (e.key === "Escape" && popupOverlay.classList.contains("open")) dismissPopup();
   });
 
-  /* Auto-open once per session. */
-  if (!sessionStorage.getItem(POPUP_SESSION_KEY)) {
+  /* Auto-open once per session. Pages with their own lead form (e.g. /renter-to-owner/)
+     opt out with <body data-no-popup>. */
+  if (!sessionStorage.getItem(POPUP_SESSION_KEY) && !document.body.hasAttribute("data-no-popup")) {
     setTimeout(openPopup, POPUP_DELAY_MS);
   }
 
