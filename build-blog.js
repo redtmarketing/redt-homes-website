@@ -306,8 +306,10 @@ function postPage(post) {
   const img = firstImage(post.content) || post.headerImage || null;
   // Optional "headerImage" in blog.json overrides the header background (e.g. when the first image is a text-heavy flyer)
   const headerImg = post.headerImage || img;
+  // Optional "headerPosition" (CSS background-position) for tall photos whose subject isn't in the middle
+  const headerPos = post.headerPosition || "center";
   const headerStyle = headerImg
-    ? ` style="background-image: linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.72) 100%), url('${headerImg}'); background-size: cover; background-position: center;"`
+    ? ` style="background-image: linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.72) 100%), url('${headerImg}'); background-size: cover; background-position: ${headerPos};"`
     : "";
   const headerLogo = headerImg ? "" : `<img class="page-header-logo" src="/assets/brand/redt-logo-white.png" alt="">`;
   const body = `<header class="page-header"${headerStyle}>
