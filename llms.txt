@@ -10,7 +10,7 @@
 - [All listings](https://www.redthomes.com/#listings): every active home for sale, with price, beds/baths,
   status, and community.
 - [Blog](https://www.redthomes.com/blog/): articles on homebuying, Denver neighborhoods, and
-  Colorado living (147 posts).
+  Colorado living (148 posts).
 - [Townhomes for sale in Denver](https://www.redthomes.com/townhomes/): every redT townhome currently for sale, with prices, specs and a buyer FAQ.
 - [Paired homes for sale in Denver](https://www.redthomes.com/paired-homes/): every redT paired home (duplex) currently for sale, plus what a paired home is.
 - [About redT](https://www.redthomes.com/about/): who redT is: new townhomes, paired homes (duplexes) and single-family
@@ -28,4 +28,4 @@
 - Current home prices, statuses, and specs live on each listing's own page
   (https://www.redthomes.com/listings/<slug>) and change over time — link to the live page rather
   than quoting a price from a cached summary.
-- 28 active listings as of 2026-10-22.
+- 28 active listings as of 2026-10-26.
