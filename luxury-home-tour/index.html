@@ -15,14 +15,14 @@
 <!-- Start of HubSpot Embed Code -->
 <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/43826586.js"></script>
 <!-- End of HubSpot Embed Code -->
-<title>Luxury Home Tour Map | Saturday, October 10 | redT Homes</title>
+<title>Luxury Home Tour 2026 Map | Denver | redT Homes</title>
 <link rel="icon" type="image/png" href="/assets/brand/redt-logo-icon.png">
-<meta name="description" content="Map and route for the Denver Luxury Home Tour, Saturday, October 10, 2026, 11 AM to 3 PM: seven luxury homes, plus a giveaway for signing in at 3+.">
+<meta name="description" content="Map of the seven luxury homes on the Denver Luxury Home Tour, held Saturday, October 10, 2026, with prices from $1.2M to $5.5M at the time of the tour.">
 <link rel="canonical" href="https://www.redthomes.com/luxury-home-tour/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="redT Homes">
-<meta property="og:title" content="Luxury Home Tour | Saturday, October 10 | 11 AM to 3 PM">
-<meta property="og:description" content="Seven luxury homes, one afternoon. Map, route and details for the Denver Luxury Home Tour.">
+<meta property="og:title" content="Denver Luxury Home Tour 2026 | Tour Map">
+<meta property="og:description" content="Seven luxury homes, one afternoon. See the homes from the October 10, 2026 Denver Luxury Home Tour.">
 <meta property="og:url" content="https://www.redthomes.com/luxury-home-tour/">
 <meta property="og:image" content="https://www.redthomes.com/assets/images/hero-st-paul.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -30,7 +30,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<link rel="stylesheet" href="/assets/css/tour-promo.css">
 <style>
   :root {
     --gold: #ddbe68;
@@ -77,7 +76,10 @@
   .foot a { color: var(--gold); text-decoration: none; font-weight: 600; letter-spacing: .5px; }
   .foot a:hover { text-decoration: underline; }
   .foot .more { display: block; margin-top: 8px; }
-  .foot-cal { margin-top: 16px; }
+  .tour-notify { margin: 30px 0 0; padding-top: 22px; border-top: 1px solid #262626; max-width: 520px; font-size: 13px; line-height: 1.6; color: #a6a6a6; }
+  .tour-notify strong { color: #fff; font-weight: 600; }
+  .tour-notify a { display: inline-block; margin-top: 4px; color: var(--gold); font-weight: 600; text-decoration: none; letter-spacing: .02em; }
+  .tour-notify a:hover { text-decoration: underline; }
   .foot .tour-notify { margin-top: 18px; padding-top: 16px; font-size: 12px; }
   .foot .tour-cal summary { padding: 10px 16px; font-size: 11px; }
 
@@ -140,14 +142,13 @@
   <aside class="panel" aria-label="Tour stops">
     <div class="head">
       <div class="head-top"><a href="/" aria-label="redT Homes home"><img class="logo" src="/assets/brand/redt-logo-white.png" alt="redT Homes" width="534" height="200"></a>
-      <span class="when">SAT, OCT 10 &nbsp;|&nbsp; 11 AM – 3 PM</span></div>
+      <span class="when">HELD SAT, OCT 10, 2026</span></div>
       <p class="eyebrow">LUXURY HOME TOUR</p>
       <h1 id="headline">SEVEN HOMES. ONE AFTERNOON.</h1>
-      <p class="giveaway"><strong>Giveaway:</strong> scan the sign-in QR code at each home. Sign in at 3 or more homes to enter, and every home after that earns you a bonus entry.</p>    </div>
+      <p class="giveaway"><strong>Thanks for touring!</strong> This tour took place on October 10. Prices are from tour day and may have changed, so check each listing for its current status.</p>    </div>
     <ol class="stops" id="stops"></ol>
-    <div class="foot">Numbers show a suggested route. Start at any home and visit in any order you like. Listing details are subject to change.<a class="more" href="https://www.eventbrite.com/e/luxury-home-tour-tickets-2001013946580?aff=redthomesmap" target="_blank" rel="noopener">RSVP free on Eventbrite &rarr;</a><a class="more" href="/blog/denver-luxury-home-tour-2026.html">Read about the tour &amp; FAQs &rarr;</a>
-      <div class="foot-cal" data-tour-cal="map"></div>
-      <p class="tour-notify"><strong>Can't make it?</strong> Follow redT Homes on Eventbrite to hear about the next tour. <a href="https://www.eventbrite.com/e/luxury-home-tour-tickets-2001013946580?aff=redthomesmapfollow" target="_blank" rel="noopener" onclick="window.gtag&amp;&amp;gtag('event','tour_follow_click',{placement:'map'})">Follow on Eventbrite &rarr;</a></p>
+    <div class="foot">Numbers show the route suggested on tour day. Listing details are from October 10, 2026 and may have changed.<a class="more" href="/#listings">See redT Homes for sale &rarr;</a><a class="more" href="/blog/denver-luxury-home-tour-2026.html">Read the tour recap &rarr;</a>
+      <p class="tour-notify"><strong>Missed it?</strong> Follow redT Homes on Eventbrite to hear about the next tour. <a href="https://www.eventbrite.com/e/luxury-home-tour-tickets-2001013946580?aff=redthomesmapfollow" target="_blank" rel="noopener" onclick="window.gtag&amp;&amp;gtag('event','tour_follow_click',{placement:'map'})">Follow on Eventbrite &rarr;</a></p>
     </div>
   </aside>
   <div class="map-wrap"><div id="map" role="region" aria-label="Map of tour homes"></div></div>
@@ -214,7 +215,7 @@
         '<p class="card-city">Denver, CO</p>' +
         '<p class="card-price">' + money(s.price) + '</p>' +
         (s.beds ? '<p class="card-facts">' + specs(s, true) + '</p>' : '') +
-        '<p class="card-hours"><b>Open house:</b> Sat, Oct 10, 11 AM – 3 PM</p>' +
+        '<p class="card-hours"><b>On the tour:</b> Sat, Oct 10, 2026</p>' +
         '<div class="card-actions"><a class="btn-gold" href="' + directions(s) + '" target="_blank" rel="noopener">Directions</a>' + second + '</div>' +
       '</div>';
   }
@@ -279,6 +280,5 @@
   if (window.ResizeObserver) new ResizeObserver(fitAll).observe(document.getElementById("map"));
   else window.addEventListener("resize", fitAll);
 </script>
-<script src="/assets/js/tour-promo.js"></script>
 </body>
 </html>
