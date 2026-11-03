@@ -178,7 +178,7 @@ function mortgageWidget(listing) {
 function carouselCard(listing) {
   const price = formatPrice(listing.price);
   const loc = locLine(listing);
-  return `    <a class="listing-card" href="/listings/${listing.slug}.html" data-price="${listing.price}" data-beds="${Number(listing.beds) || 0}" data-status="${escapeHtml(listing.status)}" data-community="${escapeHtml(listing.community || "")}">
+  return `    <a class="listing-card" href="/listings/${listing.slug}" data-price="${listing.price}" data-beds="${Number(listing.beds) || 0}" data-status="${escapeHtml(listing.status)}" data-community="${escapeHtml(listing.community || "")}">
       <div class="listing-photo">${listing.heroImage ? `<img src="${listing.heroImage}" alt="${escapeHtml(listing.address)}" width="640" height="420" loading="lazy" decoding="async">` : ""}<span class="listing-tag">${escapeHtml(listing.status)}</span></div>
       <div class="listing-body">
         <div class="price">${price}</div>
@@ -386,14 +386,14 @@ ${listingJsonLd(listing, url, metaDesc)}
   </a>
   <ul class="nav-segments">
     <li><a href="/#listings">Homebuyers</a></li>
-    <li><a href="/developers/index.html">Developers</a></li>
+    <li><a href="/developers/">Developers</a></li>
   </ul>
   <div class="nav-right">
     <ul class="nav-secondary">
-      <li><a href="/blog/index.html">Blog</a></li>
-      <li><a href="/about/index.html">About</a></li>
-      <li><a href="/team/index.html">Our Team</a></li>
-      <li><a href="/for-rent/index.html">For Rent</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/team/">Our Team</a></li>
+      <li><a href="/for-rent/">For Rent</a></li>
       <li><a href="/#testimonials">Testimonials</a></li>
       <li><a href="/#contact">Contact</a></li>
     </ul>
@@ -407,13 +407,13 @@ ${listingJsonLd(listing, url, metaDesc)}
 <div class="mobile-menu" id="mobile-menu">
   <ul>
     <li><a href="/#listings">Homebuyers</a></li>
-    <li><a href="/developers/index.html">Developers</a></li>
+    <li><a href="/developers/">Developers</a></li>
   </ul>
   <ul class="mobile-secondary">
-    <li><a href="/blog/index.html">Blog</a></li>
-    <li><a href="/about/index.html">About</a></li>
-    <li><a href="/team/index.html">Our Team</a></li>
-    <li><a href="/for-rent/index.html">For Rent</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/team/">Our Team</a></li>
+    <li><a href="/for-rent/">For Rent</a></li>
     <li><a href="/#testimonials">Testimonials</a></li>
     <li><a href="/#contact">Contact</a></li>
   </ul>
@@ -459,9 +459,9 @@ ${hubspotFormBlock(listing)}
   <ul class="foot-links">
     <li>&copy; 2026 redT Homes</li>
     <li><a href="tel:+13039974001">(303) 997-4001</a></li>
-    <li><a href="/about/index.html">About</a></li>
-    <li><a href="/privacy/index.html">Privacy</a></li>
-    <li><a href="/careers/index.html">Careers</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/privacy/">Privacy</a></li>
+    <li><a href="/careers/">Careers</a></li>
     <li><a href="/#contact">Contact</a></li>
   </ul>
 </footer>
@@ -648,14 +648,14 @@ ${jsonLd}
   </a>
   <ul class="nav-segments">
     <li><a href="/#listings">Homebuyers</a></li>
-    <li><a href="/developers/index.html">Developers</a></li>
+    <li><a href="/developers/">Developers</a></li>
   </ul>
   <div class="nav-right">
     <ul class="nav-secondary">
-      <li><a href="/blog/index.html">Blog</a></li>
-      <li><a href="/about/index.html">About</a></li>
-      <li><a href="/team/index.html">Our Team</a></li>
-      <li><a href="/for-rent/index.html">For Rent</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/team/">Our Team</a></li>
+      <li><a href="/for-rent/">For Rent</a></li>
       <li><a href="/#testimonials">Testimonials</a></li>
       <li><a href="/#contact">Contact</a></li>
     </ul>
@@ -669,13 +669,13 @@ ${jsonLd}
 <div class="mobile-menu" id="mobile-menu">
   <ul>
     <li><a href="/#listings">Homebuyers</a></li>
-    <li><a href="/developers/index.html">Developers</a></li>
+    <li><a href="/developers/">Developers</a></li>
   </ul>
   <ul class="mobile-secondary">
-    <li><a href="/blog/index.html">Blog</a></li>
-    <li><a href="/about/index.html">About</a></li>
-    <li><a href="/team/index.html">Our Team</a></li>
-    <li><a href="/for-rent/index.html">For Rent</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/team/">Our Team</a></li>
+    <li><a href="/for-rent/">For Rent</a></li>
     <li><a href="/#testimonials">Testimonials</a></li>
     <li><a href="/#contact">Contact</a></li>
   </ul>
@@ -734,9 +734,9 @@ ${faq.map(([q, a]) => `      <div class="service-item"><h3>${escapeHtml(q)}</h3>
   <ul class="foot-links">
     <li>&copy; 2026 redT Homes</li>
     <li><a href="tel:+13039974001">(303) 997-4001</a></li>
-    <li><a href="/about/index.html">About</a></li>
-    <li><a href="/privacy/index.html">Privacy</a></li>
-    <li><a href="/careers/index.html">Careers</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/privacy/">Privacy</a></li>
+    <li><a href="/careers/">Careers</a></li>
     <li><a href="/#contact">Contact</a></li>
   </ul>
 </footer>

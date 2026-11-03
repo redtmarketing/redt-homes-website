@@ -46,14 +46,14 @@ const NAV = `<nav class="nav" id="nav">
   </a>
   <ul class="nav-segments">
     <li><a href="/#listings">Homebuyers</a></li>
-    <li><a href="/developers/index.html">Developers</a></li>
+    <li><a href="/developers/">Developers</a></li>
   </ul>
   <div class="nav-right">
     <ul class="nav-secondary">
-      <li><a href="/blog/index.html">Blog</a></li>
-      <li><a href="/about/index.html">About</a></li>
-      <li><a href="/team/index.html">Our Team</a></li>
-      <li><a href="/for-rent/index.html">For Rent</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/team/">Our Team</a></li>
+      <li><a href="/for-rent/">For Rent</a></li>
       <li><a href="/#testimonials">Testimonials</a></li>
       <li><a href="/#contact">Contact</a></li>
     </ul>
@@ -67,13 +67,13 @@ const NAV = `<nav class="nav" id="nav">
 <div class="mobile-menu" id="mobile-menu">
   <ul>
     <li><a href="/#listings">Homebuyers</a></li>
-    <li><a href="/developers/index.html">Developers</a></li>
+    <li><a href="/developers/">Developers</a></li>
   </ul>
   <ul class="mobile-secondary">
-    <li><a href="/blog/index.html">Blog</a></li>
-    <li><a href="/about/index.html">About</a></li>
-    <li><a href="/team/index.html">Our Team</a></li>
-    <li><a href="/for-rent/index.html">For Rent</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/team/">Our Team</a></li>
+    <li><a href="/for-rent/">For Rent</a></li>
     <li><a href="/#testimonials">Testimonials</a></li>
     <li><a href="/#contact">Contact</a></li>
   </ul>
@@ -94,9 +94,9 @@ const FOOTER = `<footer>
   <ul class="foot-links">
     <li>&copy; 2026 redT Homes</li>
     <li><a href="tel:+13039974001">(303) 997-4001</a></li>
-    <li><a href="/about/index.html">About</a></li>
-    <li><a href="/privacy/index.html">Privacy</a></li>
-    <li><a href="/careers/index.html">Careers</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/privacy/">Privacy</a></li>
+    <li><a href="/careers/">Careers</a></li>
     <li><a href="/#contact">Contact</a></li>
   </ul>
 </footer>`;
@@ -191,7 +191,7 @@ function blogCard(post, linkPrefix) {
   const photo = img
     ? `<img src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" loading="lazy">`
     : `<img class="blog-photo-fallback" src="${linkPrefix}assets/brand/redt-logo-icon.png" alt="redT Homes" loading="lazy">`;
-  return `    <a class="blog-card" href="${linkPrefix}blog/${post.slug}.html">
+  return `    <a class="blog-card" href="${linkPrefix}blog/${post.slug}">
       <div class="blog-photo">${photo}</div>
       <div class="blog-card-body">
         <div class="blog-date">${dateLine}</div>
@@ -314,13 +314,13 @@ function postPage(post) {
   const headerLogo = headerImg ? "" : `<img class="page-header-logo" src="/assets/brand/redt-logo-white.png" alt="">`;
   const body = `<header class="page-header"${headerStyle}>
   ${headerLogo}
-  <div class="breadcrumbs"><a href="/">Home</a> / <a href="/blog/index.html">Blog</a> / ${escapeHtml(post.title)}</div>
+  <div class="breadcrumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a> / ${escapeHtml(post.title)}</div>
   <p class="eyebrow">${formatDate(post.date)}</p>
   <h1>${escapeHtml(post.title)}</h1>
 </header>
 
 <section class="section">
-  <a href="/blog/index.html" class="blog-back-link">&larr; Back to Blog</a>
+  <a href="/blog/" class="blog-back-link">&larr; Back to Blog</a>
   <div class="post-body">
     <p class="post-meta">${metaLine}</p>
 ${lazyLoadImages(demoteBodyH1s(post.content, post.title))}
