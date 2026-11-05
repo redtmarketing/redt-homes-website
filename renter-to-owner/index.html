@@ -17,9 +17,11 @@
 <!-- End of HubSpot Embed Code -->
 <title>Your Path to Ownership | redT Homes</title>
 <link rel="icon" type="image/png" href="/assets/brand/redt-logo-icon.png">
-<meta name="description" content="For redT residents: a free pre-approval check with our lender partner and no lease-break fee when you buy a redT home. Offer ends December 15, 2026.">
+<meta name="description" content="For redT residents: a free pre-approval check with a lender and no lease-break fee when you buy a redT home.">
 <!-- Resident-only offer page (door hanger QR + renter emails); kept out of search and the sitemap. -->
 <meta name="robots" content="noindex">
+<!-- The Nathan reels on the public redT Homes socials (utm_campaign=nathan-first-home) belong on the public page; residents (door hanger, emails, PM posts) stay here. -->
+<script>if (new URLSearchParams(location.search).get("utm_campaign") === "nathan-first-home") location.replace("/first-home/" + location.search + location.hash);</script>
 <link rel="canonical" href="https://www.redthomes.com/renter-to-owner/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="redT Homes">
@@ -106,7 +108,7 @@
   <div class="breadcrumbs"><a href="/">Home</a> / Your Path to Ownership</div>
   <p class="eyebrow">For redT residents</p>
   <h1>Your rent could be <strong>building equity.</strong></h1>
-  <p class="lead">Find out what you could buy in a free, 15-minute call with our lender partner. No cost, no obligation. Offer ends December 15, 2026.</p>
+  <p class="lead">Find out what you could buy in a free, 15-minute call with a lender. No cost, no obligation.</p>
   <a href="#get-started" class="btn btn-primary">See if you're ready</a>
   <a href="tel:+13035495054" class="btn btn-outline">Call 303-549-5054</a>
 </header>
@@ -120,7 +122,7 @@
     <div class="rto-card">
       <span class="num">01</span>
       <h3>A free pre-approval check</h3>
-      <p>A 15-minute call with our lender partner to find your real budget and monthly payment. No cost and no obligation.</p>
+      <p>A 15-minute call with a lender to find your real budget and monthly payment. No cost and no obligation.</p>
     </div>
     <div class="rto-card">
       <span class="num">02</span>
@@ -137,7 +139,7 @@
   </div>
   <ol class="rto-steps reveal">
     <li><strong>Tell us you're interested.</strong> Fill out the short form below or call 303-549-5054.</li>
-    <li><strong>Talk with our lender for 15 minutes.</strong> Find out what you could afford and what your payment would be.</li>
+    <li><strong>Talk with a lender for 15 minutes.</strong> Find out what you could afford and what your payment would be.</li>
     <li><strong>Decide when you're ready.</strong> If the numbers work, we'll show you redT homes that fit. If not yet, you'll know exactly what to work on.</li>
   </ol>
 </section>
@@ -154,7 +156,7 @@
     </div>
     <div class="rto-card">
       <p class="myth">"My credit has to be perfect."</p>
-      <p>Many loan programs work with less-than-perfect credit. You can check your reports free every week at AnnualCreditReport.com, and our lender partner can tell you what to work on.</p>
+      <p>Many loan programs work with less-than-perfect credit. You can check your reports free every week at AnnualCreditReport.com, and a lender can tell you what to work on.</p>
     </div>
     <div class="rto-card">
       <p class="myth">"I need a lot of savings."</p>
@@ -168,7 +170,7 @@
     <div>
       <p class="eyebrow">Get started</p>
       <h2 style="font-size: clamp(26px, 2.8vw, 36px); margin-bottom: 20px;">Book your free pre-approval check</h2>
-      <p style="font-size: 15.5px; line-height: 1.8; color: var(--grey);">Send us your name and the best way to reach you. Sammantha or Eli from our sales team will call to set up your 15-minute call with our lender partner.</p>
+      <p style="font-size: 15.5px; line-height: 1.8; color: var(--grey);">Send us your name and the best way to reach you. Sammantha or Eli from our sales team will call to set up your 15-minute call with a lender.</p>
       <div class="developer-contact">
         <div class="item">
           <span class="label">Sammantha</span>
@@ -207,7 +209,7 @@
           };
           var source = new URLSearchParams(location.search).get("utm_source");
           set("comments", "Your Path to Ownership: please set up my free pre-approval check.");
-          set("how_did_you_hear_about_us_", { doorhanger: "Print Advertisement", hubspot: "Email" }[source]);
+          set("how_did_you_hear_about_us_", { doorhanger: "Print Advertisement", hubspot: "Email", facebook: "Facebook", instagram: "Instagram" }[source]);
         }
       });
     </script>
