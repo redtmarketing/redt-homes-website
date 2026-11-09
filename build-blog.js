@@ -33,8 +33,17 @@ function readJSON(p) {
   return JSON.parse(fs.readFileSync(p, "utf8"));
 }
 
+// Internal links in data/blog.json often point at file paths ("/blog/x.html",
+// "/about/index.html"). Those now 301 to the clean URL (see
+// build-html-redirects.js), so write the clean form to skip the redirect hop.
+function cleanInternalLinks(html) {
+  return html.replace(/href="((?:https:\/\/www\.redthomes\.com)?\/[^"#?]*?)(index\.html|\.html)([#?][^"]*)?"/g,
+    (m, base, ext, tail = "") => `href="${base}${tail}"`);
+}
+
 function writeFile(outPath, contents) {
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  if (outPath.endsWith(".html")) contents = cleanInternalLinks(contents);
   // width/height on every local <img> lets browsers reserve space while images load (no layout shift)
   fs.writeFileSync(outPath, outPath.endsWith(".html") ? addImageDimensions(contents, ROOT) : contents);
 }

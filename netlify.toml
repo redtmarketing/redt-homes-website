@@ -142,14 +142,16 @@
   to = "/blog/"
   status = 301
 
-# Targets elsewhere use the short form (canonical since 2026-10-20). This one
-# keeps .html: Netlify matches /blog/x and /blog/x/ alike, so "/blog/:slug"
-# as the target could loop. Same reason the "/about" rule keeps index.html.
 # Old WordPress post URLs had no .html and a trailing slash, e.g.
 # redthomes.com/blog/redt-open-houses/ (confirmed via the WordPress export).
+# For posts that still exist, the .html file shadows this rule and Netlify
+# serves /blog/x/ → /blog/x itself, so this only fires for posts that no
+# longer exist. It used to point at "/blog/:slug.html", which for a missing
+# post looped into /blog/x.html.html.html… (found 2026-11-09); the blog index
+# is the useful landing spot instead.
 [[redirects]]
   from = "/blog/:slug/"
-  to = "/blog/:slug.html"
+  to = "/blog/"
   status = 301
 
 # A handful of blog posts are linked from *within other posts'* content
