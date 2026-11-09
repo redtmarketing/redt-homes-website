@@ -531,7 +531,7 @@ const COLLECTIONS = [
     title: "Paired Homes for Sale in Denver | Duplexes | redT Homes",
     eyebrow: "Paired Homes",
     h1: "Paired homes for sale in Denver.",
-    heroImage: "/assets/images/5512-clay-court-denver-hero.jpg",
+    heroImage: "/assets/images/5516-clay-court-denver-hero.jpg",
     metaDesc: (items) => `New paired homes (duplexes) for sale in Denver from redT Homes${items.length ? `, ${priceRange(items)}` : ""}. The feel of a single-family home with one shared wall.`,
     intro: (items) => `<p>A paired home, often called a duplex, is two homes that share a single wall. You get the feel of a single-family home, with your own front door and your own space, often at a lower price than a detached house. redT Homes builds new paired homes in Denver; here's what's available now.</p>`,
     why: {

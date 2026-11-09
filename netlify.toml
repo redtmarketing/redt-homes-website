@@ -1489,3 +1489,14 @@
   [headers.values]
     Content-Type = "text/calendar; charset=utf-8"
     Content-Disposition = "attachment; filename=luxury-home-tour.ics"
+
+# 5512 Clay Ct (Birch Leaf) was rented 2026-11-09 and removed from the site.
+# Send old links to its sibling unit, same pattern as the Dahlia/Berthoud redirects.
+[[redirects]]
+  from = "/listings/5512-clay-court-denver"
+  to = "/listings/5516-clay-court-denver"
+  status = 301
+[[redirects]]
+  from = "/listings/5512-clay-court-denver.html"
+  to = "/listings/5516-clay-court-denver"
+  status = 301
