@@ -1649,3 +1649,8 @@
   to = "/404.html"
   status = 404
   force = true
+[[redirects]]
+  from = "/listings/property_listings.xlsx"
+  to = "/404.html"
+  status = 404
+  force = true
