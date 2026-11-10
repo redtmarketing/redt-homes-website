@@ -1525,9 +1525,14 @@
   from = "/lawrence-liteluxe/"
   to = "/"
   status = 301
-# Any other retired job posting -> current careers page. Not forced, so
-# /careers/ itself (careers/index.html) is still served normally.
+# Retired job postings -> current careers page. Exact paths on purpose: a
+# "/careers/*" wildcard doesn't fire here (the careers/ folder exists) and
+# forcing it would loop /careers/ onto itself.
 [[redirects]]
-  from = "/careers/*"
+  from = "/careers/superintendent-residential"
+  to = "/careers/"
+  status = 301
+[[redirects]]
+  from = "/careers/senior-architect-residential"
   to = "/careers/"
   status = 301
