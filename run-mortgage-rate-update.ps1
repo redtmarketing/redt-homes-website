@@ -41,7 +41,14 @@ git add data/mortgage-rate.json listings index.html 2>&1 | Out-Null
 git commit -q -m "Weekly mortgage rate sync: $oldRate% -> $newRate%" 2>&1 | Out-File -FilePath $logPath -Append -Encoding utf8
 git push -q 2>&1 | Out-File -FilePath $logPath -Append -Encoding utf8
 
-& $netlify deploy --prod --dir . *>&1 | Select-String -Pattern "Production URL|Error|error" | Out-File -FilePath $logPath -Append -Encoding utf8
-if ($LASTEXITCODE -ne 0) { Log "Netlify deploy FAILED - run 'netlify deploy --prod' manually."; exit 1 }
+# Keep the full CLI output: on 2026-11-10 the deploy silently didn't happen
+# under Task Scheduler while the old filtered log still said "Deployed".
+$deployLog = Join-Path $root "mortgage-rate-deploy.log"
+$deployOut = & $netlify deploy --prod --dir . *>&1 | Out-String
+$deployOut | Out-File -FilePath $deployLog -Encoding utf8
+if ($deployOut -notmatch "Deploy is live") {
+  Log "Netlify deploy FAILED (exit $LASTEXITCODE) - see mortgage-rate-deploy.log, then run 'netlify deploy --prod' manually."
+  exit 1
+}
 
 Log "Deployed: site now shows $newRate%."
