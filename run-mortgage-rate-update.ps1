@@ -12,7 +12,10 @@ Log "---- $timestamp ----"
 
 # Only auto-deploy from a clean working tree, so half-finished edits never
 # go live by accident. (Checked before the sync touches any files.)
-$dirtyBefore = git status --porcelain
+# Local Claude Code settings (.claude/) never get deployed and are almost
+# always modified, so they don't count as "dirty".
+$dirtyBefore = git status --porcelain | Where-Object { $_ -notmatch '\s\.claude/' }
+Log "Started (working tree $(if ($dirtyBefore) { 'has other changes' } else { 'clean' }))."
 $oldRate = (Get-Content $ratePath -Raw | ConvertFrom-Json).rate
 
 node update-mortgage-rate.js *>&1 | Out-File -FilePath $logPath -Append -Encoding utf8
