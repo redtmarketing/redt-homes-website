@@ -1536,3 +1536,116 @@
   from = "/careers/senior-architect-residential"
   to = "/careers/"
   status = 301
+
+# Internal files that get uploaded because the site deploys from the repo root
+# (netlify deploy --prod --dir .). Found publicly readable 2026-11-10; force a 404.
+[[redirects]]
+  from = "/_archive-wordpress-export/*"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/_archive-multipage-site/*"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/_archive-placeholder-listings/*"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/HUBSPOT-MLS-INTEGRATION.md"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/listings-check-report.md"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/listings-check.log"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/mortgage-rate-sync.log"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/mortgage-rate-deploy.log"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/run-listings-check.ps1"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/run-mortgage-rate-update.ps1"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/build-blog.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/build-html-redirects.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/build-listings.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/build-map.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/build-sitemap.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/build-team.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/check-listings-spreadsheet.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/image-size.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/migrate-wp-images.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/update-mortgage-rate.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/404.html"
+  status = 404
+  force = true
