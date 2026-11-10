@@ -502,7 +502,9 @@ const COLLECTIONS = [
     eyebrow: "Townhomes",
     h1: "Townhomes for sale in Denver.",
     heroImage: "/assets/images/2140-s-sherman-street-denver-hero.jpg",
-    metaDesc: (items) => `New townhomes for sale in Denver from redT Homes${items.length ? `, ${priceRange(items)}` : ""}. Move-in ready and pre-construction homes in established neighborhoods.`,
+    metaDesc: (items) => items.length > 1
+      ? `${items.length} new townhomes for sale in Denver, ${priceRange(items)}. Move-in ready and pre-construction homes by redT, each with photos and a payment estimate.`
+      : `New townhomes for sale in Denver from redT Homes${items.length ? `, ${priceRange(items)}` : ""}. Move-in ready and pre-construction homes in established neighborhoods.`,
     intro: (items) => `<p>redT Homes designs and builds new townhomes in established Denver neighborhoods, for homebuyers looking for a thoughtfully built place to call home. These are the redT townhomes for sale right now, from move-in ready homes to ones still under construction.</p>`,
     why: {
       heading: "Why a new redT townhome",

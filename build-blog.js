@@ -338,7 +338,8 @@ ${lazyLoadImages(demoteBodyH1s(post.content, post.title))}
 
   return pageShell({
     title: seoTitle(post.title),
-    metaDesc: seoDescription(post.excerpt),
+    // Optional "metaDescription" in blog.json overrides the excerpt for the search snippet only
+    metaDesc: seoDescription(post.metaDescription || post.excerpt),
     canonical: url,
     bodyHtml: body,
     jsonLd: postJsonLd(post, url, img),
