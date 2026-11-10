@@ -1502,3 +1502,32 @@
   from = "/listings/5512-clay-court-denver.html"
   to = "/listings/5516-clay-court-denver"
   status = 301
+
+# Old-site URLs still getting real visits that hit the 404 page
+# (GA4 "Not Found" views, check-ups 2026-10-20 and 2026-11-10).
+[[redirects]]
+  from = "/team-gallery"
+  to = "/team/"
+  status = 301
+[[redirects]]
+  from = "/the-benefits-of-buyer-updates/"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/views"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/terms"
+  to = "/privacy/"
+  status = 301
+[[redirects]]
+  from = "/lawrence-liteluxe/"
+  to = "/"
+  status = 301
+# Any other retired job posting -> current careers page. Not forced, so
+# /careers/ itself (careers/index.html) is still served normally.
+[[redirects]]
+  from = "/careers/*"
+  to = "/careers/"
+  status = 301
