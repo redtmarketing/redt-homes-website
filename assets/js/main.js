@@ -1,6 +1,12 @@
 (function () {
   "use strict";
 
+  /* Time-limited callouts (e.g. open house banners): hide once data-ends passes */
+  document.querySelectorAll("[data-ends]").forEach(function (el) {
+    var ends = Date.parse(el.getAttribute("data-ends"));
+    if (!isNaN(ends) && Date.now() > ends) el.classList.add("is-expired");
+  });
+
   /* Nav background/shadow on scroll */
   var nav = document.getElementById("nav");
   function toggleNavScrolled() {

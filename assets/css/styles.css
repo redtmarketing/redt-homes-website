@@ -293,6 +293,19 @@ a.listing-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba
   position: absolute; top: 16px; left: 16px; background: var(--white); color: var(--black);
   font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 6px 12px;
 }
+/* Open house callouts (listing.openHouse in data/listings.json) */
+.listing-openhouse {
+  position: absolute; left: 0; right: 0; bottom: 0; background: var(--red); color: var(--white);
+  font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 8px 16px;
+}
+.openhouse-banner {
+  display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-top: 24px;
+  background: var(--red); color: var(--white); padding: 14px 22px; transition: background .25s ease;
+}
+.openhouse-banner:hover { background: #c81f21; }
+.openhouse-banner strong { font-size: 15px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.openhouse-banner span { font-size: 13px; color: rgba(255,255,255,.88); }
+[data-ends].is-expired { display: none !important; }
 /* Grid of listing cards on the /townhomes/ and /paired-homes/ landing pages */
 .collection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .collection-grid .listing-card { flex: none; }

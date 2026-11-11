@@ -1654,3 +1654,14 @@
   to = "/404.html"
   status = 404
   force = true
+
+# 1656 Zenobia Street sold and was removed from data/listings.json
+# (2026-11-11) — same pattern as the Fenton/Kendall sold-listing redirects.
+[[redirects]]
+  from = "/listings/1656-zenobia-street-denver.html"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/listings/1656-zenobia-street-denver"
+  to = "/"
+  status = 301

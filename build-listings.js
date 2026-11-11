@@ -54,6 +54,16 @@ function formatPrice(n) {
   return "$" + Number(n).toLocaleString("en-US");
 }
 
+// Optional listing.openHouse = { label, shortLabel, endsAt (ISO with offset) }.
+// Skipped at build time once endsAt has passed; on the live site, main.js also
+// hides any [data-ends] element after that moment, so the banner disappears on
+// time even before the next rebuild. Remove the field from listings.json after.
+function activeOpenHouse(listing) {
+  const oh = listing.openHouse;
+  if (!oh || !oh.endsAt) return null;
+  return Date.parse(oh.endsAt) > Date.now() ? oh : null;
+}
+
 function locLine(listing) {
   return listing.community ? `${listing.community}, ${listing.city}, CO` : `${listing.city}, CO`;
 }
@@ -178,8 +188,10 @@ function mortgageWidget(listing) {
 function carouselCard(listing) {
   const price = formatPrice(listing.price);
   const loc = locLine(listing);
+  const oh = activeOpenHouse(listing);
+  const ohTag = oh ? `<span class="listing-openhouse" data-ends="${escapeHtml(oh.endsAt)}">${escapeHtml(oh.shortLabel || oh.label)}</span>` : "";
   return `    <a class="listing-card" href="/listings/${listing.slug}" data-price="${listing.price}" data-beds="${Number(listing.beds) || 0}" data-status="${escapeHtml(listing.status)}" data-community="${escapeHtml(listing.community || "")}">
-      <div class="listing-photo">${listing.heroImage ? `<img src="${listing.heroImage}" alt="${escapeHtml(listing.address)}" width="640" height="420" loading="lazy" decoding="async">` : ""}<span class="listing-tag">${escapeHtml(listing.status)}</span></div>
+      <div class="listing-photo">${listing.heroImage ? `<img src="${listing.heroImage}" alt="${escapeHtml(listing.address)}" width="640" height="420" loading="lazy" decoding="async">` : ""}<span class="listing-tag">${escapeHtml(listing.status)}</span>${ohTag}</div>
       <div class="listing-body">
         <div class="price">${price}</div>
         <div class="loc">${escapeHtml(loc)}</div>
@@ -423,7 +435,8 @@ ${listingJsonLd(listing, url, metaDesc)}
   <div class="breadcrumbs"><a href="/">Home</a> / <a href="/#listings">Listings</a> / ${escapeHtml(listing.address)}</div>
   <p class="eyebrow">${escapeHtml(listing.status)}</p>
   <h1>${escapeHtml(listing.address)}</h1>
-  <p class="loc">${escapeHtml(loc)}</p>
+  <p class="loc">${escapeHtml(loc)}</p>${activeOpenHouse(listing) ? `
+  <a class="openhouse-banner" href="#tour" data-ends="${escapeHtml(listing.openHouse.endsAt)}"><strong>${escapeHtml(listing.openHouse.label)}</strong><span>Stop by, no appointment needed</span></a>` : ""}
 </header>
 
 <section class="section">
