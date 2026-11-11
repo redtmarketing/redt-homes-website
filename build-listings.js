@@ -375,7 +375,8 @@ function listingPage(listing, listings) {
   const bedsBath = listing.beds && listing.baths ? `${listing.beds} bed, ${listing.baths} bath ` : "";
   const statusWord = listing.status.toLowerCase();
   const typeWord = listing.propertyType.toLowerCase();
-  const statusType = statusWord === typeWord ? typeWord : `${statusWord} ${typeWord}`;
+  // A home listed as Land (lot sold with plans, e.g. 3801 S Logan) reads "planned single family home"
+  const statusType = statusWord === typeWord ? typeWord : statusWord === "land" ? `planned ${typeWord}` : `${statusWord} ${typeWord}`;
   // Search results cut descriptions past ~155 characters; drop the brand from the call to action when it's long
   const fullDesc = `${bedsBath}${statusType} at ${listing.address}, ${loc}. ${price}. Schedule a tour with redT Homes.`;
   const metaDesc = fullDesc.length > 155 ? fullDesc.replace(/ with redT Homes\.$/, ".") : fullDesc;
