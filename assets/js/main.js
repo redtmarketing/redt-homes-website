@@ -68,6 +68,10 @@
       var maxScroll = track.scrollWidth - track.clientWidth - 1;
       prevBtn.disabled = track.scrollLeft <= 0;
       nextBtn.disabled = track.scrollLeft >= maxScroll;
+      /* Homepage status rows: no arrows when every card already fits */
+      if (group.classList && group.classList.contains("listing-row")) {
+        prevBtn.parentElement.style.visibility = maxScroll <= 0 ? "hidden" : "";
+      }
     }
     track.addEventListener("scroll", updateCarouselButtons, { passive: true });
     window.addEventListener("resize", updateCarouselButtons);
@@ -175,9 +179,9 @@
   });
 
   var listingsFilters = document.getElementById("listings-filters");
-  var listingsTrack = document.querySelector(".listings-track");
-  if (listingsFilters && listingsTrack) {
-    var listingCards = Array.prototype.slice.call(listingsTrack.querySelectorAll(".listing-card"));
+  var listingRows = Array.prototype.slice.call(document.querySelectorAll("#listings .listing-row"));
+  if (listingsFilters && listingRows.length) {
+    var listingCards = Array.prototype.slice.call(document.querySelectorAll("#listings .listing-card"));
     var listingsNoResults = document.querySelector(".listings-no-results");
     var statusSelect = document.getElementById("filter-status");
     var bedsSelect = document.getElementById("filter-beds");
@@ -207,7 +211,15 @@
       });
 
       if (listingsNoResults) listingsNoResults.hidden = visibleCount > 0;
-      listingsTrack.scrollLeft = 0;
+      /* Each row shows its own match count and hides when nothing in it matches */
+      listingRows.forEach(function (row) {
+        var shown = row.querySelectorAll('.listing-card:not([style*="display: none"])').length;
+        row.hidden = shown === 0;
+        var count = row.querySelector(".listing-row-count");
+        if (count) count.textContent = shown;
+        var track = row.querySelector(".listings-track");
+        if (track) track.scrollLeft = 0;
+      });
       window.dispatchEvent(new Event("resize"));
     }
 
