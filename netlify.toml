@@ -1665,3 +1665,34 @@
   from = "/listings/1656-zenobia-street-denver"
   to = "/"
   status = 301
+
+# Remaining live 404s from Google Search Console's "Not found (404)" report
+# (checked 2026-11-17; the other 41 URLs in that report already redirect).
+# WordPress RSS feeds for posts that *were* migrated — send to the real post.
+[[redirects]]
+  from = "/blog/real-estate-career-story-part2/feed/"
+  to = "/blog/real-estate-career-story-part2"
+  status = 301
+[[redirects]]
+  from = "/blog/investigating-the-societal-benefit-of-urban-infilling/feed/"
+  to = "/blog/investigating-the-societal-benefit-of-urban-infilling"
+  status = 301
+[[redirects]]
+  from = "/blog/walkability-of-denver-neighborhoods/feed/"
+  to = "/blog/walkability-of-denver-neighborhoods"
+  status = 301
+# Truncated link to the active 1121 S Dahlia listing found by Google.
+[[redirects]]
+  from = "/listings/1121-s-dahlia-stre"
+  to = "/listings/1121-s-dahlia-street-denver"
+  status = 301
+# Old WordPress community / interest-list pages, same as /lawrence/ and
+# /acoma-st-sales/.
+[[redirects]]
+  from = "/acoma-st-interest-list-2/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/logan/"
+  to = "/"
+  status = 301
