@@ -1784,11 +1784,3 @@
   from = "/blog/tag/*"
   to = "/blog/"
   status = 301
-
-# Internal working file in the repo folder (deployed because of --dir .).
-# Hide it like the other internal files above.
-[[redirects]]
-  from = "/gbp-preview-2026-11-16.html"
-  to = "/404.html"
-  status = 404
-  force = true
