@@ -568,7 +568,19 @@ const COLLECTIONS = [
     metaDesc: (items) => items.length > 1
       ? `${items.length} new townhomes for sale in Denver, ${priceRange(items)}. Move-in ready and pre-construction homes by redT, each with photos and a payment estimate.`
       : `New townhomes for sale in Denver from redT Homes${items.length ? `, ${priceRange(items)}` : ""}. Move-in ready and pre-construction homes in established neighborhoods.`,
-    intro: (items) => `<p>redT Homes designs and builds new townhomes in established Denver neighborhoods, for homebuyers looking for a thoughtfully built place to call home. These are the redT townhomes for sale right now, from move-in ready homes to ones still under construction.</p>`,
+    intro: (items) => {
+      // Community → neighborhood, so the copy only names places with homes listed right now.
+      const hoods = {
+        "Thirty Eight West": "Thirty Eight West in Berkeley, a few blocks from Tennyson Street",
+        "44th Avenue Townhomes": "44th Avenue Townhomes in Sunnyside",
+        "Lafayette Townhomes": "Lafayette Townhomes in City Park West, near Cheesman Park",
+        "Sherman Townhomes": "Sherman Townhomes in Rosedale, near Platt Park",
+      };
+      const found = [...new Set(items.map((l) => l.community).filter((c) => hoods[c]))].map((c) => hoods[c]);
+      const list = found.length > 1 ? `${found.slice(0, -1).join("; ")}; and ${found[found.length - 1]}` : found[0];
+      return `<p>redT Homes designs and builds new townhomes in established Denver neighborhoods, for homebuyers looking for a thoughtfully built place to call home. These are the redT townhomes for sale in Denver right now, from move-in ready homes to ones still under construction.</p>`
+        + (list ? `<p style="margin-top: 16px;">Current communities include ${list}. Every listing has photos, home details and a monthly payment estimate, and our team can set up a tour of any home.</p>` : "");
+    },
     why: {
       heading: "Why a new redT townhome",
       items: [
