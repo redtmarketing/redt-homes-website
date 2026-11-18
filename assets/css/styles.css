@@ -9,10 +9,21 @@
   --hairline: #e2e0da;
 }
 
+/* Arial sized to match Montserrat, used while the web font loads, so the text does not
+   re-wrap and push the page down when Montserrat arrives (Lighthouse CLS "Web font" culprit). */
+@font-face {
+  font-family: "Montserrat Fallback";
+  src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 113.4%;
+  ascent-override: 85.4%;
+  descent-override: 22.1%;
+  line-gap-override: 0%;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color: var(--black);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
@@ -358,7 +369,7 @@ a.listing-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba
   background: var(--red); transform: rotate(-45deg); border: 2px solid var(--white);
   box-sizing: border-box;
 }
-.map-popup { font-family: 'Montserrat', sans-serif; min-width: 160px; }
+.map-popup { font-family: 'Montserrat', 'Montserrat Fallback', sans-serif; min-width: 160px; }
 .map-popup strong { display: block; font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 2px; }
 .map-popup-loc { display: block; font-size: 12px; color: var(--grey); margin-bottom: 8px; }
 .map-popup-price { display: block; font-size: 12.5px; color: var(--black); margin-bottom: 10px; }
@@ -593,7 +604,8 @@ a.blog-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(10
 .social-tile .social-tile-icon svg { width: 26px; height: 26px; }
 
 .post-meta { font-size: 13px; color: var(--grey); margin-bottom: 8px; }
-.post-body { max-width: 720px; margin: 0 auto; }
+/* overflow-wrap: long unbroken strings (pasted URLs, "a/b/c/d" lists) wrap instead of widening the page on phones */
+.post-body { max-width: 720px; margin: 0 auto; overflow-wrap: break-word; }
 .post-body p { font-size: 16px; line-height: 1.8; color: var(--grey); margin-bottom: 22px; }
 .post-body p:first-of-type { font-size: 18px; color: var(--black); }
 .post-body h2, .post-body h3, .post-body h4 { color: var(--black); margin: 36px 0 16px; line-height: 1.3; }
