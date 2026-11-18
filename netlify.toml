@@ -8,6 +8,27 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Send every non-canonical host straight to https://www (one hop instead of
+# http://redthomes.com -> https://redthomes.com -> https://www). Domain-level
+# rules go first so they win over the path rules below.
+[[redirects]]
+  from = "http://redthomes.com/*"
+  to = "https://www.redthomes.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://redthomes.com/*"
+  to = "https://www.redthomes.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.redthomes.com/*"
+  to = "https://www.redthomes.com/:splat"
+  status = 301
+  force = true
+
 # HubSpot's default post-submission redirect when a form has no custom
 # "Redirect to a webpage URL" configured in its form options — every
 # HubSpot form embed on this site (homepage contact form + 10 listing
