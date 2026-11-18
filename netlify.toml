@@ -1696,3 +1696,104 @@
   from = "/logan/"
   to = "/"
   status = 301
+
+# GA4 "Page Not Found" check (Nov 11–17 2026): 124 views from 123 users, 0s
+# engagement, mostly (not set)/China bot traffic. 110 of them were requests
+# for old WordPress API and RSS-feed URLs. Answer those with a 410 and
+# gone.html, which has no GA/HubSpot tag, so bot scans stop inflating the 404
+# count. Redirecting them to the homepage would just move the bot hits into
+# homepage views. The specific migrated-post /feed/ redirects above still
+# win because Netlify uses the first matching rule.
+[[redirects]]
+  from = "/wp-json/*"
+  to = "/gone.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/gone.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "/gone.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/wp-login.php"
+  to = "/gone.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/xmlrpc.php"
+  to = "/gone.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/blog/:slug/feed"
+  to = "/gone.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/feed"
+  to = "/gone.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/comments/feed"
+  to = "/gone.html"
+  status = 410
+  force = true
+
+# Same check: the human-looking 404s. Old job postings go to the current
+# careers page. These are exact paths because a /careers/* wildcard does not
+# fire while the careers/ folder exists.
+[[redirects]]
+  from = "/careers/senior-construction-manager"
+  to = "/careers/"
+  status = 301
+[[redirects]]
+  from = "/careers/northernareacms-r"
+  to = "/careers/"
+  status = 301
+[[redirects]]
+  from = "/careers/architect-residential"
+  to = "/careers/"
+  status = 301
+[[redirects]]
+  from = "/careers/denverareascms-r"
+  to = "/careers/"
+  status = 301
+[[redirects]]
+  from = "/careers-2023"
+  to = "/careers/"
+  status = 301
+[[redirects]]
+  from = "/custom-homes"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/custom-plans"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/build-on-your-land"
+  to = "/developers/"
+  status = 301
+[[redirects]]
+  from = "/blog/tag/*"
+  to = "/blog/"
+  status = 301
+
+# Internal working files in the repo folder (deployed because of --dir .).
+# Hide them like the other internal files above.
+[[redirects]]
+  from = "/nako/*"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/gbp-preview-2026-11-16.html"
+  to = "/404.html"
+  status = 404
+  force = true
