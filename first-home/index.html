@@ -54,8 +54,16 @@
   .rto-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
   .developer-contact .item { line-height: 1.9; }
   .rto-fine { font-size: 12px; line-height: 1.7; color: var(--grey); margin-top: 28px; }
+  .nathan-grid { display: grid; grid-template-columns: 340px 1fr; gap: 56px; align-items: center; max-width: 1000px; }
+  .nathan-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-bottom: 4px solid var(--red); display: block; }
+  .nathan-copy { font-size: 15.5px; line-height: 1.8; color: var(--grey); margin-bottom: 18px; }
+  .nathan-facts { list-style: none; margin: 0 0 22px; padding: 0; }
+  .nathan-facts li { position: relative; padding: 0 0 12px 22px; font-size: 15.5px; line-height: 1.7; color: var(--grey); }
+  .nathan-facts li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--red); }
+  .nathan-facts strong { color: var(--black); }
   @media (max-width: 900px) {
-    .rto-offers, .rto-myths, .rto-form-grid { grid-template-columns: 1fr; gap: 20px; }
+    .rto-offers, .rto-myths, .rto-form-grid, .nathan-grid { grid-template-columns: 1fr; gap: 20px; }
+    .nathan-photo { max-width: 280px; }
     .rto-header .btn + .btn { margin: 12px 0 0; }
   }
 </style>
@@ -105,11 +113,30 @@
 <header class="page-header rto-header">
   <div class="breadcrumbs"><a href="/">Home</a> / Buy Your First Home</div>
   <p class="eyebrow">Still renting?</p>
-  <h1>Your rent could be <strong>building equity.</strong></h1>
-  <p class="lead">Find out what you could buy in a free, 15-minute call with a lender. No cost, no obligation.</p>
+  <h1>Could you qualify <strong>like Nathan?</strong></h1>
+  <p class="lead">Our owner didn't think he could buy his first home either. Find out what you could buy in a free, 15-minute call with a lender. No cost, no obligation.</p>
   <a href="#get-started" class="btn btn-primary">See if you're ready</a>
   <a href="tel:+13035495054" class="btn btn-outline">Call 303-549-5054</a>
 </header>
+
+<section class="section" id="nathan">
+  <div class="nathan-grid reveal">
+    <div class="nathan-photo"><img src="/assets/images/wp-import/2022/08/Nathan-.png" alt="Nathan Adams, owner of redT Homes" loading="lazy"></div>
+    <div>
+      <p class="eyebrow">Nathan's first home</p>
+      <h2 style="font-size: clamp(26px, 2.8vw, 36px); margin-bottom: 20px;">He couldn't qualify on his income alone</h2>
+      <p class="nathan-copy">Our owner, Nathan Adams, couldn't quite qualify for his first home on his income alone. So he got creative, by the book.</p>
+      <ul class="nathan-facts">
+        <li><strong>A roommate with a signed lease.</strong> He lined one up before closing, so the rental income counted toward qualifying.</li>
+        <li><strong>About $5,000 down.</strong> Not the 20% most renters think they need.</li>
+        <li><strong>About $15,000 of his own work.</strong> He renovated, built equity in an appreciating market, and later sold.</li>
+      </ul>
+      <p class="nathan-copy">Your path won't look exactly like his. A 15-minute call with a lender will show you what yours could look like.</p>
+      <a href="#get-started" class="btn btn-primary">See if you could qualify</a>
+      <p class="rto-fine">One buyer's experience. Past results don't guarantee future returns, and rental income counts toward qualifying only under some loan programs and lender rules.</p>
+    </div>
+  </div>
+</section>
 
 <section class="section" style="background: var(--alabaster);">
   <div class="reveal" style="margin-bottom: 40px;">

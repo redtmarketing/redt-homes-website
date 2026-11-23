@@ -387,6 +387,11 @@ a.listing-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba
 .property-sidebar .price { font-size: 28px; font-weight: 600; margin-bottom: 4px; }
 .property-sidebar .loc { font-size: 14px; color: var(--grey); margin-bottom: 24px; }
 .form-heading { font-size: 18px; font-weight: 600; padding-top: 24px; margin-bottom: 20px; border-top: 1px solid var(--hairline); }
+/* "Get price-drop alerts" link under each listing's inquiry form (goes to /alerts/) */
+.property-alert { display: block; margin-top: 24px; padding: 16px 18px; background: var(--white); border-left: 3px solid var(--red); text-decoration: none; color: inherit; transition: background .2s; }
+.property-alert:hover { background: #fff5f5; }
+.property-alert strong { display: block; font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.property-alert span { display: block; font-size: 13px; line-height: 1.6; color: var(--grey); }
 
 .mortgage-calc { max-width: 420px; }
 .mortgage-input-group { display: flex; align-items: center; gap: 8px; }

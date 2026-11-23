@@ -286,6 +286,16 @@ function updateHomepageCarousel(listings) {
 // Individual listing page
 // ---------------------------------------------------------------------------
 
+// Link to the /alerts/ sign-up (HubSpot "Home Alerts" form) under each inquiry form.
+// Skipped for Pending homes; ?home= tells /alerts/ which listing they came from.
+function alertBlock(listing) {
+  if (listing.status === "Pending") return "";
+  return `      <a class="property-alert" href="/alerts/?home=${encodeURIComponent(listing.slug)}">
+        <strong>Get price-drop alerts</strong>
+        <span>Not ready to tour? We'll email you if this home's price changes or a new one like it lists.</span>
+      </a>`;
+}
+
 function hubspotFormBlock(listing) {
   const price = formatPrice(listing.price);
   const loc = locLine(listing);
@@ -512,6 +522,7 @@ ${mortgageWidget(listing)}
       <div class="loc">${escapeHtml(loc)}</div>
 
 ${hubspotFormBlock(listing)}
+${alertBlock(listing)}
     </aside>
   </div>
 </section>
