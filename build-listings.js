@@ -568,6 +568,52 @@ function communityList(items) {
 
 const LINK = 'style="color: var(--black); border-bottom: 1px solid var(--hairline);"';
 
+// Denver townhome communities → neighborhood. Used by the /townhomes/ intro and
+// the "New townhomes in Denver" section; only communities with listings show.
+const TOWNHOME_HOODS = {
+  "Thirty Eight West": { hood: "Berkeley", near: "a few blocks from Tennyson Street" },
+  "44th Avenue Townhomes": { hood: "Sunnyside", near: "" },
+  "Lafayette Townhomes": { hood: "City Park West", near: "near Cheesman Park" },
+  "Sherman Townhomes": { hood: "Rosedale", near: "near Platt Park" },
+};
+
+// One row per Denver community with new townhomes listed: neighborhood, how many
+// homes, price range and move-in timing (from listing status, no invented dates).
+function newTownhomesSection(items) {
+  const byCommunity = new Map();
+  for (const l of sortForDisplay(items)) {
+    if (!TOWNHOME_HOODS[l.community]) continue;
+    if (!byCommunity.has(l.community)) byCommunity.set(l.community, []);
+    byCommunity.get(l.community).push(l);
+  }
+  if (!byCommunity.size) return "";
+  const timing = (homes) => {
+    const ready = homes.filter((l) => l.status === "Move-in Ready").length;
+    const building = homes.filter((l) => l.status === "Under Construction").length;
+    if (ready && building) return `${ready} move-in ready now, ${building} under construction`;
+    if (ready) return ready === 1 ? "Move-in ready now" : "All move-in ready now";
+    if (building) return "Under construction now; ask us for the expected move-in date";
+    return "";
+  };
+  const rows = [...byCommunity].map(([name, homes]) => {
+    const h = TOWNHOME_HOODS[name];
+    const count = `${homes.length} new ${homes.length === 1 ? "townhome" : "townhomes"}`;
+    const beds = [...new Set(homes.map((l) => Number(l.beds)).filter(Boolean))].sort((a, b) => a - b);
+    const bedText = beds.length ? `, ${beds.length > 1 ? `${beds[0]} to ${beds[beds.length - 1]}` : beds[0]} bedrooms` : "";
+    return `      <div class="service-item"><h3>${escapeHtml(name)} &middot; ${escapeHtml(h.hood)}</h3><p>${count}${bedText}, ${escapeHtml(priceRange(homes))}${h.near ? `, ${escapeHtml(h.near)}` : ""}. ${escapeHtml(timing(homes))}. <a href="/listings/${homes[0].slug}" ${LINK}>See ${homes.length === 1 ? "the home" : "the homes"}</a>.</p></div>`;
+  }).join("\n");
+  return `<section class="section" style="padding-top: 0;">
+  <div class="reveal" style="max-width: 820px;">
+    <p class="eyebrow">New Construction</p>
+    <h2 style="font-size: clamp(26px, 2.8vw, 36px); margin-bottom: 20px;">New townhomes in Denver</h2>
+    <p style="font-size: 16.5px; line-height: 1.8; color: var(--grey); margin-bottom: 40px;">Every redT townhome is brand new, designed and built by our own team on infill lots in established Denver neighborhoods. Here's where our new townhomes are right now and when you could move in.</p>
+    <div class="service-list">
+${rows}
+    </div>
+  </div>
+</section>`;
+}
+
 const COLLECTIONS = [
   {
     slug: "townhomes",
@@ -581,12 +627,7 @@ const COLLECTIONS = [
       : `New townhomes for sale in Denver from redT Homes${items.length ? `, ${priceRange(items)}` : ""}. Move-in ready and pre-construction homes in established neighborhoods.`,
     intro: (items) => {
       // Community → neighborhood, so the copy only names places with homes listed right now.
-      const hoods = {
-        "Thirty Eight West": "Thirty Eight West in Berkeley, a few blocks from Tennyson Street",
-        "44th Avenue Townhomes": "44th Avenue Townhomes in Sunnyside",
-        "Lafayette Townhomes": "Lafayette Townhomes in City Park West, near Cheesman Park",
-        "Sherman Townhomes": "Sherman Townhomes in Rosedale, near Platt Park",
-      };
+      const hoods = Object.fromEntries(Object.entries(TOWNHOME_HOODS).map(([c, h]) => [c, `${c} in ${h.hood}${h.near ? `, ${h.near}` : ""}`]));
       const found = [...new Set(items.map((l) => l.community).filter((c) => hoods[c]))].map((c) => hoods[c]);
       const list = found.length > 1 ? `${found.slice(0, -1).join("; ")}; and ${found[found.length - 1]}` : found[0];
       return `<p>redT Homes designs and builds new townhomes in established Denver neighborhoods, for homebuyers looking for a thoughtfully built place to call home. These are the redT townhomes for sale in Denver right now, from move-in ready homes to ones still under construction.</p>`
@@ -781,7 +822,7 @@ ${jsonLd}
   </div>
   ${summary ? `<p class="eyebrow" style="margin-bottom: 24px;">${summary}</p>` : ""}
   ${grid}
-</section>
+</section>${c.slug === "townhomes" ? `\n\n${newTownhomesSection(items)}` : ""}
 
 <section class="section" style="padding-top: 0;">
   <div class="reveal" style="max-width: 820px;">
